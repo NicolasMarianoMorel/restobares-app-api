@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+=======
 # restobares-app-api
-que te la de dios a la API
- ahora si a laburar
+Empieza el proyecto!
+kjfsfdjksdf
+>>>>>>> 938e514acd471dd0aa30e1d001fe80c9481afb9f
