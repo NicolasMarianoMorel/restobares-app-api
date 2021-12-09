@@ -50,9 +50,9 @@ module.exports = (sequelize) => {
 			theme: {
 				type: DataType.INTEGER, 
 			}
-      payment_mp:{
-        type:DataType.STRING,
-      }
+      		payment_mp:{
+        	type:DataType.STRING,
+      	}
 			*/
     },
     {
