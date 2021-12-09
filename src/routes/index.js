@@ -2,17 +2,17 @@ var express = require('express');
 var router = express.Router();
 
 // Import routers
-const getUsers = require('./getUsers.js');
+const register = require('./register.js');
+const confirmation = require('./confirmation.js');
+const login = require('./login.js');
+const resto = require('./resto.js');
 // ...
 
 // Configurar routers 
-router.use('/users', getUsers);
+router.use('/register', postRegister);
+router.use('/confirmation', confirmation);
+router.use('/login', login);
+router.use('/:idResto', resto);
 // ...
-
-/* GET home page.  Example*/
-router.get('/', function(req, res, next) {
-  //res.render('index', { title: 'Express' });
-  res.send('Hello Restobar!');
-});
 
 module.exports = router;

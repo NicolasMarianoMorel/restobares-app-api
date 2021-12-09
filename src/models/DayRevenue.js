@@ -4,19 +4,10 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
 	// defino el modelo
 	sequelize.define(
-		"SoldProduct",
+		"DayRevenue",
 		{
-			name: {
-				type: DataTypes.STRING(64),
-				allowNull: false,
-				allowEmpty: false,
-			},
 			totalPrice: {
 				type: DataTypes.DECIMAL(10,2),
-				allowNull: false,
-			},
-			quantity: {
-				type: DataTypes.INTEGER,
 				allowNull: false,
 			},
 			date: {
@@ -30,5 +21,6 @@ module.exports = (sequelize) => {
 		}
 	);
 }
+
 
 
