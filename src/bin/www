@@ -7,7 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('src:server');
 var http = require('http');
-const { conn } = require('../db.js');
+const { conn } = require('../db');
 
 /**
  * Get port from environment and store in Express.
@@ -28,7 +28,7 @@ var server = http.createServer(app);
 
 
 // Syncing all the models at once.
-conn.sync({ force: false }).then(() => {
+conn.sync({ force: true }).then(() => {
 	server.listen(port);
 	server.on('error', onError);
 	server.on('listening', onListening);
