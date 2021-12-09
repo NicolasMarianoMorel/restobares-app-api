@@ -1,12 +1,10 @@
 // Import the controllers functions
-const getUsers = require('./getUsers.js');
-// ...
-
-// Import the DB models
-const { User } = require('../db.js');
+const registerUser = require('./registerUser.js');
+const validateToken = require('./validateToken.js');
 // ...
 
 module.exports = {
-	getUsers,
+	registerUser,
+	validateToken,
 	// ...
 }
