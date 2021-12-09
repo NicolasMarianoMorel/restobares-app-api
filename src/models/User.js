@@ -4,7 +4,7 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
 	// defino el modelo
 	sequelize.define(
-		"user",
+		"User",
 		{
 			id: {
 				type: DataTypes.UUID,
@@ -28,12 +28,12 @@ module.exports = (sequelize) => {
 				allowNull: false,
 				allowEmpty: false,
 			},
-			passEmpleado: {
+			passStaff: {
 				type: DataTypes.STRING,
 				allowNull: false,
 				allowEmpty: false,
 			},
-			cantMesas: {
+			tables: {
 				type: DataTypes.INTEGER,
 				allowNull: false,
 			},
