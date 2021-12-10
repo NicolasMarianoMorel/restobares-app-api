@@ -4,6 +4,7 @@ const validateToken = require("./validateToken.js");
 const getCategories = require("./getCategories");
 const getLabels = require("./getLabels");
 const getUser = require("./getUser");
+const getDiscounts = require("./getDiscounts");
 // ...
 
 module.exports = {
@@ -12,5 +13,6 @@ module.exports = {
   getCategories,
   getLabels,
   getUser,
+  getDiscounts,
   // ...
 };
