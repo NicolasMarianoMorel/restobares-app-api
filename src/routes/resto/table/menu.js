@@ -1,17 +1,17 @@
 var express = require('express');
 var router = express.Router();
+const {menu} = require('../../../controllers/menu.js');
 
-// Obtenemos la lógica correspondiente desde controllers/index.js
-// const { registerUser } = require('../controllers');
-
-// ruta relativa!
 router.get('/',async (req,res) => {
-	//let result = await registerUser(req.body);
-	//res.status(result.status).json(result);
+	try{
+		const {idResto, idTable} = req;
+		const menu_resto = await menu(idResto);
+		// res.send(`Este es el menu del restaurante : ${idResto}, para la Mesa: ${idTable}`);
+		return menu_resto.length>0?res.send(menu_resto):res.send(`<h1>Restaurant haven't a menu</h1>`);
+	} catch (err){
+		res.sendStatus(404);
+	}
 });
-
-// tambien puede ir el post, delete, etc...
-
 module.exports = router;
 
 
