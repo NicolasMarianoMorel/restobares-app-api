@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const {menu} = require('../../../controllers/menu.js');
+const {menu} = require('../../../controllers/getmenu.js');
 
 router.get('/',async (req,res) => {
 	try{
