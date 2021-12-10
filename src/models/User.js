@@ -36,18 +36,18 @@ module.exports = (sequelize) => {
         allowNull: false,
         allowEmpty: false,
       },
-      /*
+      
 			logo: {
 				type: DataType.STRING, //(?)
 				allowNull: false,
 			},
 			theme: {
 				type: DataType.INTEGER, 
-			}
+			},
       payment_mp:{
         type:DataType.STRING,
       }
-			*/
+			
     },
     {
       timestamps: false,
