@@ -3,6 +3,7 @@ const registerUser = require("./registerUser.js");
 const validateToken = require("./validateToken.js");
 const getCategories = require("./getCategories");
 const getLabels = require("./getLabels");
+const getUser = require("./getUser");
 // ...
 
 module.exports = {
@@ -10,5 +11,6 @@ module.exports = {
   validateToken,
   getCategories,
   getLabels,
+  getUser,
   // ...
 };
