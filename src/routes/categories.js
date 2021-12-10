@@ -1,15 +1,13 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 
 // Obtenemos la lógica correspondiente desde controllers/index.js
-//const { registerUser } = require('../controllers');
+const { getCategories } = require("../controllers");
 
-// - - GET /register
-// Ejecuta la ruta /register
-// ruta relativa!
-router.get('/',async (req,res) => {
-	/* let result = await registerUser(req.body);
-	res.status(result.status).json(result); */
+
+router.get("/", async (req, res) => {
+  let result = await getCategories();
+  res.json(result);
 });
 
 module.exports = router;
