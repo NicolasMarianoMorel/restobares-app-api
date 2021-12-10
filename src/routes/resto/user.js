@@ -2,14 +2,15 @@ var express = require('express');
 var router = express.Router();
 
 // Obtenemos la lógica correspondiente desde controllers/index.js
-//const { registerUser } = require('../controllers');
+// const { registerUser } = require('../controllers');
 
-// - - GET /register
-// Ejecuta la ruta /register
 // ruta relativa!
 router.get('/',async (req,res) => {
-	/* let result = await registerUser(req.body);
-	res.status(result.status).json(result); */
+	
+	const {idResto} = req;
+	res.send(`este es el idResto  ${idResto}`)
 });
+
+// tambien puede ir el post, delete, etc...
 
 module.exports = router;

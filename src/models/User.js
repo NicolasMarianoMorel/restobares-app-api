@@ -38,14 +38,14 @@ module.exports = (sequelize) => {
       },
       
 			logo: {
-				type: DataType.STRING, //(?)
+				type: DataTypes.STRING, //(?)
 				allowNull: false,
 			},
 			theme: {
-				type: DataType.INTEGER, 
+				type: DataTypes.INTEGER, 
 			},
       payment_mp:{
-        type:DataType.STRING,
+        type:DataTypes.STRING,
       }
 			
     },
