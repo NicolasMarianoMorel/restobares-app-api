@@ -13,7 +13,7 @@ module.exports = async function () {
         { name: "soft drink" },
         { name: "pasta" },
         { name: "fish and shellfish" },
-        { name: " woks" },
+        { name: "woks" },
         { name: "empanadas" },
         { name: "lomitos" },
         { name: "chicken" },
