@@ -4,10 +4,13 @@
  * Module dependencies.
  */
 
-var app = require("../app");
-var debug = require("debug")("src:server");
-var http = require("http");
-const { conn } = require("../db");
+var app = require('../app');
+var debug = require('debug')('src:server');
+var http = require('http');
+const { User, conn } = require('../db');
+
+// Variables globales
+var usersTables = [];
 
 /**
  * Get port from environment and store in Express.
@@ -27,11 +30,40 @@ var server = http.createServer(app);
  */
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
-  server.listen(port);
-  server.on("error", onError);
-  server.on("listening", onListening);
-});
+conn.sync({ force: true }).then( async () => {
+	server.listen(port);
+	server.on('error', onError);
+	server.on('listening', onListening);
+	
+	// Creamos un usuario de prueba
+	await User.findOrCreate({
+		where: {
+			email: 'goldentruffle@gmail.com',
+			passAdmin: 'abc123',
+			passStaff: '321cba',
+			tables: 5,
+			title: 'La Trufa Dorada',
+			logo: 'https://i2.bssl.es/guiamaximin/2020/01/la-chistera-880x587.jpg',
+		}
+	});
+	// Creamos otro usuario de prueba
+	await User.findOrCreate({
+		where: {
+			email: 'betos@gmail.com',
+			passAdmin: 'abc123',
+			passStaff: '321cba',
+			tables: 9,
+			title: 'Betos',
+			logo: 'https://i2.bssl.es/guiamaximin/2020/01/la-chistera-880x587.jpg',
+		}
+	});
+
+	// Buscamos la cantidad de mesas de cada usuario
+	usersTables = await User.findAll({
+		attributes: ['id', 'tables']
+	}).then( (data) => data.map(e => e.dataValues));
+})
+/*.then(data => console.log(usersTables) );*/
 
 /**
  * Normalize a port into a number, string, or false.
