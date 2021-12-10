@@ -14,7 +14,7 @@ const revenue = require('./revenue.js');
 router.use('/', validateToken);
 router.use('/account', account);
 router.use('/menu', menu);
-router.use('/tables', table);
+router.use('/tables', tables);
 router.use('/feedback', feedback);
 router.use('/revenue', revenue);
 // ...
