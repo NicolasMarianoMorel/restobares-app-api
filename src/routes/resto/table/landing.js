@@ -8,6 +8,8 @@ var router = express.Router();
 router.get('/',async (req,res) => {
 	//let result = await registerUser(req.body);
 	//res.status(result.status).json(result);
+	res.send(`esto es narnia, MESA: ${req.idTable}, RESTORAN: ${req.idResto}`)
+	
 });
 
 // tambien puede ir el post, delete, etc...
