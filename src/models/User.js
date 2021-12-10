@@ -36,10 +36,8 @@ module.exports = (sequelize) => {
         allowNull: false,
         allowEmpty: false,
       },
-      
 			logo: {
 				type: DataTypes.STRING, //(?)
-				allowNull: false,
 			},
 			theme: {
 				type: DataTypes.INTEGER, 
@@ -47,7 +45,6 @@ module.exports = (sequelize) => {
       payment_mp:{
         type:DataTypes.STRING,
       }
-			
     },
     {
       timestamps: false,
