@@ -18,7 +18,15 @@ router.use('/login', login);
 router.use("/categories", categories)
 router.use("/labels", labels)
 router.use("/discounts", discounts)
-router.use('/:idResto', resto);
-// ...
+router.use('/resto/:idResto', (req,res,next) => {
+    const {idResto} = req.params;
+    req.idResto = idResto;
+    next();
+} , resto);
 
+// ...
+router.get("/", async (req,res) => {
+	//console.log(req.usersTables);
+	res.json(req.usersTables);
+})
 module.exports = router;
