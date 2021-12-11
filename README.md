@@ -1,3 +1,5 @@
 # restobares-app-api
-Empieza el proyecto!
-kjfsfdjksdf
+### Endpoints
+- /register
+- /otra cosa
+
