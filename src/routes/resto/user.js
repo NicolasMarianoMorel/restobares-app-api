@@ -1,16 +1,20 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 
 // Obtenemos la lógica correspondiente desde controllers/index.js
-// const { registerUser } = require('../controllers');
+const { getUser } = require("../../controllers");
 
-// ruta relativa!
-router.get('/',async (req,res) => {
-	
-	const {idResto} = req;
-	res.send(`este es el idResto  ${idResto}`)
+router.get("/", async (req, res) => {
+  try {
+    const { idResto } = req;
+    const users = await getUser(idResto);
+    if (!users.length) {
+      res.status(400).json({ error: "no se encotro el id" });
+    } else {
+      res.status(200).send(users);
+    }
+  } catch (error) {
+    console.log(error);
+  }
 });
-
-// tambien puede ir el post, delete, etc...
-
 module.exports = router;
