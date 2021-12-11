@@ -18,9 +18,6 @@ router.post('/',async (req,res) => {
 			CategoryId,
 			DiscountId,
 		} = req.body;
-		console.log("NAME",name);
-		console.log("PRICE",price);
-		console.log("DETAIL",detail);
 		if(!name || !price){
 			return res.status(400).send('Product not registed');
 		  }

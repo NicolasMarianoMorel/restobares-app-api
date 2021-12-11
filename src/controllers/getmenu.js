@@ -4,7 +4,7 @@
 const {Product, Label} = require('../db');
 
 const menu = async(idresto)=>{
-    let allproducts=Product.findAll({include:{
+    let allproducts=await Product.findAll({include:{
         model: Label,
         attributes: ['id'],
     },
@@ -12,7 +12,20 @@ const menu = async(idresto)=>{
         UserId: idresto
     }
     });
-    return allproducts;
+    return allproducts.map(p=>{
+        return{
+            id:p.id,
+            name:p.name,
+            price:p.price,
+            detail:p.detail,
+            image:p.image,
+            available:p.available,
+            DiscountId:p.DiscountId,
+            CategoryId:p.CategoryId,
+            UserId:p.UserId,
+            Labels:p.Labels.map(label=>label.id),
+        }
+    });
 }
 
 module.exports = {
