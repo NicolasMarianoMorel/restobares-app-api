@@ -29,7 +29,9 @@ Do npm install in folder /src, after that, execute npm start in the same folder 
 ## ROUTES RESPONSES
 
 ### ruta get:/resto/idResto/user -->
-JSON: ``` [
+JSON: 
+``` 
+[
 
     {
     
@@ -41,9 +43,12 @@ JSON: ``` [
         
     }
     
-] ```
+] 
+```
 ### ruta get:/labels --> 
-JSON: ``` [
+JSON: 
+``` 
+[
 
     {
     
@@ -144,7 +149,9 @@ JSON: ``` [
 ] 
 ```
 ### ruta get:/categories
-JSON: ``` [
+JSON: 
+``` 
+[
 
     {
     
@@ -177,10 +184,14 @@ JSON: ``` [
         "name": "drink"
         
     }
-    
-] ```
+ 
+] 
+```
 ### ruta get:/discounts -->
-JSON: ``` [
+JSON: 
+
+```
+[
 
     {
     
@@ -220,8 +231,7 @@ JSON: ``` [
     
 ]
 
- ```
-
+```
 #### RUTA '/resto/:idResto/table/:idTable/order'
 
 #### El comensal obtiene la orden de la mesa 1, Restaurante 698b2498-0b10-46ce-9524-005449b5f966 (revisar que el id no haya cambiado si esta el force true en la carpeta bin/www)
@@ -229,7 +239,9 @@ JSON: ``` [
 ##### GET http://localhost:3001/resto/698b2498-0b10-46ce-9524-005449b5f966/table/1/order
 
 // Ejemplo Respuesta (status 200):
-<-- JSON ``` {
+<-- JSON 
+``` 
+{
 
 	tableId: 1,
   
@@ -263,14 +275,17 @@ JSON: ``` [
   
 	comments: 'las papas sin sal porfa'
   
-} ```
+} 
 
+```
 
 ##### El comensal envía la orden de la mesa 1, Restaurante 698b2498-0b10-46ce-9524-005449b5f966
 
 ##### POST http://localhost:3001/resto/698b2498-0b10-46ce-9524-005449b5f966/table/1/order
 
-### BODY: ```
+### BODY: 
+
+```
 {
 
   products [
@@ -284,6 +299,8 @@ JSON: ``` [
   comments: "Sin sal por favor."
   
 }
+
+```
 
 // Recibe
 
@@ -299,8 +316,8 @@ http://localhost:3001/resto/698b2498-0b10-46ce-9524-005449b5f966/admin/menu
 JSON:
 
 //ejemplo de platillo 1
-
- ``` {
+```
+ {
  
       "name":"Poke",
       
@@ -315,9 +332,7 @@ JSON:
       "CategoryId":2
       
 }
-
 //ejemplo de platillo 2
-
 {
 
        "name":"Cesar Salad",
@@ -334,11 +349,9 @@ JSON:
        
        "DiscountId":1
        
- }
- 
+}
 //ejemplo de platillo 3
-
- {
+{
  
        "name":"Spaguetti with Meatballs",
        
@@ -354,8 +367,8 @@ JSON:
        
        "DiscountId":2
        
- } ```
- 
+ } 
+ ```
 ### ruta get --> /resto/:userid/table/:idtable/menu
 
 asi se obtiene el JSON del get:
@@ -365,7 +378,9 @@ ejemplo:
 http://localhost:3001/resto/698b2498-0b10-46ce-9524-005449b5f966/table/1/menu
 
 ejemplo respuesta:
- ``` [
+
+```
+[
  
     {
     
@@ -398,7 +413,6 @@ ejemplo respuesta:
         ]
         
     },
-    
     {
     
         "id": 2,
@@ -428,7 +442,6 @@ ejemplo respuesta:
         ]
         
     },
-    
     {
     
         "id": 3,
@@ -459,5 +472,6 @@ ejemplo respuesta:
         
     }
     
-] ```
+]
 
+```
