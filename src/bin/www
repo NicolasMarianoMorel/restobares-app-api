@@ -7,10 +7,8 @@
 var app = require('../app');
 var debug = require('debug')('src:server');
 var http = require('http');
-const { User, conn } = require('../db');
+const { User, conn, usersTables } = require('../db');
 
-// Variables globales
-var usersTables = [];
 
 /**
  * Get port from environment and store in Express.
@@ -59,11 +57,30 @@ conn.sync({ force: false }).then( async () => {
 	});
 
 	// Buscamos la cantidad de mesas de cada usuario
-	usersTables = await User.findAll({
+	await User.findAll({
 		attributes: ['id', 'tables']
-	}).then( (data) => data.map(e => e.dataValues));
+	})
+		.then( (users) => users.map(({dataValues}) => {
+			let tables = [];
+			for (let i=0; i < dataValues.tables; i++) {
+				tables.push(
+					{
+						tableId: i+1,
+						state: 'free', // free, busy, waiting, pay_cash, pay_online
+						ordered: [], // already ordered products
+						totalPrice: 0,
+						currentOrder: { // order waiting to be served
+							time: '',
+							products: [],
+							comments: '',
+						}
+					}
+				);
+			}
+			usersTables[dataValues.id] = { tables };
+		}))
+		//.then(data => console.log(usersTables) );
 })
-/*.then(data => console.log(usersTables) );*/
 
 /**
  * Normalize a port into a number, string, or false.

@@ -15,6 +15,68 @@ const basename = path.basename(__filename);
 
 const modelDefiners = [];
 
+// ---Variables globales---
+// Lista de usuarios con sus mesas
+var usersTables = {};
+// Lista de usuarios con sus órdenes
+/*
+	Estructura:
+	usersTables {
+		[id]: {
+			tables: [
+				{
+					tableId,
+					state,
+					ordered: [
+						{ productName, quantity, price },
+						... más platillos
+					],
+					totalPrice,
+					currentOrder: {
+						time,
+						products: [
+							{ productName, quantity, price },
+							... más platillos
+						],
+						comments,
+					}
+				},
+				... más mesas 
+			],
+		},
+		... más restaurantes
+	}
+	Ejemplo:
+	usersTables {
+		['3idef30002a323440001']: {
+			tables: [
+				{
+					tableId: 1,
+					state: 'waiting', // free, busy, waiting, pay_cash, pay_online
+					ordered: [
+						{ productId: 3456, quantity: 1},
+						{ productId:  930, quantity: 2},
+						{ productId:   23, quantity: 2},
+						{ productId: 3560, quantity: 4},
+						... mas productos
+					],
+					totalPrice: 550.90,
+					currentOrder: {
+						time: '2022-01-07_23:45:05.4677',
+						products: [
+							{ productId: 22, quantity: 2},
+							... mas productos
+						],
+						comments: 'las papas sin sal porfa'
+					},
+				},
+				... más mesas
+			],
+		},
+		... más restaurantes
+	}
+*/
+
 // Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
 fs.readdirSync(path.join(__dirname, "/models"))
   .filter(
@@ -79,4 +141,5 @@ Label.belongsToMany(Product, { through: "Product_Label" });
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize, // para importart la conexión { conn } = require('./db.js');
+  usersTables, //referencia de las mesas de los usuarios.
 };

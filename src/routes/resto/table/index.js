@@ -4,7 +4,7 @@ var router = express.Router();
 // Import routers
 const landing = require('./landing.js');
 const menu = require('./menu.js');
-const bill = require('./bill.js');
+const order = require('./order.js');
 const feedback = require('./feedback.js');
 const payment = require('./payment.js');
 // ...
@@ -20,11 +20,11 @@ router.use('/:idTable/menu',(req,res,next) => {
     req.idTable = idTable;
     next();
 }, menu);
-router.use('/:idTable/bill',(req,res,next) => {
+router.use('/:idTable/order',(req,res,next) => {
     const {idTable} = req.params;
     req.idTable = idTable;
     next();
-}, bill);
+}, order);
 router.use('/:idTable/feedback',(req,res,next) => {
     const {idTable} = req.params;
     req.idTable = idTable;

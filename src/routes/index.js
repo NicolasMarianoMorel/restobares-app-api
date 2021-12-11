@@ -25,8 +25,8 @@ router.use('/resto/:idResto', (req,res,next) => {
 } , resto);
 
 // ...
-router.get("/", (req,res) => {
-    
-	res.send(`toma por curioso`)
+router.get("/", async (req,res) => {
+	//console.log(req.usersTables);
+	res.json(req.usersTables);
 })
 module.exports = router;

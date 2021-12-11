@@ -5,6 +5,8 @@ const getCategories = require("./getCategories");
 const getLabels = require("./getLabels");
 const getUser = require("./getUser");
 const getDiscounts = require("./getDiscounts");
+const getOrders = require('./getOrders.js');
+const postOrder = require('./postOrder.js');
 // ...
 
 module.exports = {
@@ -14,5 +16,8 @@ module.exports = {
   getLabels,
   getUser,
   getDiscounts,
+  getOrders,
+  postOrder,
   // ...
 };
+
