@@ -28,14 +28,14 @@ var usersTables = {};
 					tableId,
 					state,
 					ordered: [
-						{ productId, quantity },
+						{ productName, quantity, price },
 						... más platillos
 					],
 					totalPrice,
 					currentOrder: {
 						time,
 						products: [
-							{ productId, quantity },
+							{ productName, quantity, price },
 							... más platillos
 						],
 						comments,
