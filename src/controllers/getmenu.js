@@ -3,7 +3,7 @@
 //Se trae todos los productos que ofrece en el menu el restaurante
 const {Product, Label} = require('../db');
 
-const menu = async(idresto)=>{
+const getMenu = async(idresto)=>{
     let allproducts=await Product.findAll({include:{
         model: Label,
         attributes: ['id'],
@@ -28,6 +28,4 @@ const menu = async(idresto)=>{
     });
 }
 
-module.exports = {
-    menu
-}
+module.exports = getMenu
