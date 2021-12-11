@@ -8,15 +8,15 @@ module.exports = (sequelize) => {
 		{
 			percentage: {
 				type: DataTypes.INTEGER,
-				allowNull: false,
+				// allowNull: false,
 			},
 			factor: {
 				type: DataTypes.INTEGER,
-				allowNull: false,
+				// allowNull: false,
 			},
 			max_discounts: {
 				type: DataTypes.INTEGER,
-				allowNull: false,
+				// allowNull: false,
 			},
 		},
 		{
