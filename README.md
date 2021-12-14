@@ -274,9 +274,9 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
   
 	ordered: [
   
-		{ productName: 'Papas Fritas', quantity: 2, price: 200},
+		{ productName: 'Papas Fritas', productId: 23, quantity: 2, price: 200},
     
-		{ productName: 'Henieken', quantity: 2, price: 300},
+		{ productName: 'Henieken', productId: 12, quantity: 2, price: 300},
     
 		... mas productos
     
@@ -317,9 +317,9 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 
   products [
   
-    { productName: 'Papas Fritas', quantity: 2, price: 200.0 },
+		{ productName: 'Papas Fritas', productId: 23, quantity: 2, price: 200},
     
-    { productName: 'Heineken', quantity: 2, price: 300.0 },
+		{ productName: 'Henieken', productId: 12, quantity: 2, price: 300},
     
   ],
   
