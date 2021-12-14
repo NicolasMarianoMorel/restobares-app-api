@@ -20,6 +20,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use((req, res, next) => {
+	res.header('Access-Control-Allow-Origin', '*'); // update to match the domain you will make the request from
+	res.header('Access-Control-Allow-Credentials', 'true');
+	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+	res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+	next();
+  });
+
+// app.use('/',(req,res,next)=>{
+// 	req.usersTables = usersTables;
+// 	next();
+// }, routes);
 app.use('/', routes);
 
 // catch 404 and forward to error handler
@@ -37,5 +49,7 @@ app.use(function(err, req, res, next) {
 	res.status(err.status || 500);
 	//res.render('error');
 });
+
+
 
 module.exports = app;
