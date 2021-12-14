@@ -52,7 +52,7 @@ var usersTables = {};
 			tables: [
 				{
 					tableId: 1,
-					state: 'waiting', // free, busy, waiting, pay_cash, pay_online
+					state: 'waiting', // free, busy, waitingOrder, waitingBill, pay_cash, pay_online
 					ordered: [
 						{ productId: 3456, quantity: 1},
 						{ productId:  930, quantity: 2},
