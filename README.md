@@ -273,7 +273,7 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 
 	tableId: 1,
   
-	state: 'waiting', // free, busy, waiting, pay_cash, pay_online
+	state: 'waiting', // free, eating, waiting, pay_cash, pay_online
   
 	ordered: [
   
