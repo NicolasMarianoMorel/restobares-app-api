@@ -33,6 +33,40 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 
 ## ROUTES RESPONSES
 
+### --- Example for copy
+
+#### - `GET /route/:param/etc/:otherParam/blablabla`
+
+<details>
+	
+<summary>Request: Body</summary>
+
+```
+
+{
+    property: 'value',
+    otherProperty: 'otherValue',
+}
+	
+```
+
+</details>
+
+<details>
+	
+<summary>Response: JSON</summary>
+
+```
+
+{
+    "property": "value",
+    "otherProperty": "otherValue"
+}
+	
+```
+
+</details>
+
 ### --- General Routes
 
 #### - `GET /resto/idResto/user`
@@ -517,10 +551,10 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 
 <details>
 	
-<summary>Body: JSON</summary>
+<summary>Request: Body</summary>
 
 ```
-	
+
 {
     product_Id: 1	
 }
