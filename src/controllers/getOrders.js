@@ -1,5 +1,5 @@
 // getOrders controller
-var { usersTables } = require('../db.js');
+var { usersTables } = require('../cache.js');
 
 module.exports = function(idResto, idTable) {
 	// Va a buscar al usuario idResto a través del numero de mesa de idTable
