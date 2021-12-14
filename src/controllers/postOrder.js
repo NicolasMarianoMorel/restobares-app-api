@@ -2,21 +2,24 @@
 var { usersTables } = require('../db.js');
 
 module.exports = function(idResto, idTable, body) {
-	// Va a buscar al usuario idResto a través del numero de mesa de idTable
-	// Le restamos 1 porque idTable arranca de 1 y la posición del array
-	// arranca en 0.
-	// Recibimos por body:
-	//	{
-	//		products: [
-	//			{ 
-	//				productName: 'string', 
-	//				quantity: number,
-	//				price: number,
-	//			},
-	//			... más platillos
-	//		],
-	//		comments: 'string',
-	//	}
+	/*
+	 Va a buscar al usuario idResto a través del numero de mesa de idTable
+	 Le restamos 1 porque idTable arranca de 1 y la posición del array
+	 arranca en 0.
+	 Recibimos por body:
+		{
+			products: [
+				{ 
+					productId: number, 
+					productName: 'string', 
+					quantity: number,
+					price: number,
+				},
+				... más platillos
+			],
+			comments: 'string',
+		}
+	*/
 	let table = usersTables[idResto].tables[idTable-1];
 	if (table.state !== 'waiting' && !table.currentOrder.products.length) {
 		table.state = 'waiting';
