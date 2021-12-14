@@ -37,7 +37,7 @@ router.put('/', async (req,res)=>{
 				{available: true},
 				{where:{id:product_Id}}
 			)
-			return res.send(`Product ${select_product.name} was enabled`)
+			return res.status(200).send(`Product ${select_product.name} was enabled`)
 		}
 	} catch (err){
 		res.status(404).send(err);
