@@ -53,7 +53,7 @@ var usersTables = {};
 					currentOrder: {
 						time: '2022-01-07_23:45:05.4677',
 						products: [
-							{ productId: 22, quantity: 2},
+							{productId: 3560, productName: 'hamb', quantity: 4, price:  8.0},
 							... mas productos
 						],
 						comments: 'las papas sin sal porfa'
