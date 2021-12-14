@@ -9,10 +9,10 @@ const menu = require('./menu.js');
 // ...
 
 // Configurar routers 
+router.use('/menu',(req,res,next)=>{next()} ,menu); 
 // router.use('/', validateToken);
 router.use('/tables', tables);
 router.use('/orders', orders);
-router.use('/menu', menu);
 // ...
 
 module.exports = router;

@@ -3,7 +3,7 @@ var router = express.Router();
 const {Product, Label} = require('../../../db');
 
 // Obtenemos la lógica correspondiente desde controllers/index.js
-// const { registerUser } = require('../controllers');
+const { getMenu } = require('../../../controllers');
 
 // ruta relativa!
 router.post('/',async (req,res) => {
@@ -37,10 +37,24 @@ router.post('/',async (req,res) => {
 			where: {id: id_label}
 		});
 		await new_product.addLabels(db_labels);
-		res.send(`Prduct ${name} created successfully`)
+		res.send(`Product ${name} created successfully`)
 	} catch (err){
 		res.status(404).send(err);
 	}
+});
+
+router.get("/", async (req, res) => {
+  try {
+    const { idResto } = req;
+    const menu = await getMenu(idResto);
+    if (!menu.length) {
+      res.status(400).json({ error: "no se encotro el id" });
+    } else {
+      res.status(200).send(menu);
+    }
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 module.exports = router;

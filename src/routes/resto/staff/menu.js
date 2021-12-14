@@ -1,19 +1,48 @@
 var express = require('express');
 var router = express.Router();
-
-// Obtenemos la lógica correspondiente desde controllers/index.js
-// const { registerUser } = require('../controllers');
+const {Product} = require('../../../db');
+const { getMenu } = require("../../../controllers");
 
 // ruta relativa!
-router.get('/',async (req,res) => {
-	res.send("Hola soy el menu del staff");
-	//let result = await registerUser(req.body);
-	//res.status(result.status).json(result);
+router.get("/", async (req, res) => {
+  try {
+    const { idResto } = req;
+    const menu = await getMenu(idResto);
+    if (!menu.length) {
+      res.status(400).json({ error: "no se encotro el id" });
+    } else {
+      res.status(200).send(menu);
+    }
+  } catch (error) {
+    res.status(404).send(err);
+  }
 });
 
 router.put('/', async (req,res)=>{
-	const productId = req.body;
-	
+	try{
+		const { idResto } = req;
+		const {product_Id} = req.body;
+		const products = await getMenu(idResto)
+		const select_product = products.find(p=>p.id===product_Id);
+		console.log("PRODUCT",select_product);
+		if(select_product.available==true){
+			await Product.update(
+				{available: false},
+				{where:{id:product_Id}}
+				);
+			return res.send(`Product ${select_product.name} was disabled`)
+		}
+		else if(select_product.available==false){
+			await Product.update(
+				{available: true},
+				{where:{id:product_Id}}
+			)
+			return res.send(`Product ${select_product.name} was enabled`)
+		}
+	} catch (err){
+		res.status(404).send(err);
+	}
+
 });
 
 // tambien puede ir el post, delete, etc...
