@@ -6,8 +6,14 @@ var router = express.Router();
 
 // ruta relativa!
 router.get('/',async (req,res) => {
+	res.send("Hola soy el menu del staff");
 	//let result = await registerUser(req.body);
 	//res.status(result.status).json(result);
+});
+
+router.put('/', async (req,res)=>{
+	const productId = req.body;
+	
 });
 
 // tambien puede ir el post, delete, etc...
