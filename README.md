@@ -1,35 +1,42 @@
 # restobares-app-api
-How to start the server:
+## How to start the server:
 
-Create database in sql shell of postgres or Pg Admin with the name restobares (CREATE DATABASE restobares;)
+1.Create database in sql shell of postgres or Pg Admin with the name restobares (CREATE DATABASE restobares;)
 
-Create .env in src/ with those exact vars:
+2.Create .env in src/ with these exact vars:
+```
+DB_USER=(your postgres user)
 
-DB_USER= (your postgres user)
+DB_PASS=(your postgres pass)
 
-DB_PASS= (your postgres pass)
+DB_HOST=localhost:5432 (if you got the posgres in the default port).
+```
+3.Do ```npm install``` in folder ```/src```.
 
-DB_HOST= localhost:5432 (if you got the posgres in the default port).
+4.Execute ```npm start``` in folder ```/src``` and it should show "listening to port 3001".
 
-Do npm install in folder /src, after that, execute npm start in the same folder and it should show "listening to port 3001".
-
-### Endpoints
+## ENDPOINTS
 #### General Routes
-- ruta get:/resto/idResto/user --> 
-- ruta get:/discounts --> 
-- ruta get:/labels --> 
-- ruta get:/categories
+- GET /resto/idResto/user
+- GET /discounts
+- GET /labels
+- GET /categories
 #### Diner Routes (comensal)
-- ruta get: /resto/:idResto/table/:idTable/order --> 
-- ruta post: /resto/:idResto/table/:idTable/order --> 
-- ruta get: /resto/:userid/table/:idtable/menu -->
+- GET  /resto/:idResto/table/:idTable/order
+- GET  /resto/:userid/table/:idtable/menu
+- POST /resto/:idResto/table/:idTable/order
 #### Admin Routes
-- ruta post: /resto/userid/admin/menu -->
+- POST /resto/userid/admin/menu
 
 ## ROUTES RESPONSES
 
-### ruta get:/resto/idResto/user -->
-JSON: 
+### General Routes
+
+#### `GET /resto/idResto/user`
+<details>
+	
+<summary>Response: JSON</summary> 
+	
 ``` 
 [
 
@@ -45,8 +52,15 @@ JSON:
     
 ] 
 ```
-### ruta get:/labels --> 
-JSON: 
+	
+</details>
+
+#### `GET /labels`
+
+<details>
+	
+<summary>Response: JSON</summary> 
+	
 ``` 
 [
 
@@ -148,8 +162,13 @@ JSON:
     
 ] 
 ```
-### ruta get:/categories
-JSON: 
+</details>
+
+#### `GET /categories`
+<details>
+	
+<summary>Response: JSON</summary> 
+
 ``` 
 [
 
@@ -187,8 +206,13 @@ JSON:
  
 ] 
 ```
-### ruta get:/discounts -->
-JSON: 
+</details>
+
+#### - `GET /discounts`
+
+<details>
+	
+<summary>Response: JSON</summary> 
 
 ```
 [
@@ -230,16 +254,17 @@ JSON:
     }
     
 ]
-
 ```
-#### RUTA '/resto/:idResto/table/:idTable/order'
+</details>
 
-#### El comensal obtiene la orden de la mesa 1, Restaurante 698b2498-0b10-46ce-9524-005449b5f966 (revisar que el id no haya cambiado si esta el force true en la carpeta bin/www)
+### Diner Routes (comensal)
+	
+#### - `GET /resto/:idResto/table/:idTable/order`
 
-##### GET http://localhost:3001/resto/698b2498-0b10-46ce-9524-005449b5f966/table/1/order
-
-// Ejemplo Respuesta (status 200):
-<-- JSON 
+<details>
+	
+<summary>Response: JSON</summary> 
+	
 ``` 
 {
 
@@ -249,9 +274,9 @@ JSON:
   
 	ordered: [
   
-		{ productName: 'Papas Fritas', quantity: 2, price: 200},
+		{ productName: 'Papas Fritas', productId: 23, quantity: 2, price: 200},
     
-		{ productName: 'Henieken', quantity: 2, price: 300},
+		{ productName: 'Henieken', productId: 12, quantity: 2, price: 300},
     
 		... mas productos
     
@@ -279,20 +304,22 @@ JSON:
 
 ```
 
-##### El comensal envía la orden de la mesa 1, Restaurante 698b2498-0b10-46ce-9524-005449b5f966
+</details>
 
-##### POST http://localhost:3001/resto/698b2498-0b10-46ce-9524-005449b5f966/table/1/order
+#### - `POST /resto/:idResto/table/:idTable/order`
 
-### BODY: 
+<details>
+	
+<summary>Request: Body</summary> 
 
 ```
 {
 
   products [
   
-    { productName: 'Papas Fritas', quantity: 2, price: 200.0 },
+		{ productName: 'Papas Fritas', productId: 23, quantity: 2, price: 200},
     
-    { productName: 'Heineken', quantity: 2, price: 300.0 },
+		{ productName: 'Henieken', productId: 12, quantity: 2, price: 300},
     
   ],
   
@@ -302,21 +329,28 @@ JSON:
 
 ```
 
-// Recibe
+</details>
 
-<-- STATUS 200: Si no tenía una orden en espera.
+<details>
+	
+<summary>Response: JSON</summary> 
 
-<-- STATUS 400: Si ya habia una orden en espera.
-
-<-- En ambos casos recibe también un mensaje.
-
-### ruta post --> /resto/userid/admin/menu
-ejemplos para hacer post en Postman:
-http://localhost:3001/resto/698b2498-0b10-46ce-9524-005449b5f966/admin/menu
-JSON:
-
-//ejemplo de platillo 1
 ```
+	
+{ status: 200, msg: 'Message' }
+
+```
+
+</details>
+
+#### `POST /resto/userid/admin/menu`
+
+<details>
+	
+<summary>Request: Body</summary> 
+	
+```
+//ejemplo de platillo 1
  {
  
       "name":"Poke",
@@ -369,15 +403,14 @@ JSON:
        
  } 
  ```
-### ruta get --> /resto/:userid/table/:idtable/menu
+	
+</details>
 
-asi se obtiene el JSON del get:
+#### `GET /resto/:userid/table/:idtable/menu`
 
-ejemplo:
-
-http://localhost:3001/resto/698b2498-0b10-46ce-9524-005449b5f966/table/1/menu
-
-ejemplo respuesta:
+<details>
+	
+<summary>Response: JSON</summary> 
 
 ```
 [
@@ -475,3 +508,6 @@ ejemplo respuesta:
 ]
 
 ```
+
+</details>
+
