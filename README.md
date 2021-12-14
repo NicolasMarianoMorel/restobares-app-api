@@ -25,6 +25,9 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 - GET  /resto/:idResto/table/:idTable/order
 - GET  /resto/:userid/table/:idtable/menu
 - POST /resto/:idResto/table/:idTable/order
+#### Staff Routes
+- GET /resto/:idResto/staff/menu
+- PUT /resto/:idResto/staff/menu
 #### Admin Routes
 - POST /resto/userid/admin/menu
 
@@ -511,3 +514,72 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 
 </details>
 
+### Staff Routes
+
+#### `GET /resto/:idResto/staff/menu`
+
+<details>
+	
+<summary>Response: JSON</summary>
+
+[
+    {
+        "id": 3,
+        "name": "Chori",
+        "price": "23.00",
+        "detail": "Un chorizo entre dos panes",
+        "image": "http://www.elchacalparrilla.com/images/carta/CHORIPAN.jpg",
+        "available": true,
+        "DiscountId": null,
+        "CategoryId": 2,
+        "UserId": "cc4eb956-6c15-4d1f-871e-da0f6883718a",
+        "Labels": [
+            2,
+            5
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Fernet",
+        "price": "23.00",
+        "detail": "El fernesito de la ranchada",
+        "image": "https://pbs.twimg.com/media/B4iFFySIEAA8sf5.jpg",
+        "available": true,
+        "DiscountId": null,
+        "CategoryId": 2,
+        "UserId": "cc4eb956-6c15-4d1f-871e-da0f6883718a",
+        "Labels": [
+            2,
+            5
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Poke",
+        "price": "23.00",
+        "detail": "Sushi rice, cherry tomato, avocado, edamame, red onion, mango, salmon and tataki sauce",
+        "image": "",
+        "available": true,
+        "DiscountId": null,
+        "CategoryId": 2,
+        "UserId": "cc4eb956-6c15-4d1f-871e-da0f6883718a",
+        "Labels": [
+            2,
+            5
+        ]
+    }
+]
+	
+</details>
+
+#### `PUT /resto/:idResto/staff/menu`
+
+<details>
+	
+<summary>Body: JSON</summary>
+	
+{
+    product_Id: 1	
+}
+
+</details>
