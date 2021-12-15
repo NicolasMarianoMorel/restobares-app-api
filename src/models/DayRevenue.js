@@ -16,15 +16,9 @@ module.exports = (sequelize) => {
 				allowNull: false,
 			},
 			date: {
-<<<<<<< HEAD
-				type: DataTypes.STRING,
-				allowNull: false,
-				defaultValue: today
-=======
 				type: DataTypes.STRING(32),
 				allowNull: false,
 				defaultValue: today 
->>>>>>> 57c1d79aef7ce33fb54ee633e9ea166a21453fe6
 			},
 		},
 		{
