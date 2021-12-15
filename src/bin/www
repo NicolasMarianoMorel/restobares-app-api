@@ -66,7 +66,7 @@ conn.sync({ force: false }).then( async () => {
 				tables.push(
 					{
 						tableId: i+1,
-						state: 'free', // free, busy, waiting, pay_cash, pay_online
+						state: 'free', // free, eating, waiting, pay_cash, pay_online
 						ordered: [], // already ordered products
 						totalPrice: 0,
 						currentOrder: { // order waiting to be served
