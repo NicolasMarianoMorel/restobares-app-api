@@ -15,7 +15,7 @@ router.put("/", async (req,res) => {
 	const {idResto} = req;
 	const {idTable, state} = req.body;
 	let response = await tableStates(idTable, state, idResto);
-	res.json(response);
+	res.status(response.status).json(response);
 })
 
 // tambien puede ir el post, delete, etc...
