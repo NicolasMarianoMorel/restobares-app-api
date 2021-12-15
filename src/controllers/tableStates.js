@@ -1,5 +1,6 @@
 const {usersTables} = require("../cache.js");
-const {DayRevenue} = require("../db.js")
+const {DayRevenue} = require("../db.js");
+const {Op} = require("sequelize");
 //categories controller
 
 module.exports = async function (idTable, state, idResto) {
@@ -14,21 +15,45 @@ module.exports = async function (idTable, state, idResto) {
             return a + e.price
         }, 0)
     // change the location of the products to ordererd
-    table.ordered = [...table.ordered, ...table.currentOrder.products];
+        table.ordered = [...table.ordered, ...table.currentOrder.products];
     //deleting the current order product
-    table.currentOrder =  {
+        table.currentOrder =  {
         time: '',
         products: [],
         comments: '',
-    }
-    return {msg: "Order delivered"}
-    }
-    else {
-        return {msg: "No orders availables"}
-    }
+     }
+        return {msg: "Order delivered"}
+     }
+        else {
+            return {msg: "No orders availables"}
+     }
         
     }
     if (state === "pay_cash") {
-
+        if(/* table.state === "pay_cash */ true) {
+            let d = new Date();
+            
+            let today = d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
+           try {
+               let revenue = await DayRevenue.findOne({
+                   where: {
+                       date: {
+                         [Op.iLike] : `%${today}%`
+                       }
+                   }
+                   //agregar relacion con user
+               })
+             
+           }
+           catch(error) {
+               console.log(error)
+           }
+            
+            return {msg: "Successful payment"}
+        }
+        else {
+            return {msg: "There's no cash payment request"}
+        }
     }
+
 };
