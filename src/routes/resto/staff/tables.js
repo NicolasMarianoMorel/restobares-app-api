@@ -1,6 +1,8 @@
 var express = require("express");
 var router = express.Router();
-const { usersTables } = require("../../../cache");
+
+const {tableStates} = require("../../../controllers")
+
 
 router.get("/", async (req, res) => {
   try {
@@ -12,10 +14,20 @@ router.get("/", async (req, res) => {
   }
 });
 
+
+router.put("/", async (req,res) => {
+	const {idResto} = req;
+	const {idTable, state} = req.body;
+	let response = await tableStates(idTable, state, idResto);
+	res.status(response.status).json(response);
+})
+
+// tambien puede ir el post, delete, etc...
 router.delete("/", async (req, res) => {
   try {
     const { idResto } = req;
     let tablesResto = await usersTables[idResto];
+
 
     const { tableId, productId } = req.body;
     const table = tablesResto.tables[tableId - 1];

@@ -28,10 +28,7 @@ app.use((req, res, next) => {
 	next();
   });
 
-// app.use('/',(req,res,next)=>{
-// 	req.usersTables = usersTables;
-// 	next();
-// }, routes);
+
 app.use('/', routes);
 
 // catch 404 and forward to error handler
