@@ -25,17 +25,54 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 - GET  /resto/:idResto/table/:idTable/order
 - GET  /resto/:userid/table/:idtable/menu
 - POST /resto/:idResto/table/:idTable/order
+- PUT /resto/:idResto/table/:idTable/order
 #### Staff Routes
 - GET /resto/:idResto/staff/menu
 - PUT /resto/:idResto/staff/menu
+- GET /resto/:idResto/staff/tables 
+- DELETE /resto/:idResto/staff/tables 
 #### Admin Routes
 - POST /resto/userid/admin/menu
 
 ## ROUTES RESPONSES
 
-### General Routes
+### --- Example for copy
 
-#### `GET /resto/idResto/user`
+#### - `GET /route/:param/etc/:otherParam/blablabla`
+
+<details>
+	
+<summary>Request: Body</summary>
+
+```
+
+{
+    property: 'value',
+    otherProperty: 'otherValue',
+}
+	
+```
+
+</details>
+
+<details>
+	
+<summary>Response: JSON</summary>
+
+```
+
+{
+    "property": "value",
+    "otherProperty": "otherValue"
+}
+	
+```
+
+</details>
+
+### --- General Routes
+
+#### - `GET /resto/idResto/user`
 <details>
 	
 <summary>Response: JSON</summary> 
@@ -58,7 +95,7 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 	
 </details>
 
-#### `GET /labels`
+#### - `GET /labels`
 
 <details>
 	
@@ -167,7 +204,7 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 ```
 </details>
 
-#### `GET /categories`
+#### - `GET /categories`
 <details>
 	
 <summary>Response: JSON</summary> 
@@ -260,7 +297,7 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 ```
 </details>
 
-### Diner Routes (comensal)
+### --- Diner Routes (comensal)
 	
 #### - `GET /resto/:idResto/table/:idTable/order`
 
@@ -273,7 +310,7 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 
 	tableId: 1,
   
-	state: 'waiting', // free, busy, waiting, pay_cash, pay_online
+	state: 'waiting', // free, eating, waiting, pay_cash, pay_online
   
 	ordered: [
   
@@ -346,6 +383,20 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 
 </details>
 
+#### `PUT /resto/:idResto/table/:idTable/order`
+
+<details>
+	
+<summary>Response: JSON</summary>
+
+```
+{
+    state changed to pay_cash	
+}
+```
+
+</details>
+
 #### `POST /resto/userid/admin/menu`
 
 <details>
@@ -353,6 +404,7 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 <summary>Request: Body</summary> 
 	
 ```
+  
 //ejemplo de platillo 1
  {
  
@@ -405,6 +457,7 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
        "DiscountId":2
        
  } 
+  
  ```
 	
 </details>
@@ -514,13 +567,15 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 
 </details>
 
-### Staff Routes
+### --- Staff Routes
 
 #### `GET /resto/:idResto/staff/menu`
 
 <details>
 	
 <summary>Response: JSON</summary>
+
+```
 
 [
     {
@@ -570,16 +625,191 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
     }
 ]
 	
+```
+	
 </details>
 
 #### `PUT /resto/:idResto/staff/menu`
 
 <details>
 	
-<summary>Body: JSON</summary>
-	
+<summary>Request: Body</summary>
+
+```
+
 {
     product_Id: 1	
 }
+	
+```
 
+</details>
+
+#### `GET /resto/:idResto/staff/tables`
+
+<details>
+	
+<summary>Response: JSON</summary>
+
+```
+  
+{
+    "tables": [
+        {
+            "tableId": 1,
+            "state": "free",
+            "ordered": [],
+            "totalPrice": 0,
+            "currentOrder": {
+                "time": "",
+                "products": [],
+                "comments": ""
+            }
+        },
+        {
+            "tableId": 2,
+            "state": "waiting",
+            "ordered": [],
+            "totalPrice": 0,
+            "currentOrder": {
+                "time": "2021-12-15T15:32:28.557Z",
+                "products": [
+                    {
+                        "productName": "Papas Fritas",
+                        "productId": 23,
+                        "quantity": 2,
+                        "price": 200
+                    },
+                    {
+                        "productName": "Henieken",
+                        "productId": 12,
+                        "quantity": 2,
+                        "price": 300
+                    }
+                ],
+                "comments": "Sin sal por favor."
+            }
+        },
+        {
+            "tableId": 3,
+            "state": "free",
+            "ordered": [],
+            "totalPrice": 0,
+            "currentOrder": {
+                "time": "",
+                "products": [],
+                "comments": ""
+            }
+        },
+        {
+            "tableId": 4,
+            "state": "free",
+            "ordered": [],
+            "totalPrice": 0,
+            "currentOrder": {
+                "time": "",
+                "products": [],
+                "comments": ""
+            }
+        },
+        {
+            "tableId": 5,
+            "state": "free",
+            "ordered": [],
+            "totalPrice": 0,
+            "currentOrder": {
+                "time": "",
+                "products": [],
+                "comments": ""
+            }
+        }
+    ]
+}
+  
+```
+  
+</details>
+
+#### `DELETE /resto/:idResto/staff/tables `
+
+<details>
+	
+<summary>Body: JSON</summary>
+  
+```
+  
+{
+    tableId:2,
+    productId:12
+}
+  
+```
+  
+</details>
+
+### --- Admin Routes
+
+#### `POST /resto/userid/admin/menu`
+
+<details>
+	
+<summary>Request: Body</summary> 
+	
+```
+  
+//ejemplo de platillo 1
+ {
+ 
+      "name":"Poke",
+      
+      "price":23,
+      
+      "detail":"Sushi rice, cherry tomato, avocado, edamame, red onion, mango, salmon and tataki sauce",
+      
+      "image":"",
+      
+      "id_label":[2,5],
+      
+      "CategoryId":2
+      
+}
+//ejemplo de platillo 2
+{
+
+       "name":"Cesar Salad",
+       
+       "price":10,
+       
+       "detail":"Parmesan cheese, lemon juice, coddled egg, olive oil, romaine and croutons",
+       
+       "image":"",
+       
+       "id_label":[2,5],
+       
+       "CategoryId":2,
+       
+       "DiscountId":1
+       
+}
+//ejemplo de platillo 3
+{
+ 
+       "name":"Spaguetti with Meatballs",
+       
+       "price":13,
+       
+       "detail":"Spaguetty with large and spicy meatballs",
+       
+       "image":"",
+       
+       "id_label":[2,11],
+       
+       "CategoryId":1,
+       
+       "DiscountId":2
+       
+ } 
+  
+ ```
+	
 </details>

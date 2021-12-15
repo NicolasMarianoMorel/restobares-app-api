@@ -7,7 +7,8 @@ const getUser = require("./getUser");
 const getDiscounts = require("./getDiscounts");
 const getOrders = require('./getOrders.js');
 const postOrder = require('./postOrder.js');
-const getMenu = require("./getMenu.js")
+const getMenu = require("./getMenu.js");
+const tableStates = require("./tableStates.js");
 
 // ...
 
@@ -21,5 +22,6 @@ module.exports = {
   getOrders,
 	postOrder,
   getMenu,
+  tableStates
   // ...
 };
