@@ -17,8 +17,8 @@ router.get("/", async (req, res) => {
 
 router.put("/", async (req,res) => {
 	const {idResto} = req;
-	const {idTable, state} = req.body;
-	let response = await tableStates(idTable, state, idResto);
+	const {idTable, state, idStaff} = req.body;
+	let response = await tableStates(idTable, state, idResto, idStaff);
 	res.status(response.status).json(response);
 })
 
