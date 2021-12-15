@@ -13,7 +13,7 @@ router.get('/',async (req,res) => {
 // tambien puede ir el post, delete, etc...
 router.post('/',async (req,res) => {
 	const { idResto, idTable, body } = req;
-	let result = postOrder(idResto,idTable, body);
+	let result = postOrder(idResto,idTable,body);
 	res.status(result.status).json(result);
 });
 
