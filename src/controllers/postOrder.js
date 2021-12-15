@@ -1,5 +1,5 @@
 // postOrder controller
-var { usersTables } = require('../db.js');
+var { usersTables } = require('../cache');
 
 module.exports = function(idResto, idTable, body) {
 	/*
