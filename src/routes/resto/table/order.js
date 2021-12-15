@@ -4,19 +4,23 @@ var router = express.Router();
 // Obtenemos la lógica correspondiente desde controllers/index.js
 const { getOrders, postOrder } = require('../../../controllers');
 
-// ruta relativa!
 router.get('/',async (req,res) => {
 	const { idResto, idTable } = req;
-	res.status(200).json(getOrders(idResto,idTable));
+	res.status(200).json(await getOrders(idResto,idTable));
 });
 
-// tambien puede ir el post, delete, etc...
 router.post('/',async (req,res) => {
 	const { idResto, idTable, body } = req;
-	let result = postOrder(idResto,idTable,body);
+	let result = await postOrder(idResto,idTable,body);
 	res.status(result.status).json(result);
 });
 
+router.put('/', async (req,res)=>{
+	const {idResto, idTable} = req;
+	getOrders(idResto, idTable).state='pay_cash';
+	res.send(`state changed to pay_cash`);
+
+});
 module.exports = router;
 
 
