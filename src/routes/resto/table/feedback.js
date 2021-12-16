@@ -1,17 +1,21 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 
 // Obtenemos la lógica correspondiente desde controllers/index.js
-// const { registerUser } = require('../controllers');
+const { postFeedbacks } = require("../../../controllers");
 
 // ruta relativa!
-router.get('/',async (req,res) => {
-	//let result = await registerUser(req.body);
-	//res.status(result.status).json(result);
+
+router.post("/", async (req, res) => {
+  try {
+    const { idResto, idTable, body } = req;
+    const feedbacks = await postFeedbacks(idResto, idTable, body);
+    res.json({ msg: "the post was made correctly" });
+  } catch (error) {
+    res.json({ msg: "error in the post" });
+  }
 });
 
 // tambien puede ir el post, delete, etc...
 
 module.exports = router;
-
-

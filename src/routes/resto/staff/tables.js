@@ -1,8 +1,8 @@
 var express = require("express");
 var router = express.Router();
 
-const {tableStates} = require("../../../controllers")
-
+const { tableStates, deleteOrdered } = require("../../../controllers");
+const { usersTables } = require("../../../cache");
 
 router.get("/", async (req, res) => {
   try {
@@ -14,34 +14,20 @@ router.get("/", async (req, res) => {
   }
 });
 
-
-router.put("/", async (req,res) => {
-	const {idResto} = req;
-	const {idTable, state, idStaff} = req.body;
-	let response = await tableStates(idTable, state, idResto, idStaff);
-	res.status(response.status).json(response);
-})
+router.put("/", async (req, res) => {
+  const { idResto } = req;
+  const { idTable, state, idStaff } = req.body;
+  let response = await tableStates(idTable, state, idResto, idStaff);
+  res.status(response.status).json(response);
+});
 
 // tambien puede ir el post, delete, etc...
 router.delete("/", async (req, res) => {
   try {
-    const { idResto } = req;
-    let tablesResto = await usersTables[idResto];
-
-
-    const { tableId, productId } = req.body;
-    const table = tablesResto.tables[tableId - 1];
-    // console.log("TABLE", table);
-    const currentProducts = table.currentOrder.products;
-    const newProducts = currentProducts
-      .find((p) => p.productId !== productId);
-    // console.log("CURRENTORDER", newProducts);
-    table.currentOrder.products = newProducts;
-    const productDeleted = currentProducts.find(
-      (p) => p.productId === productId
-    );
-    console.log("Producto eliminado", productDeleted);
-    res.send(`Product ${productDeleted.productName} was removed`);
+    const { idResto, body } = req;
+    const productDeleted = deleteOrdered(idResto, body);
+  
+    res.json({ msg: `Product ${productDeleted.productName} was removed` });
   } catch (error) {
     res.status(404).send(error);
   }

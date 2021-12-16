@@ -4,11 +4,11 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('src:server');
-var http = require('http');
-const { User, conn } = require('../db.js');
-const { usersTables } = require('../cache.js');
+var app = require("../app");
+var debug = require("debug")("src:server");
+var http = require("http");
+const { User, conn } = require("../db.js");
+const { usersTables } = require("../cache.js");
 
 /**
  * Get port from environment and store in Express.
