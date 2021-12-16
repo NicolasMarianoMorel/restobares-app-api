@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 
 // Obtenemos la lógica correspondiente desde controllers/index.js
-const { postFeedbacks } = require("../../../controllers");
+const { postFeedbacks } = require("../../../controllers/index.js");
 
 // ruta relativa!
 
