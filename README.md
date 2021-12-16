@@ -29,7 +29,8 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 #### Staff Routes
 - GET /resto/:idResto/staff/menu
 - PUT /resto/:idResto/staff/menu
-- GET /resto/:idResto/staff/tables 
+- GET /resto/:idResto/staff/tables
+- *PUT /resto/:idResto/staff/tables
 - DELETE /resto/:idResto/staff/tables 
 #### Admin Routes
 - POST /resto/userid/admin/menu
@@ -323,6 +324,8 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 	],
   
 	totalPrice: 500.0,
+	
+	tip: 50.0,
   
 	currentOrder: {
   
@@ -660,6 +663,7 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
             "state": "free",
             "ordered": [],
             "totalPrice": 0,
+	    "tip": 0,
             "currentOrder": {
                 "time": "",
                 "products": [],
@@ -671,6 +675,7 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
             "state": "waiting",
             "ordered": [],
             "totalPrice": 0,
+	    "tip": 0,
             "currentOrder": {
                 "time": "2021-12-15T15:32:28.557Z",
                 "products": [
@@ -695,6 +700,7 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
             "state": "free",
             "ordered": [],
             "totalPrice": 0,
+	    "tip": 0,
             "currentOrder": {
                 "time": "",
                 "products": [],
@@ -706,6 +712,7 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
             "state": "free",
             "ordered": [],
             "totalPrice": 0,
+	    "tip": 0,
             "currentOrder": {
                 "time": "",
                 "products": [],
@@ -717,6 +724,7 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
             "state": "free",
             "ordered": [],
             "totalPrice": 0,
+	    "tip": 0,
             "currentOrder": {
                 "time": "",
                 "products": [],
@@ -728,6 +736,24 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
   
 ```
   
+</details>
+
+#### - `PUT /resto/:idResto/staff/tables`
+
+<details>
+	
+<summary>Request: Body</summary>
+
+```
+
+{
+    idTable: 1,
+    state: 'eating',
+    idStaff: '39672174'
+}
+	
+```
+
 </details>
 
 #### `DELETE /resto/:idResto/staff/tables `

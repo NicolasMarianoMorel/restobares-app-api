@@ -28,59 +28,60 @@ var server = http.createServer(app);
  */
 
 // Syncing all the models at once.
-conn.sync({ force: false }).then(async () => {
-  server.listen(port);
-  server.on("error", onError);
-  server.on("listening", onListening);
+conn.sync({ force: false }).then( async () => {
+	server.listen(port);
+	server.on('error', onError);
+	server.on('listening', onListening);
+	
+	// Creamos un usuario de prueba
+	await User.findOrCreate({
+		where: {
+			email: 'goldentruffle@gmail.com',
+			passAdmin: 'abc123',
+			passStaff: '321cba',
+			tables: 5,
+			title: 'La Trufa Dorada',
+			logo: 'https://i2.bssl.es/guiamaximin/2020/01/la-chistera-880x587.jpg',
+		}
+	});
+	// Creamos otro usuario de prueba
+	await User.findOrCreate({
+		where: {
+			email: 'betos@gmail.com',
+			passAdmin: 'abc123',
+			passStaff: '321cba',
+			tables: 9,
+			title: 'Betos',
+			logo: 'https://i2.bssl.es/guiamaximin/2020/01/la-chistera-880x587.jpg',
+		}
+	});
 
-  // Creamos un usuario de prueba
-  await User.findOrCreate({
-    where: {
-      email: "goldentruffle@gmail.com",
-      passAdmin: "abc123",
-      passStaff: "321cba",
-      tables: 5,
-      title: "La Trufa Dorada",
-      logo: "https://i2.bssl.es/guiamaximin/2020/01/la-chistera-880x587.jpg",
-    },
-  });
-  // Creamos otro usuario de prueba
-  await User.findOrCreate({
-    where: {
-      email: "betos@gmail.com",
-      passAdmin: "abc123",
-      passStaff: "321cba",
-      tables: 9,
-      title: "Betos",
-      logo: "https://i2.bssl.es/guiamaximin/2020/01/la-chistera-880x587.jpg",
-    },
-  });
-
-  // Buscamos la cantidad de mesas de cada usuario
-  await User.findAll({
-    attributes: ["id", "tables"],
-  }).then((users) =>
-    users.map(({ dataValues }) => {
-      let tables = [];
-      for (let i = 0; i < dataValues.tables; i++) {
-        tables.push({
-          tableId: i + 1,
-          state: "free", // free, eating, waiting, pay_cash, pay_online
-          ordered: [], // already ordered products
-          totalPrice: 0,
-          currentOrder: {
-            // order waiting to be served
-            time: "",
-            products: [],
-            comments: "",
-          },
-        });
-      }
-      usersTables[dataValues.id] = { tables };
-    })
-  );
-  //.then(data => console.log(usersTables) );
-});
+	// Buscamos la cantidad de mesas de cada usuario
+	await User.findAll({
+		attributes: ['id', 'tables']
+	})
+		.then( (users) => users.map(({dataValues}) => {
+			let tables = [];
+			for (let i=0; i < dataValues.tables; i++) {
+				tables.push(
+					{
+						tableId: i+1,
+						state: 'free', // free, eating, waiting, pay_cash, pay_online
+						ordered: [], // already ordered products
+						totalPrice: 0,
+						tip: 0,
+						currentOrder: { // order waiting to be served
+							time: '',
+							products: [],
+							comments: '',
+						}
+					}
+				);
+			}
+			usersTables[dataValues.id] = { tables };
+		}))
+		//.then(data => console.log(usersTables) );
+})
 
 /**
  * Normalize a port into a number, string, or false.

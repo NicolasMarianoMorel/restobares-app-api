@@ -1,9 +1,9 @@
 //tableStates controller
 
 const {usersTables} = require("../cache.js");
-const {DayRevenue} = require("../db.js")
+const { SoldOrder, SoldProduct } = require("../db.js")
 
-module.exports = async function (idTable, state, idResto) {
+module.exports = async function (idTable, state, idResto, idStaff) {
 	// Abreviate the table direction
 	let table = usersTables[idResto].tables[idTable - 1];
 	//changing the state of the table to eating
@@ -40,43 +40,48 @@ module.exports = async function (idTable, state, idResto) {
 			return {msg: `The table ${idTable} isn't requesting an order.`, status: 400}
 		}
 	}
-	if (state === "pay_cash") {
-		if (table.state === "pay_cash") {
-			// Get the actual date
-			let d = new Date();
-			let today = `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;
-			// Try to find a register for today.
-			// otherwise, create a register for today.
-			let [dayRev,created] = await DayRevenue.findOrCreate({
-				where: {
-					UserId: idResto,
-					date: today,
-				},
-				defaults: {
-					totalPrice: 0
-				}
+	if (state.includes("pay")) {
+		if (/*table.state.includes("pay")*/ true) {
+			// Get the current date
+			let today = new Date().toLocaleString();
+			// Create the SoldOrder record.
+			let soldOrder = await SoldOrder.create({
+				UserId: idResto,
+				idStaff,
+				totalPrice: table.totalPrice,
+				tip: table.tip,
+				date: today,
+				idTable,
+				paymentMethod: state
 			});
-			// Test it
-			// console.log(`DAYREV for ${today}:`,dayRev);
-			// Add the price of the order to the day revenue.
-			await dayRev.update({ totalPrice: dayRev.totalPrice*1 + table.totalPrice });
-			console.log(`DAYREV for ${today}: $`, dayRev.totalPrice);
+			// Create all the SoldProduct records and link them with the SoldOrder one
+			await SoldProduct.bulkCreate(table.ordered.map((e) => {
+				return { 
+					SoldOrderId: soldOrder.id,
+					productId: e.productId,
+					name: e.productName,
+					price: e.price,
+					quantity: e.quantity,
+				};
+			}));
 			// Reset the table
-			table = {
+			usersTables[idResto].tables[idTable - 1] = {
 				tableId: idTable,  //xD
 				state: 'free', // free, eating, waiting, pay_cash, pay_online
 				ordered: [], // already ordered products
 				totalPrice: 0,
+				tip: 0,
 				currentOrder: { // order waiting to be served
 					time: '',
 					products: [],
 					comments: '',
 				}
 			}
-			return {msg: "Cash Payment Confirmed.", status: 200}
+			return {msg: "Payment Confirmed.", status: 200}
 		}
 		else {
 			return {msg: "The table didn't request the bill.", status: 400}
 		}
 	}
+	else return {msg: "An invalid state was recieved.", status: 400}
 };
