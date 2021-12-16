@@ -26,12 +26,13 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 - GET  /resto/:userid/table/:idtable/menu
 - POST /resto/:idResto/table/:idTable/order
 - PUT /resto/:idResto/table/:idTable/order
-- POST/resto/:idResto/table/:idTable/feedback
+- *POST /resto/:idResto/table/:idTable/payment
+- POST /resto/:idResto/table/:idTable/feedback
 #### Staff Routes
 - GET /resto/:idResto/staff/menu
 - PUT /resto/:idResto/staff/menu
 - GET /resto/:idResto/staff/tables
-- *PUT /resto/:idResto/staff/tables
+- PUT /resto/:idResto/staff/tables
 - DELETE /resto/:idResto/staff/tables 
 #### Admin Routes
 - GET /resto/userid/admin/menu
@@ -497,7 +498,23 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 	
 </details>
 
-#### `GET /resto/:userid/table/:idtable/menu`
+#### `POST /resto/:idResto/table/:idTable/payment`
+
+<details>
+	
+<summary>Request: Body</summary> 
+
+```
+{
+  "state" : "pay_cash",
+  "tip" : 0
+}
+
+```
+	
+</details>
+
+#### `GET /resto/:idResto/table/:idtable/menu`
 
 <details>
 	
