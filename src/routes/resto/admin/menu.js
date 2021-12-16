@@ -60,6 +60,9 @@ router.delete("/:productId", async (req,res)=>{
 	try{
 		const {productId} = req.params;
 		const {idResto} = req;
+		const menu = await getMenu(idResto);
+		let product = menu.find(p=>p.id==productId);
+		if(!product) return res.status(404).json({error: "Product not exist"});	
 		await Product.destroy({
 		where: {id: productId,
 			UserId: idResto}
@@ -75,6 +78,9 @@ router.put("/:productId", async (req,res)=>{
 		const {productId} = req.params;
 		const {idResto, body} = req;
 		if(body.length<1)return res.status(400).json({ error: "There is nothing to edit" });
+		const menu = await getMenu(idResto);
+		let product = menu.find(p=>p.id==productId);
+		if(!product) return res.status(404).json({error: "Product not exist"});	
 		await putProduct(idResto,productId,body);
 		res.status(200).json({msg:`Product edited successfully`});
 	} catch (err) {
