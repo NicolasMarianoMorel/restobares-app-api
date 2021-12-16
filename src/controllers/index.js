@@ -8,6 +8,7 @@ const getDiscounts = require("./getDiscounts");
 const getOrders = require("./getOrders.js");
 const postOrder = require("./postOrder.js");
 const getMenu = require("./getMenu.js");
+const putProduct = require("./putProduct.js");
 const tableStates = require("./tableStates.js");
 const getOrdersStaff = require("./getOrdersStaff.js");
 const deleteOrdered = require("./deleteOrdered");
@@ -26,6 +27,7 @@ module.exports = {
   getOrders,
   postOrder,
   getMenu,
+  putProduct,
   tableStates,
   getOrdersStaff,
   deleteOrdered,

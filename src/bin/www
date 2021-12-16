@@ -165,6 +165,7 @@ conn.sync({ force: false }).then( async () => {
 	 }
  })
 let menu = await getMenu(LaTrufaDorada.id)
+//  console.log(menu)
 if (!menu.length) {
 
 	for (let i = 0; i < arrayMenus.length; i++) {
@@ -191,6 +192,7 @@ if (!menu.length) {
 		}
 	}
 }
+// console.log(await getMenu(LaTrufaDorada.id))
 })
 
 /**
