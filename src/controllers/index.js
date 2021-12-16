@@ -13,6 +13,7 @@ const tableStates = require("./tableStates.js");
 const getOrdersStaff = require("./getOrdersStaff.js");
 const deleteOrdered = require("./deleteOrdered");
 const postFeedbacks = require("./postFeedbacks");
+const getFeedbacks = require("./getFeedbacks");
 
 // ...
 
@@ -31,5 +32,7 @@ module.exports = {
   getOrdersStaff,
   deleteOrdered,
   postFeedbacks,
+  getFeedbacks,
+
   // ...
 };
