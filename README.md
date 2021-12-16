@@ -34,7 +34,10 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 - *PUT /resto/:idResto/staff/tables
 - DELETE /resto/:idResto/staff/tables 
 #### Admin Routes
+- GET /resto/userid/admin/menu
 - POST /resto/userid/admin/menu
+- PUT /resto/userid/admin/menu
+- DELETE /resto/userid/admin/menu
 
 ## ROUTES RESPONSES
 
@@ -448,7 +451,9 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
       
       "id_label":[2,5],
       
-      "CategoryId":2
+      "CategoryId":2,
+
+      "DiscountId":""
       
 }
 //ejemplo de platillo 2
@@ -802,6 +807,66 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 
 ### --- Admin Routes
 
+#### `GET /resto/userid/admin/menu`
+
+<details>
+	
+<summary>Response: JSON</summary>
+
+```
+[
+    {
+        "id": 1,
+        "name": "Poke",
+        "price": "23.00",
+        "detail": "Sushi rice, cherry tomato, avocado, edamame, red onion, mango, salmon and tataki sauce",
+        "image": "",
+        "available": true,
+        "DiscountId": null,
+        "CategoryId": 2,
+        "UserId": "698b2498-0b10-46ce-9524-005449b5f966",
+        "Labels": [
+            2,
+            6,
+            7
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Cesar Salad",
+        "price": "10.00",
+        "detail": "Parmesan cheese, lemon juice, coddled egg, olive oil, romaine and croutons",
+        "image": "",
+        "available": true,
+        "DiscountId": 1,
+        "CategoryId": 2,
+        "UserId": "698b2498-0b10-46ce-9524-005449b5f966",
+        "Labels": [
+            2,
+            5
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Spaguetti",
+        "price": "28.00",
+        "detail": "Spaguetty with large and spicy meatballs and house sauce",
+        "image": "imagen",
+        "available": true,
+        "DiscountId": 2,
+        "CategoryId": 1,
+        "UserId": "698b2498-0b10-46ce-9524-005449b5f966",
+        "Labels": [
+            2,
+            11
+        ]
+    }
+]
+
+```
+
+</details>
+
 #### `POST /resto/userid/admin/menu`
 
 <details>
@@ -810,7 +875,7 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 	
 ```
   
-//ejemplo de platillo 1
+//example 1
  {
  
       "name":"Poke",
@@ -826,7 +891,7 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
       "CategoryId":2
       
 }
-//ejemplo de platillo 2
+//example 2
 {
 
        "name":"Cesar Salad",
@@ -844,7 +909,7 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
        "DiscountId":1
        
 }
-//ejemplo de platillo 3
+//example 3
 {
  
        "name":"Spaguetti with Meatballs",
@@ -865,4 +930,60 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
   
  ```
 	
+</details>
+
+#### `PUT /resto/userid/admin/menu/idproduct`
+
+<details>
+	
+<summary>*Params: idproduct* Request: Body</summary>
+
+```
+
+//example 1
+{
+       "name":"",
+       "price":28
+ } 
+
+//example 2
+{
+       "name":"",
+       "price":18,
+       "detail":"",
+       "image":"",
+       "id_label":"",
+       "CategoryId":"",
+       "DiscountId":"",
+       "available": ""
+ }
+
+ //example 3
+ {
+       "name":"Spaguetti",
+       "price":15,
+       "detail":"Spaguetty with large and spicy meatballs and house sauce",
+       "image":"imagen",
+       "id_label":[2,11],
+       "CategoryId":"",
+       "DiscountId":"",
+       "available": true
+ } 
+
+```
+
+</details>
+
+#### `DELETE /resto/userid/admin/menu/idproduct`
+
+<details>
+	
+<summary>*Params: idproduct* Response: JSON</summary>
+  
+```
+{
+    "msg": "Product Deleted"
+}
+
+```
 </details>

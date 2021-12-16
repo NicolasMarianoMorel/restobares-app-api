@@ -1,16 +1,14 @@
 var express = require('express');
 var router = express.Router();
-
-// Obtenemos la lógica correspondiente desde controllers/index.js
-// const { registerUser } = require('../controllers');
-
-// ruta relativa!
+const {SoldOrder} = require('../../../db');
 router.get('/',async (req,res) => {
-	//let result = await registerUser(req.body);
-	//res.status(result.status).json(result);
+	// const {idResto} = req,
+	// const {filter} = req.body;
+	// let revenue = await SoldOrders(idResto, filter);
+	// if(!revenue.length) return res.status(404).json({error: `There isn't movement history`});
+	// res.status(200).json(revenue);
 });
 
-// tambien puede ir el post, delete, etc...
 
 module.exports = router;
 
