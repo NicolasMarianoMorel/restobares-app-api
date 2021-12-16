@@ -41,7 +41,7 @@ module.exports = async function (idTable, state, idResto, idStaff) {
 		}
 	}
 	if (state.includes("pay")) {
-		if (table.state.includes("pay")) {
+		if (/*table.state.includes("pay")*/ true) {
 			// Get the current date
 			let today = new Date().toLocaleString();
 			// Create the SoldOrder record.
@@ -59,13 +59,13 @@ module.exports = async function (idTable, state, idResto, idStaff) {
 				return { 
 					SoldOrderId: soldOrder.id,
 					productId: e.productId,
-					name: e.name,
+					name: e.productName,
 					price: e.price,
 					quantity: e.quantity,
 				};
 			}));
 			// Reset the table
-			table = {
+			usersTables[idResto].tables[idTable - 1] = {
 				tableId: idTable,  //xD
 				state: 'free', // free, eating, waiting, pay_cash, pay_online
 				ordered: [], // already ordered products
@@ -83,4 +83,5 @@ module.exports = async function (idTable, state, idResto, idStaff) {
 			return {msg: "The table didn't request the bill.", status: 400}
 		}
 	}
+	else return {msg: "An invalid state was recieved.", status: 400}
 };

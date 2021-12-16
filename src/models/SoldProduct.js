@@ -6,7 +6,7 @@ module.exports = (sequelize) => {
 	sequelize.define(
     "SoldProduct",
     {
-      Product_ID: {
+      productId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         allowEmpty: false,
@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
         allowNull: false,
         allowEmpty: false,
       },
-      totalPrice: {
+      price: {
         type: DataTypes.DECIMAL(10, 2),
         allowNull: false,
       },

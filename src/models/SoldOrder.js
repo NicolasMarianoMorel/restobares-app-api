@@ -6,7 +6,7 @@ module.exports = (sequelize) => {
   sequelize.define(
     "SoldOrder",
     {
-      Staff_ID: {
+      idStaff: {
         type: DataTypes.INTEGER,
         allowNull: false,
         allowEmpty: false,
@@ -15,20 +15,20 @@ module.exports = (sequelize) => {
         type: DataTypes.DECIMAL(10, 2),
         allowNull: false,
       },
-      Tip: {
+      tip: {
         type: DataTypes.DECIMAL(10, 2),
       },
       date: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: new Date(),
+        defaultValue: new Date().toLocaleString(),
       },
-      Table_ID: {
+      idTable: {
         type: DataTypes.INTEGER,
         allowNull: false,
         allowEmpty: false,
       },
-      PaymentMethod: {
+      paymentMethod: {
         type: DataTypes.STRING,
         allowNull: false,
         allowEmpty: false,
