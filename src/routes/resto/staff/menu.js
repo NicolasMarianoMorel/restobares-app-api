@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
 router.put('/', async (req,res)=>{
 	try{
 		const { idResto } = req;
-		const {product_Id} = req.body;add 
+		const {product_Id} = req.body;
 		const products = await getMenu(idResto)
     console.log("PRODUCTS", products);
 		const select_product = products.find(p=>p.id===product_Id);
