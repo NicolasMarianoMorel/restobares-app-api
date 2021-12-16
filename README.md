@@ -381,7 +381,9 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
       
       "id_label":[2,5],
       
-      "CategoryId":2
+      "CategoryId":2,
+
+      "DiscountId":""
       
 }
 //ejemplo de platillo 2

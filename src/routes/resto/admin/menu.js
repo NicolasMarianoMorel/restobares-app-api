@@ -3,9 +3,8 @@ var router = express.Router();
 const {Product, Label} = require('../../../db');
 
 // Obtenemos la lógica correspondiente desde controllers/index.js
-const { getMenu } = require('../../../controllers');
+const { getMenu, putProduct } = require('../../../controllers');
 
-// ruta relativa!
 router.post('/',async (req,res) => {
 	try{
 		const {idResto}= req;
@@ -48,13 +47,39 @@ router.get("/", async (req, res) => {
     const { idResto } = req;
     const menu = await getMenu(idResto);
     if (!menu.length) {
-      res.status(400).json({ error: "no se encotro el id" });
+      res.status(400).json({ error: "id undefined" });
     } else {
       res.status(200).send(menu);
     }
   } catch (error) {
-    console.log(error);
+    res.status(404).send(err);
   }
+});
+
+router.delete("/:productId", async (req,res)=>{
+	try{
+		const {productId} = req.params;
+		const {idResto} = req;
+		await Product.destroy({
+		where: {id: productId,
+			UserId: idResto}
+		});
+		res.status(200).json({msg: "Product Deleted"});	
+	} catch (err){
+		res.status(404).send(err);
+	}
+});
+
+router.put("/:productId", async (req,res)=>{
+	try {
+		const {productId} = req.params;
+		const {idResto, body} = req;
+		if(body.length<1)return res.status(400).json({ error: "There is nothing to edit" });
+		await putProduct(idResto,productId,body);
+		res.status(200).json({msg:`Product edited successfully`});
+	} catch (err) {
+		res.status(404).send(err);
+	}
 });
 
 module.exports = router;
