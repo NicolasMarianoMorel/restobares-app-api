@@ -323,6 +323,8 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 	],
   
 	totalPrice: 500.0,
+	
+	tip: 50.0,
   
 	currentOrder: {
   
@@ -660,6 +662,7 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
             "state": "free",
             "ordered": [],
             "totalPrice": 0,
+	    "tip": 0,
             "currentOrder": {
                 "time": "",
                 "products": [],
@@ -671,6 +674,7 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
             "state": "waiting",
             "ordered": [],
             "totalPrice": 0,
+	    "tip": 0,
             "currentOrder": {
                 "time": "2021-12-15T15:32:28.557Z",
                 "products": [
@@ -695,6 +699,7 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
             "state": "free",
             "ordered": [],
             "totalPrice": 0,
+	    "tip": 0,
             "currentOrder": {
                 "time": "",
                 "products": [],
@@ -706,6 +711,7 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
             "state": "free",
             "ordered": [],
             "totalPrice": 0,
+	    "tip": 0,
             "currentOrder": {
                 "time": "",
                 "products": [],
@@ -717,6 +723,7 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
             "state": "free",
             "ordered": [],
             "totalPrice": 0,
+	    "tip": 0,
             "currentOrder": {
                 "time": "",
                 "products": [],
