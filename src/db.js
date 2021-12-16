@@ -37,8 +37,17 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { User, Feedback, Product, Label, SoldProduct, DayRevenue, Discount, Category } =
-  sequelize.models;
+const {
+  User,
+  Feedback,
+  Product,
+  Label,
+  SoldProduct,
+  DayRevenue,
+  Discount,
+  Category,
+  SoldOrder,
+} = sequelize.models;
 
 // Aca vendrian las relaciones
 
@@ -49,9 +58,6 @@ User.hasMany(Feedback);
 Feedback.belongsTo(User);
 
 //uno a muchos --> el restaurante puede tener muchos platillos vendidos
-User.hasMany(SoldProduct);
-// agregamos una clave ID_user  la tabla de platillos
-SoldProduct.belongsTo(User);
 
 //uno a muchos --> el restaurante puede tener muchos registros diarios de venta
 User.hasMany(DayRevenue);
@@ -71,6 +77,20 @@ Product.belongsTo(Category);
 //uno a muchos --> el restaurante tiene muchos platillos
 User.hasMany(Product);
 Product.belongsTo(User);
+
+//uno a muchos --> User tiene muchas SoldOrder
+User.hasMany(SoldOrder);
+//agregamos la clave UserId a la talba de SoldOrder;
+SoldOrder.belongsTo(User);
+
+
+//uno a muchos --> SoldOrder tiene muchos SoldProduct
+SoldOrder.hasMany(SoldProduct);
+//agregamos la clave SoldOrder a la talba de SoldProduct
+SoldProduct.belongsTo(SoldOrder);
+
+
+
 
 //muchos a muchos
 Product.belongsToMany(Label, { through: "Product_Label" });
