@@ -29,7 +29,7 @@ var server = http.createServer(app);
  */
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then( async () => {
+conn.sync({ force: false }).then( async () => {
 	server.listen(port);
 	server.on('error', onError);
 	server.on('listening', onListening);
@@ -165,7 +165,6 @@ conn.sync({ force: true }).then( async () => {
 	 }
  })
 let menu = await getMenu(LaTrufaDorada.id)
- console.log(menu)
 if (!menu.length) {
 
 	for (let i = 0; i < arrayMenus.length; i++) {
@@ -192,7 +191,6 @@ if (!menu.length) {
 		}
 	}
 }
-console.log(await getMenu(LaTrufaDorada.id))
 })
 
 /**
