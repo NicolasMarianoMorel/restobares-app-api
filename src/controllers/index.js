@@ -9,6 +9,7 @@ const getOrders = require('./getOrders.js');
 const postOrder = require('./postOrder.js');
 const getMenu = require("./getMenu.js");
 const tableStates = require("./tableStates.js");
+const postFeedbacks= require("./postFeedbacks")
 
 // ...
 
@@ -20,8 +21,9 @@ module.exports = {
   getUser,
   getDiscounts,
   getOrders,
-	postOrder,
+  postOrder,
   getMenu,
-  tableStates
+  tableStates,
+  postFeedbacks,
   // ...
 };
