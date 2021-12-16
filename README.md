@@ -26,6 +26,7 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 - GET  /resto/:userid/table/:idtable/menu
 - POST /resto/:idResto/table/:idTable/order
 - PUT /resto/:idResto/table/:idTable/order
+- POST/resto/:idResto/table/:idTable/feedback
 #### Staff Routes
 - GET /resto/:idResto/staff/menu
 - PUT /resto/:idResto/staff/menu
@@ -399,6 +400,32 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 ```
 
 </details>
+
+#### `POST /resto/:idResto/table/:idTable/feedback`
+
+<details>
+	
+<summary>Response: Body</summary>
+
+```
+{
+    "msg": "the post was made correctly"
+}
+	//ejemplo
+ {
+ 
+    {
+	
+    "comment":"buenardo",
+	
+    "rating": 5
+}
+      
+}
+```
+
+</details>
+
 
 #### `POST /resto/userid/admin/menu`
 
