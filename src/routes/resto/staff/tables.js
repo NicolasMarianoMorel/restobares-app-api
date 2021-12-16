@@ -33,10 +33,14 @@ router.delete("/", async (req, res) => {
     const table = tablesResto.tables[tableId - 1];
     // console.log("TABLE", table);
     const currentProducts = table.currentOrder.products;
-    const newProducts = currentProducts.find((p) => p.productId !== productId);
+    const newProducts = currentProducts
+      .find((p) => p.productId !== productId);
     // console.log("CURRENTORDER", newProducts);
     table.currentOrder.products = newProducts;
-	const productDeleted=currentProducts.find((p) => p.productId === productId);
+    const productDeleted = currentProducts.find(
+      (p) => p.productId === productId
+    );
+    console.log("Producto eliminado", productDeleted);
     res.send(`Product ${productDeleted.productName} was removed`);
   } catch (error) {
     res.status(404).send(error);
