@@ -69,6 +69,7 @@ conn.sync({ force: false }).then( async () => {
 						state: 'free', // free, eating, waiting, pay_cash, pay_online
 						ordered: [], // already ordered products
 						totalPrice: 0,
+						tip: 0,
 						currentOrder: { // order waiting to be served
 							time: '',
 							products: [],
