@@ -41,7 +41,7 @@ module.exports = async function (idTable, state, idResto, idStaff) {
 		}
 	}
 	if (state.includes("pay")) {
-		if (/*table.state.includes("pay")*/ true) {
+		if (table.state.includes("pay")) {
 			// Get the current date
 			let today = new Date().toLocaleString();
 			// Create the SoldOrder record.
@@ -68,6 +68,7 @@ module.exports = async function (idTable, state, idResto, idStaff) {
 			usersTables[idResto].tables[idTable - 1] = {
 				tableId: idTable,  //xD
 				state: 'free', // free, eating, waiting, pay_cash, pay_online
+				calling: false,
 				ordered: [], // already ordered products
 				totalPrice: 0,
 				tip: 0,
