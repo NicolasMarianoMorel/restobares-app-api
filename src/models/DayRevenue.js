@@ -3,6 +3,9 @@ const { DataTypes } = require("sequelize");
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
 	// defino el modelo
+	let d = new Date();     
+    let today = d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
+
 	sequelize.define(
 		"DayRevenue",
 		{
@@ -11,9 +14,9 @@ module.exports = (sequelize) => {
 				allowNull: false,
 			},
 			date: {
-				type: DataTypes.DATE,
+				type: DataTypes.STRING(32),
 				allowNull: false,
-				defaultValue: new Date()
+				defaultValue: today 
 			},
 		},
 		{

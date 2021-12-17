@@ -21,21 +21,70 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 - GET /discounts
 - GET /labels
 - GET /categories
+
 #### Diner Routes (comensal)
 - GET  /resto/:idResto/table/:idTable/order
 - GET  /resto/:userid/table/:idtable/menu
 - POST /resto/:idResto/table/:idTable/order
+- PUT /resto/:idResto/table/:idTable/order
+- POST /resto/:idResto/table/:idTable/payment
+- POST /resto/:idResto/table/:idTable/feedback
+
 #### Staff Routes
 - GET /resto/:idResto/staff/menu
 - PUT /resto/:idResto/staff/menu
+- GET /resto/:idResto/staff/tables
+- PUT /resto/:idResto/staff/tables
+- DELETE /resto/:idResto/staff/tables
+- GET /resto/:idResto/staff/orders
+
 #### Admin Routes
+- GET /resto/idResto/admin/revenue
+- GET /resto/userid/admin/menu
 - POST /resto/userid/admin/menu
+- PUT /resto/userid/admin/menu
+- DELETE /resto/userid/admin/menu
+- GET /resto/:idResto/admin/feedback
 
 ## ROUTES RESPONSES
 
-### General Routes
+### --- Example for copy
 
-#### `GET /resto/idResto/user`
+#### - `GET /route/:param/etc/:otherParam/blablabla`
+
+<details>
+	
+<summary>Request: Body</summary>
+
+```
+
+{
+    property: 'value',
+    otherProperty: 'otherValue',
+}
+	
+```
+
+</details>
+
+<details>
+	
+<summary>Response: JSON</summary>
+
+```
+
+{
+    "property": "value",
+    "otherProperty": "otherValue"
+}
+	
+```
+
+</details>
+
+### --- General Routes
+
+#### - `GET /resto/idResto/user`
 <details>
 	
 <summary>Response: JSON</summary> 
@@ -58,7 +107,7 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 	
 </details>
 
-#### `GET /labels`
+#### - `GET /labels`
 
 <details>
 	
@@ -167,7 +216,7 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 ```
 </details>
 
-#### `GET /categories`
+#### - `GET /categories`
 <details>
 	
 <summary>Response: JSON</summary> 
@@ -260,7 +309,7 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 ```
 </details>
 
-### Diner Routes (comensal)
+### --- Diner Routes (comensal)
 	
 #### - `GET /resto/:idResto/table/:idTable/order`
 
@@ -273,7 +322,7 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 
 	tableId: 1,
   
-	state: 'waiting', // free, busy, waiting, pay_cash, pay_online
+	state: 'waiting', // free, eating, waiting, pay_cash, pay_online
   
 	ordered: [
   
@@ -286,6 +335,8 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 	],
   
 	totalPrice: 500.0,
+	
+	tip: 50.0,
   
 	currentOrder: {
   
@@ -340,11 +391,51 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 
 ```
 	
-{ status: 200, msg: 'Message' }
+{ status: 200, msg: 'Te order has been taken.' }
 
 ```
 
 </details>
+
+#### `PUT /resto/:idResto/table/:idTable/order`
+
+<details>
+	
+<summary>Response: JSON</summary>
+
+```
+{
+    "msg": "The table 1 is calling the staff."
+}
+```
+
+</details>
+
+#### `POST /resto/:idResto/table/:idTable/feedback`
+
+<details>
+	
+<summary>Response: Body</summary>
+
+```
+{
+    "msg": "the post was made correctly"
+}
+	//ejemplo
+ {
+ 
+    {
+	
+    "comment":"buenardo",
+	
+    "rating": 5
+}
+      
+}
+```
+
+</details>
+
 
 #### `POST /resto/userid/admin/menu`
 
@@ -353,6 +444,7 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 <summary>Request: Body</summary> 
 	
 ```
+  
 //ejemplo de platillo 1
  {
  
@@ -366,7 +458,9 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
       
       "id_label":[2,5],
       
-      "CategoryId":2
+      "CategoryId":2,
+
+      "DiscountId":""
       
 }
 //ejemplo de platillo 2
@@ -405,11 +499,28 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
        "DiscountId":2
        
  } 
+  
  ```
 	
 </details>
 
-#### `GET /resto/:userid/table/:idtable/menu`
+#### `POST /resto/:idResto/table/:idTable/payment`
+
+<details>
+	
+<summary>Request: Body</summary> 
+
+```
+{
+  "state" : "pay_cash",
+  "tip" : 0
+}
+
+```
+	
+</details>
+
+#### `GET /resto/:idResto/table/:idtable/menu`
 
 <details>
 	
@@ -514,13 +625,15 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 
 </details>
 
-### Staff Routes
+### --- Staff Routes
 
 #### `GET /resto/:idResto/staff/menu`
 
 <details>
 	
 <summary>Response: JSON</summary>
+
+```
 
 [
     {
@@ -570,16 +683,464 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
     }
 ]
 	
+```
+	
 </details>
 
 #### `PUT /resto/:idResto/staff/menu`
 
 <details>
 	
-<summary>Body: JSON</summary>
-	
+<summary>Request: Body</summary>
+
+```
+
 {
     product_Id: 1	
 }
+	
+```
+
+</details>
+
+#### `GET /resto/:idResto/staff/tables`
+
+<details>
+	
+<summary>Response: JSON</summary>
+
+```
+  
+{
+    "tables": [
+        {
+            "tableId": 1,
+            "state": "free",
+            "ordered": [],
+            "totalPrice": 0,
+	    "tip": 0,
+            "currentOrder": {
+                "time": "",
+                "products": [],
+                "comments": ""
+            }
+        },
+        {
+            "tableId": 2,
+            "state": "waiting",
+            "ordered": [],
+            "totalPrice": 0,
+	    "tip": 0,
+            "currentOrder": {
+                "time": "2021-12-15T15:32:28.557Z",
+                "products": [
+                    {
+                        "productName": "Papas Fritas",
+                        "productId": 23,
+                        "quantity": 2,
+                        "price": 200
+                    },
+                    {
+                        "productName": "Henieken",
+                        "productId": 12,
+                        "quantity": 2,
+                        "price": 300
+                    }
+                ],
+                "comments": "Sin sal por favor."
+            }
+        },
+        {
+            "tableId": 3,
+            "state": "free",
+            "ordered": [],
+            "totalPrice": 0,
+	    "tip": 0,
+            "currentOrder": {
+                "time": "",
+                "products": [],
+                "comments": ""
+            }
+        },
+        {
+            "tableId": 4,
+            "state": "free",
+            "ordered": [],
+            "totalPrice": 0,
+	    "tip": 0,
+            "currentOrder": {
+                "time": "",
+                "products": [],
+                "comments": ""
+            }
+        },
+        {
+            "tableId": 5,
+            "state": "free",
+            "ordered": [],
+            "totalPrice": 0,
+	    "tip": 0,
+            "currentOrder": {
+                "time": "",
+                "products": [],
+                "comments": ""
+            }
+        }
+    ]
+}
+  
+```
+  
+</details>
+
+#### - `PUT /resto/:idResto/staff/tables`
+
+<details>
+	
+<summary>Request: Body</summary>
+
+```
+
+{
+    idTable: 1,
+    state: 'eating',
+    idStaff: '39672174'
+}
+	
+```
+
+</details>
+
+#### `DELETE /resto/:idResto/staff/tables `
+
+<details>
+	
+<summary>Body: JSON</summary>
+  
+```
+  
+{
+    tableId:2,
+    productId:12
+}
+  
+```
+  
+</details>
+
+
+#### - `GET /resto/:idResto/staff/orders`
+
+<details>
+	
+<summary>Response: JSON</summary>
+
+```
+
+[
+    {
+        "idTable": 1,
+        "currentOrder": {
+            "time": "16/12/2021 21:17:36",
+            "products": [
+                {
+                    "productName": "Papas Fritas",
+                    "productId": 23,
+                    "quantity": 2,
+                    "price": 200
+                },
+                {
+                    "productName": "Henieken",
+                    "productId": 12,
+                    "quantity": 2,
+                    "price": 300
+                }
+            ],
+            "comments": "Sin sal por favor."
+        }
+    },
+    {
+        "idTable": 2,
+        "currentOrder": {
+            "time": "16/12/2021 21:17:17",
+            "products": [
+                {
+                    "productName": "Papas Fritas",
+                    "productId": 23,
+                    "quantity": 2,
+                    "price": 200
+                },
+                {
+                    "productName": "Henieken",
+                    "productId": 12,
+                    "quantity": 2,
+                    "price": 300
+                }
+            ],
+            "comments": "Sin sal por favor."
+        }
+    }
+]
+	
+```
+
+</details>
+
+### --- Admin Routes
+
+#### - `GET /route/:param/etc/:otherParam/blablabla`
+
+<details>
+	
+<summary>Request: Body</summary>
+
+```
+
+{
+    filterTime: 'Day'     // 'Day', 'Month'
+}
+	
+```
+
+</details>
+
+<details>
+	
+<summary>Response: JSON</summary>
+
+```
+
+[
+    {
+        "id": 1,
+        "idStaff": 39672174,
+        "totalPrice": "500.00",
+        "tip": "123.00",
+        "date": "16/12/2021, 8:59:35 p. m.",
+        "idTable": 2,
+        "paymentMethod": "pay_cash",
+        "UserId": "00880663-5552-4f00-b2eb-992de871e4ee",
+        "SoldProducts": [
+            {
+                "productId": 23,
+                "name": "Papas Fritas",
+                "price": "200.00",
+                "quantity": 2
+            },
+            {
+                "productId": 12,
+                "name": "Henieken",
+                "price": "300.00",
+                "quantity": 2
+            }
+        ]
+    }
+]
+	
+```
+
+#### `GET /resto/userid/admin/menu`
+
+<details>
+	
+<summary>Response: JSON</summary>
+
+```
+[
+    {
+        "id": 1,
+        "name": "Poke",
+        "price": "23.00",
+        "detail": "Sushi rice, cherry tomato, avocado, edamame, red onion, mango, salmon and tataki sauce",
+        "image": "",
+        "available": true,
+        "DiscountId": null,
+        "CategoryId": 2,
+        "UserId": "698b2498-0b10-46ce-9524-005449b5f966",
+        "Labels": [
+            2,
+            6,
+            7
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Cesar Salad",
+        "price": "10.00",
+        "detail": "Parmesan cheese, lemon juice, coddled egg, olive oil, romaine and croutons",
+        "image": "",
+        "available": true,
+        "DiscountId": 1,
+        "CategoryId": 2,
+        "UserId": "698b2498-0b10-46ce-9524-005449b5f966",
+        "Labels": [
+            2,
+            5
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Spaguetti",
+        "price": "28.00",
+        "detail": "Spaguetty with large and spicy meatballs and house sauce",
+        "image": "imagen",
+        "available": true,
+        "DiscountId": 2,
+        "CategoryId": 1,
+        "UserId": "698b2498-0b10-46ce-9524-005449b5f966",
+        "Labels": [
+            2,
+            11
+        ]
+    }
+]
+
+```
+
+</details>
+
+#### `POST /resto/userid/admin/menu`
+
+<details>
+	
+<summary>Request: Body</summary> 
+	
+```
+  
+//example 1
+ {
+ 
+      "name":"Poke",
+      
+      "price":23,
+      
+      "detail":"Sushi rice, cherry tomato, avocado, edamame, red onion, mango, salmon and tataki sauce",
+      
+      "image":"",
+      
+      "id_label":[2,5],
+      
+      "CategoryId":2
+      
+}
+//example 2
+{
+
+       "name":"Cesar Salad",
+       
+       "price":10,
+       
+       "detail":"Parmesan cheese, lemon juice, coddled egg, olive oil, romaine and croutons",
+       
+       "image":"",
+       
+       "id_label":[2,5],
+       
+       "CategoryId":2,
+       
+       "DiscountId":1
+       
+}
+//example 3
+{
+ 
+       "name":"Spaguetti with Meatballs",
+       
+       "price":13,
+       
+       "detail":"Spaguetty with large and spicy meatballs",
+       
+       "image":"",
+       
+       "id_label":[2,11],
+       
+       "CategoryId":1,
+       
+       "DiscountId":2
+       
+ } 
+  
+ ```
+	
+</details>
+
+#### `PUT /resto/userid/admin/menu/idproduct`
+
+<details>
+	
+<summary>*Params: idproduct* Request: Body</summary>
+
+```
+
+//example 1
+{
+       "name":"",
+       "price":28
+ } 
+
+//example 2
+{
+       "name":"",
+       "price":18,
+       "detail":"",
+       "image":"",
+       "id_label":"",
+       "CategoryId":"",
+       "DiscountId":"",
+       "available": ""
+ }
+
+ //example 3
+ {
+       "name":"Spaguetti",
+       "price":15,
+       "detail":"Spaguetty with large and spicy meatballs and house sauce",
+       "image":"imagen",
+       "id_label":[2,11],
+       "CategoryId":"",
+       "DiscountId":"",
+       "available": true
+ } 
+
+```
+
+</details>
+
+#### `DELETE /resto/idResto/admin/menu/:idProduct`
+
+<details>
+	
+<summary>*Params: idproduct* Response: JSON</summary>
+  
+```
+{
+    "msg": "Product Deleted"
+}
+
+```
+</details>
+
+#### - `GET /resto/:idResto/admin/feedback`
+
+<details>
+	
+<summary>Request: Body</summary>
+
+```
+[
+  {
+      comment: 'Excelente servicio',
+      rating: 5,
+  },
+  {
+      comment: 'Excelente servicio',
+      rating: 5,
+  },
+  {
+      comment: 'Excelente servicio',
+      rating: 5,
+  }
+]	
+```
 
 </details>

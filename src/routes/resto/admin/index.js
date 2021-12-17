@@ -16,7 +16,7 @@ router.use('/account', account);
 router.use('/menu',(req,res,next)=>{next()} ,menu);
 router.use('/tables', tables);
 router.use('/feedback', feedback);
-router.use('/revenue', revenue);
+router.use('/revenue', (req,res,next)=>{next()}, revenue);
 // ...
 //
 

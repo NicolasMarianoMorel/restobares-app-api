@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
     const { idResto } = req;
     const menu = await getMenu(idResto);
     if (!menu.length) {
-      res.status(400).json({ error: "no se encotro el id" });
+      res.status(400).json({ error: "id at restaurant is undefined" });
     } else {
       res.status(200).send(menu);
     }
@@ -21,24 +21,27 @@ router.get("/", async (req, res) => {
 router.put('/', async (req,res)=>{
 	try{
 		const { idResto } = req;
-		const {product_Id} = req.body;
+		const {product_Id} = req.body; 
 		const products = await getMenu(idResto)
+		if(products.length===0) return res.status(404).json({error:`There isn't products in this restaurant`});
 		const select_product = products.find(p=>p.id===product_Id);
-		console.log("PRODUCT",select_product);
 		if(select_product.available==true){
 			await Product.update(
 				{available: false},
-				{where:{id:product_Id}}
+				{where:{id:product_Id,
+					UserId:idResto}}
 				);
-			return res.send(`Product ${select_product.name} was disabled`)
+			return res.status(200).json({msg:`Product ${select_product.name} was disabled`})
 		}
 		else if(select_product.available==false){
 			await Product.update(
 				{available: true},
-				{where:{id:product_Id}}
+				{where:{id:product_Id,
+					UserId:idResto}}
 			)
-			return res.send(`Product ${select_product.name} was enabled`)
+			return res.status(200).json({msg:`Product ${select_product.name} was enabled`});
 		}
+		else{return res.status(404).json({error:`Couldn't change product availability`})}
 	} catch (err){
 		res.status(404).send(err);
 	}

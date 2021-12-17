@@ -4,19 +4,25 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
 	// defino el modelo
 	sequelize.define(
-		"Feedback",
-		{
-			comment: {
-				type: DataTypes.STRING,
-			},
-			rating: {
-				type: DataTypes.INTEGER,
-				allowNull: false,
-			},
-		},
-		{
-			timestamps: true,
-		}
-	);
+    "Feedback",
+    {
+      comment: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      rating: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        // defaultValue: 0,
+        // validate: {
+        //   min: 0,
+        //   max: 5,
+        // },
+      },
+    },
+    {
+      timestamps: false
+    }
+  );
 }
 

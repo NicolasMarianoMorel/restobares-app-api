@@ -1,6 +1,4 @@
 // const axios = require('axios');
-
-//Se trae todos los productos que ofrece en el menu el restaurante
 const {Product, Label} = require('../db');
 
 const getMenu = async(idresto)=>{
