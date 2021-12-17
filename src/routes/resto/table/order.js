@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const { usersTables } = require('../../../cache.js');
 
 // Obtenemos la lógica correspondiente desde controllers/index.js
 const { getOrders, postOrder } = require('../../../controllers');
@@ -17,9 +18,9 @@ router.post('/',async (req,res) => {
 
 router.put('/', async (req,res)=>{
 	const {idResto, idTable} = req;
-	getOrders(idResto, idTable).state='pay_cash';
-	res.send(`state changed to pay_cash`);
-
+	let tableCalling = usersTables[idResto].tables[idTable-1].calling;
+	usersTables[idResto].tables[idTable-1].calling = !tableCalling;
+	res.json({ msg: `The table ${idTable} is ${tableCalling ? '' : 'not '}calling the staff.` });
 });
 module.exports = router;
 
