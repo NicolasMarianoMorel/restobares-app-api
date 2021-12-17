@@ -24,7 +24,7 @@ module.exports = function(idResto, idTable, body) {
 	if (table.state !== 'waiting' && !table.currentOrder.products.length) {
 		table.state = 'waiting';
 		table.currentOrder.products = body.products;
-		table.currentOrder.time = new Date();
+		table.currentOrder.time = new Date().toLocaleString();
 		table.currentOrder.comments = body.comments;
 		return { status: 200, msg: 'Your order has been taken successfully.'};
 	}

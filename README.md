@@ -21,23 +21,29 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 - GET /discounts
 - GET /labels
 - GET /categories
+
 #### Diner Routes (comensal)
 - GET  /resto/:idResto/table/:idTable/order
 - GET  /resto/:userid/table/:idtable/menu
 - POST /resto/:idResto/table/:idTable/order
 - PUT /resto/:idResto/table/:idTable/order
-- POST/resto/:idResto/table/:idTable/feedback
+- *POST /resto/:idResto/table/:idTable/payment
+- POST /resto/:idResto/table/:idTable/feedback
+
 #### Staff Routes
 - GET /resto/:idResto/staff/menu
 - PUT /resto/:idResto/staff/menu
 - GET /resto/:idResto/staff/tables
-- *PUT /resto/:idResto/staff/tables
-- DELETE /resto/:idResto/staff/tables 
+- PUT /resto/:idResto/staff/tables
+- DELETE /resto/:idResto/staff/tables
+- *GET /resto/:idResto/staff/orders
+
 #### Admin Routes
 - GET /resto/userid/admin/menu
 - POST /resto/userid/admin/menu
 - PUT /resto/userid/admin/menu
 - DELETE /resto/userid/admin/menu
+- *GET /resto/:idResto/admin/feedback
 
 ## ROUTES RESPONSES
 
@@ -497,7 +503,23 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 	
 </details>
 
-#### `GET /resto/:userid/table/:idtable/menu`
+#### `POST /resto/:idResto/table/:idTable/payment`
+
+<details>
+	
+<summary>Request: Body</summary> 
+
+```
+{
+  "state" : "pay_cash",
+  "tip" : 0
+}
+
+```
+	
+</details>
+
+#### `GET /resto/:idResto/table/:idtable/menu`
 
 <details>
 	
@@ -805,6 +827,64 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
   
 </details>
 
+
+#### - `GET /resto/:idResto/staff/orders`
+
+<details>
+	
+<summary>Response: JSON</summary>
+
+```
+
+[
+    {
+        "idTable": 1,
+        "currentOrder": {
+            "time": "16/12/2021 21:17:36",
+            "products": [
+                {
+                    "productName": "Papas Fritas",
+                    "productId": 23,
+                    "quantity": 2,
+                    "price": 200
+                },
+                {
+                    "productName": "Henieken",
+                    "productId": 12,
+                    "quantity": 2,
+                    "price": 300
+                }
+            ],
+            "comments": "Sin sal por favor."
+        }
+    },
+    {
+        "idTable": 2,
+        "currentOrder": {
+            "time": "16/12/2021 21:17:17",
+            "products": [
+                {
+                    "productName": "Papas Fritas",
+                    "productId": 23,
+                    "quantity": 2,
+                    "price": 200
+                },
+                {
+                    "productName": "Henieken",
+                    "productId": 12,
+                    "quantity": 2,
+                    "price": 300
+                }
+            ],
+            "comments": "Sin sal por favor."
+        }
+    }
+]
+	
+```
+
+</details>
+
 ### --- Admin Routes
 
 #### `GET /resto/userid/admin/menu`
@@ -974,7 +1054,7 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 
 </details>
 
-#### `DELETE /resto/userid/admin/menu/idproduct`
+#### `DELETE /resto/idResto/admin/menu/:idProduct`
 
 <details>
 	
@@ -986,4 +1066,29 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 }
 
 ```
+</details>
+
+#### - `GET /resto/:idResto/admin/feedback`
+
+<details>
+	
+<summary>Request: Body</summary>
+
+```
+[
+  {
+      comment: 'Excelente servicio',
+      rating: 5,
+  },
+  {
+      comment: 'Excelente servicio',
+      rating: 5,
+  },
+  {
+      comment: 'Excelente servicio',
+      rating: 5,
+  }
+]	
+```
+
 </details>

@@ -14,6 +14,8 @@ const getOrdersStaff = require("./getOrdersStaff.js");
 const deleteOrdered = require("./deleteOrdered");
 const postFeedbacks = require("./postFeedbacks");
 const getFeedbacks = require("./getFeedbacks");
+const getSoldOrder = require("./getSoldOrder");
+const sendPayment = require("./sendPayment.js");
 
 // ...
 
@@ -33,6 +35,7 @@ module.exports = {
   deleteOrdered,
   postFeedbacks,
   getFeedbacks,
-
+  getSoldOrder,
+  sendPayment,
   // ...
 };
