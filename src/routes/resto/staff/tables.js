@@ -15,10 +15,14 @@ router.get("/", async (req, res) => {
 });
 
 router.put("/", async (req, res) => {
-  const { idResto } = req;
-  const { idTable, state, idStaff } = req.body;
-  let response = await tableStates(idTable, state, idResto, idStaff);
-  res.status(response.status).json(response);
+  try{
+    const { idResto } = req;
+    const { idTable, state, idStaff } = req.body;
+    let response = await tableStates(idTable, state, idResto, idStaff);
+    res.status(response.status).json(response);
+  } catch (err){
+    res.status(404).send(err);
+  }
 });
 
 // tambien puede ir el post, delete, etc...
