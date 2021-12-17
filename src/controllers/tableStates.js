@@ -41,7 +41,7 @@ module.exports = async function (idTable, state, idResto, idStaff) {
 		}
 	}
 	if (state.includes("pay")) {
-		if (/*table.state.includes("pay")*/ true) {
+		if (table.state.includes("pay")) {
 			// Get the current date
 			let today = new Date().toLocaleString();
 			// Create the SoldOrder record.
