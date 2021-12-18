@@ -27,7 +27,7 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 - GET  /resto/:userid/table/:idtable/menu
 - POST /resto/:idResto/table/:idTable/order
 - PUT /resto/:idResto/table/:idTable/order
-- *POST /resto/:idResto/table/:idTable/payment
+- POST /resto/:idResto/table/:idTable/payment
 - POST /resto/:idResto/table/:idTable/feedback
 
 #### Staff Routes
@@ -36,14 +36,15 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 - GET /resto/:idResto/staff/tables
 - PUT /resto/:idResto/staff/tables
 - DELETE /resto/:idResto/staff/tables
-- *GET /resto/:idResto/staff/orders
+- GET /resto/:idResto/staff/orders
 
 #### Admin Routes
+- GET /resto/idResto/admin/revenue
 - GET /resto/userid/admin/menu
 - POST /resto/userid/admin/menu
 - PUT /resto/userid/admin/menu
 - DELETE /resto/userid/admin/menu
-- *GET /resto/:idResto/admin/feedback
+- GET /resto/:idResto/admin/feedback
 
 ## ROUTES RESPONSES
 
@@ -390,7 +391,7 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 
 ```
 	
-{ status: 200, msg: 'Message' }
+{ status: 200, msg: 'Te order has been taken.' }
 
 ```
 
@@ -404,7 +405,7 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 
 ```
 {
-    state changed to pay_cash	
+    "msg": "The table 1 is calling the staff."
 }
 ```
 
@@ -886,6 +887,57 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 </details>
 
 ### --- Admin Routes
+
+#### - `GET /route/:param/etc/:otherParam/blablabla`
+
+<details>
+	
+<summary>Request: Body</summary>
+
+```
+
+{
+    filterTime: 'Day'     // 'Day', 'Month'
+}
+	
+```
+
+</details>
+
+<details>
+	
+<summary>Response: JSON</summary>
+
+```
+
+[
+    {
+        "id": 1,
+        "idStaff": 39672174,
+        "totalPrice": "500.00",
+        "tip": "123.00",
+        "date": "16/12/2021, 8:59:35 p. m.",
+        "idTable": 2,
+        "paymentMethod": "pay_cash",
+        "UserId": "00880663-5552-4f00-b2eb-992de871e4ee",
+        "SoldProducts": [
+            {
+                "productId": 23,
+                "name": "Papas Fritas",
+                "price": "200.00",
+                "quantity": 2
+            },
+            {
+                "productId": 12,
+                "name": "Henieken",
+                "price": "300.00",
+                "quantity": 2
+            }
+        ]
+    }
+]
+	
+```
 
 #### `GET /resto/userid/admin/menu`
 
