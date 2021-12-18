@@ -2,6 +2,9 @@ var express = require('express');
 var router = express.Router();
 
 // Import routers
+// DEV routes
+const dev = require('./dev');
+//
 const register = require('./register.js');
 const confirmation = require('./confirmation.js');
 const login = require('./login.js');
@@ -12,6 +15,9 @@ const discounts = require("./discounts.js");
 // ...
 
 // Configurar routers 
+// Dev routes
+router.use('/dev', dev);
+// Normal Rñoutes
 router.use('/register', register);
 router.use('/confirmation', confirmation);
 router.use('/login', login);
@@ -27,6 +33,7 @@ router.use('/resto/:idResto', (req,res,next) => {
 // ...
 router.get("/", async (req,res) => {
 	//console.log(req.usersTables);
-	res.json(req.usersTables);
-})
+	res.send("Dingbell API - It's alive!");
+});
+
 module.exports = router;

@@ -16,6 +16,10 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 4.Execute ```npm start``` in folder ```/src``` and it should show "listening to port 3001".
 
 ## ENDPOINTS
+
+#### DEV Routes (only for development)
+- DELETE /dev/clear
+
 #### General Routes
 - GET /resto/idResto/user
 - GET /discounts
@@ -76,6 +80,25 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 {
     "property": "value",
     "otherProperty": "otherValue"
+}
+	
+```
+
+</details>
+
+### --- DEV Routes (only for development)
+
+#### - `DELETE /dev/clear`
+
+<details>
+	
+<summary>Request: Body</summary>
+
+```
+
+{
+    idResto: "d7u8974jk398e09812j3hjks82",
+    idTable: 1
 }
 	
 ```
