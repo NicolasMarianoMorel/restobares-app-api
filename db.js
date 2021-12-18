@@ -1,15 +1,30 @@
 require("dotenv").config();
+var pg = require('pg');
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
 const { DB_USER, DB_PASS, DB_HOST, DB_NAME } = process.env;
+pg.defaults.ssl = true;
 
 const sequelize = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}`,
+  // `postgres://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}`,
+  // `postgres://imdqolekmddkhq:23f54f45a9172223fe2f116e5da494e1397543481d730e72a1d6adc97dbfe9e8@ec2-44-198-15-192.compute-1.amazonaws.com:5432/d1ap0v3iuasvv2`,
   {
+    database: "d1ap0v3iuasvv2",
+  username: "imdqolekmddkhq",
+  password: "23f54f45a9172223fe2f116e5da494e1397543481d730e72a1d6adc97dbfe9e8",
+  host: "ec2-44-198-15-192.compute-1.amazonaws.com",
+  port: 5432,
+  dialect: "postgres",
+  dialectOptions: {
+    ssl: {
+      require: true, // This will help you. But you will see nwe error
+      rejectUnauthorized: false // This line will fix new error
+    }
+  },
     logging: false, // set to console.log to see the raw SQL queries
     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-  }
+  },
 );
 const basename = path.basename(__filename);
 
