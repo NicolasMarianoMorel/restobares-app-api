@@ -24,6 +24,7 @@ Get in contact with any of the colaborators to get a valid value for **_:idResto
 ## ➡️ ENDPOINTS
 
 #### DEV Routes (only for development)
+- GET /deb/users
 - DELETE /dev/clear
 
 #### General Routes
@@ -93,6 +94,30 @@ Get in contact with any of the colaborators to get a valid value for **_:idResto
 </details>
 
 ### --- DEV Routes (only for development)
+
+
+#### - `GET /dev/users`
+
+<details>
+	
+<summary>Response: JSON</summary>
+
+```
+
+[
+  {
+    "id": "cc7fb1eb-4ca7-48a2-b6b8-d08b2bfca99b",
+    "title": "La Trufa Dorada"
+  },
+  {
+    "id": "2a7ab818-eeb9-4406-8dd6-81ff2547bc33",
+    "title": "Betos"
+  }
+]
+	
+```
+
+</details>
 
 #### - `DELETE /dev/clear`
 
