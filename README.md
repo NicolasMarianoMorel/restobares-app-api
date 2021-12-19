@@ -24,7 +24,7 @@ Get in contact with any of the colaborators to get a valid value for **_:idResto
 ## ➡️ ENDPOINTS
 
 #### DEV Routes (only for development)
-- GET /deb/users
+- GET /dev/users
 - DELETE /dev/clear
 
 #### General Routes
