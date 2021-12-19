@@ -1,4 +1,8 @@
 # restobares-app-api
+## ⚙️ Dependencies:
+
+- Node.js v16.13.1 or above
+
 ## 🖥️ How to start the server LOCALLY:
 
 1- Clone this repository from the `main` branch.
