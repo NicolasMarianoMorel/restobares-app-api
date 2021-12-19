@@ -1,23 +1,30 @@
 # restobares-app-api
-## How to start the server:
+## ⚙️ Dependencies:
 
-1.Create database in sql shell of postgres or Pg Admin with the name restobares (CREATE DATABASE restobares;)
+- Node.js v16.13.1 or above
 
-2.Create .env in src/ with these exact vars:
-```
-DB_USER=(your postgres user)
+## 🖥️ How to start the server LOCALLY:
 
-DB_PASS=(your postgres pass)
+1- Clone this repository from the `main` branch.
 
-DB_HOST=localhost:5432 (if you got the posgres in the default port).
-```
-3.Do ```npm install``` in folder ```/src```.
+2- In your preferred CLI do ```npm install``` at the repository's root folder.
 
-4.Execute ```npm start``` in folder ```/src``` and it should show "listening to port 3001".
+3- Do ```npm start``` at the repository's root folder.
+   It should be ready when it prints out `Listening to port 3001`.
 
-## ENDPOINTS
+## ⭐ NEW! - Access the server remotely:
+
+Use this host: https://restobares-app-api.herokuapp.com/ then append to it any of the routes listed below.
+
+#### ⚠️ Tip about table manpulation:
+Before you begin playing around with any table, check if someone is using it already.
+To check that, perform a GET to https://restobares-app-api.herokuapp.com/resto/:idResto/staff/tables.
+Get in contact with any of the colaborators to get a valid value for **_:idResto_**.
+
+## ➡️ ENDPOINTS
 
 #### DEV Routes (only for development)
+- GET /dev/users
 - DELETE /dev/clear
 
 #### General Routes
@@ -87,6 +94,30 @@ DB_HOST=localhost:5432 (if you got the posgres in the default port).
 </details>
 
 ### --- DEV Routes (only for development)
+
+
+#### - `GET /dev/users`
+
+<details>
+	
+<summary>Response: JSON</summary>
+
+```
+
+[
+  {
+    "id": "cc7fb1eb-4ca7-48a2-b6b8-d08b2bfca99b",
+    "title": "La Trufa Dorada"
+  },
+  {
+    "id": "2a7ab818-eeb9-4406-8dd6-81ff2547bc33",
+    "title": "Betos"
+  }
+]
+	
+```
+
+</details>
 
 #### - `DELETE /dev/clear`
 
