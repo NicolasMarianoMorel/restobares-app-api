@@ -1,9 +1,11 @@
 # restobares-app-api
 ## 🖥️ How to start the server LOCALLY:
 
-1- In your preferred CLI do ```npm install``` at the repository's root folder.
+1- Clone this repository from the `main` branch.
 
-2- Do ```npm start``` at the repository's root folder.
+2- In your preferred CLI do ```npm install``` at the repository's root folder.
+
+3- Do ```npm start``` at the repository's root folder.
    It should be ready when it prints out `Listening to port 3001`.
 
 ## ⭐ NEW! - Access the server remotely:
@@ -12,8 +14,8 @@ Use this host: https://restobares-app-api.herokuapp.com/ then append to it any o
 
 #### ⚠️ Tip about table manpulation:
 Before you begin playing around with any table, check if someone is using it already.
-To check that, do a GET to https://restobares-app-api.herokuapp.com/resto/:idResto/staff/tables.
-get in contact with any of the colaborators to get a valid value for **_:idResto_**.
+To check that, perform a GET to https://restobares-app-api.herokuapp.com/resto/:idResto/staff/tables.
+Get in contact with any of the colaborators to get a valid value for **_:idResto_**.
 
 ## ➡️ ENDPOINTS
 
