@@ -1,21 +1,21 @@
 # restobares-app-api
-## How to start the server:
+## 🖥️ How to start the server LOCALLY:
 
-1.Create database in sql shell of postgres or Pg Admin with the name restobares (CREATE DATABASE restobares;)
+1- In your preferred CLI do ```npm install``` at the repository's root folder.
 
-2.Create .env in src/ with these exact vars:
-```
-DB_USER=(your postgres user)
+2- Do ```npm start``` at the repository's root folder.
+   It should be ready when it prints out `Listening to port 3001`.
 
-DB_PASS=(your postgres pass)
+## ⭐ NEW! - Access the server remotely:
 
-DB_HOST=localhost:5432 (if you got the posgres in the default port).
-```
-3.Do ```npm install``` in folder ```/src```.
+Use this host: https://restobares-app-api.herokuapp.com/ then append to it any of the routes listed below.
 
-4.Execute ```npm start``` in folder ```/src``` and it should show "listening to port 3001".
+#### ⚠️ Tip about table manpulation:
+Before you begin playing around with any table, check if someone is using it already.
+To check that, do a GET to https://restobares-app-api.herokuapp.com/resto/:idResto/staff/tables.
+get in contact with any of the colaborators to get a valid value for **_:idResto_**.
 
-## ENDPOINTS
+## ➡️ ENDPOINTS
 
 #### DEV Routes (only for development)
 - DELETE /dev/clear
