@@ -18,6 +18,8 @@ const getFeedbacks = require("./getFeedbacks");
 const getSoldOrder = require("./getSoldOrder");
 const sendPayment = require("./sendPayment.js");
 const generateId = require("./generateId.js");
+const getAccount = require("./getAccount.js");
+const putAccount = require("./putAccount.js");
 
 // ...
 
@@ -41,5 +43,7 @@ module.exports = {
   getSoldOrder,
   sendPayment,
   generateId,
+  getAccount,
+  putAccount,
   // ...
 };

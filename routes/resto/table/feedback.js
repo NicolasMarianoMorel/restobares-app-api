@@ -12,7 +12,8 @@ router.post("/", async (req, res) => {
     const feedbacks = await postFeedbacks(idResto, idTable, body);
     res.json({ msg: "the post was made correctly" });
   } catch (error) {
-    res.json({ msg: "error in the post" });
+		console.error(err.stack);
+		res.status(400).json({ msg: 'There was an error', error: err.message});
   }
 });
 

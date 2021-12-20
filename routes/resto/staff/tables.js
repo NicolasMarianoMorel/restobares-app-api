@@ -10,7 +10,8 @@ router.get("/", async (req, res) => {
     let tablesResto = await usersTables[idResto];
     res.status(200).send(tablesResto);
   } catch (err) {
-    res.status(404).send(err);
+		console.error(err.stack);
+		res.status(400).json({ msg: 'There was an error', error: err.message});
   }
 });
 
@@ -21,7 +22,8 @@ router.put("/", async (req, res) => {
     let response = await tableStates(idTable, state, idResto, idStaff);
     res.status(response.status).json(response);
   } catch (err){
-    res.status(404).send(err);
+		console.error(err.stack);
+		res.status(400).json({ msg: 'There was an error', error: err.message});
   }
 });
 
@@ -30,10 +32,10 @@ router.delete("/", async (req, res) => {
   try {
     const { idResto, body } = req;
     const productDeleted = deleteOrdered(idResto, body);
-  
     res.json({ msg: `Product ${productDeleted.productName} was removed` });
-  } catch (error) {
-    res.status(404).send(error);
+  } catch (err) {
+		console.error(err.stack);
+		res.status(400).json({ msg: 'There was an error', error: err.message});
   }
 });
 module.exports = router;

@@ -8,8 +8,13 @@ const { getDiscounts } = require("../controllers");
 // Ejecuta la ruta /register
 // ruta relativa!
 router.get('/',async (req,res) => {
-	let result = await getDiscounts();
-	res.json(result); 
+	try {
+		let result = await getDiscounts();
+		res.json(result); 
+  } catch(err) {
+		console.error(err.stack);
+		res.status(400).json({ msg: 'There was an error', error: err.message});
+  }
 });
 
 module.exports = router;
