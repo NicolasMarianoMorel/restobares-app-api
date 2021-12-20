@@ -14,6 +14,9 @@ module.exports = (sequelize) => {
       price: {
         type: DataTypes.DECIMAL(10, 2),
         allowNull: false,
+        get() {
+          return this.getDataValue("price") * 1
+        }
       },
       detail: {
         type: DataTypes.STRING(1024),

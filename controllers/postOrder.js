@@ -20,15 +20,19 @@ module.exports = function(idResto, idTable, body) {
 			comments: 'string',
 		}
 	*/
+	
 	let table = usersTables[idResto].tables[idTable-1];
 	//if (table.state !== 'waiting' && !table.currentOrder.products.length) {
 	table.state = 'waiting';
 	
 	body.products.forEach( (e,i) => {
+		e.price *= 1;
+		e.quantity *= 1;
 		let prdct = table.currentOrder.products.find( (p) => p.productId === e.productId )
 		if (prdct) {
-			table.currentOrder.products[i].price += e.price;
-			table.currentOrder.products[i].quantity += e.quantity;
+			table.currentOrder.products[i].price = (table.currentOrder.products[i].price + e.price).toFixed(2) * 1;
+			table.currentOrder.products[i].quantity = (table.currentOrder.products[i].quantity + e.quantity).toFixed(2) * 1;
+
 		}
 		else {
 			table.currentOrder.products.push(e);
