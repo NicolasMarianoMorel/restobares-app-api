@@ -38,6 +38,9 @@ conn.sync({ force: false }).then( async () => {
 	await User.findOrCreate({
 		where: {
 			id: generateId('goldentruffle@gmail.com'),
+		},
+		defaults: {
+			id: generateId('goldentruffle@gmail.com'),
 			email: 'goldentruffle@gmail.com',
 			passAdmin: 'abc123',
 			passStaff: '321cba',
@@ -49,6 +52,9 @@ conn.sync({ force: false }).then( async () => {
 	// Creamos otro usuario de prueba
 	await User.findOrCreate({
 		where: {
+			id: generateId('betos@gmail.com'),
+		},
+		defaults: {
 			id: generateId('betos@gmail.com'),
 			email: 'betos@gmail.com',
 			passAdmin: 'abc123',
