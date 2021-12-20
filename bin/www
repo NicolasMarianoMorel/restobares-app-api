@@ -9,7 +9,7 @@ var debug = require("debug")("src:server");
 var http = require("http");
 const { User, Product, Label, conn } = require("../db.js");
 const { usersTables } = require("../cache.js");
-const { getCategories, getDiscounts, getLabels, getMenu } = require("../controllers");
+const { getCategories, getDiscounts, getLabels, getMenu, generateId } = require("../controllers");
 
 /**
  * Get port from environment and store in Express.
@@ -37,6 +37,7 @@ conn.sync({ force: false }).then( async () => {
 	// Creamos un usuario de prueba
 	await User.findOrCreate({
 		where: {
+			id: generateId('goldentruffle@gmail.com'),
 			email: 'goldentruffle@gmail.com',
 			passAdmin: 'abc123',
 			passStaff: '321cba',
@@ -48,6 +49,7 @@ conn.sync({ force: false }).then( async () => {
 	// Creamos otro usuario de prueba
 	await User.findOrCreate({
 		where: {
+			id: generateId('betos@gmail.com'),
 			email: 'betos@gmail.com',
 			passAdmin: 'abc123',
 			passStaff: '321cba',
