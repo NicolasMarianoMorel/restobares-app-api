@@ -50,6 +50,8 @@ Get in contact with any of the colaborators to get a valid value for **_:idResto
 - GET /resto/:idResto/staff/orders
 
 #### Admin Routes
+- *GET /resto/idResto/admin/account
+- *PUT /resto/idResto/admin/account
 - GET /resto/idResto/admin/revenue
 - GET /resto/userid/admin/menu
 - POST /resto/userid/admin/menu
@@ -942,7 +944,50 @@ Get in contact with any of the colaborators to get a valid value for **_:idResto
 
 ### --- Admin Routes
 
-#### - `GET /route/:param/etc/:otherParam/blablabla`
+#### - `GET /resto/:idResto/admin/account`
+
+
+<details>
+	
+<summary>Response: JSON</summary>
+
+```
+
+{
+    "id": "ANzbx5Pa3dPizabR",
+    "email": "goldentruffle@gmail.com",
+    "passAdmin": "abc123",
+    "passStaff": "321cba",
+    "tables": 5,
+    "title": "La Trufa Dorada",
+    "logo": "https://vignette.wikia.nocookie.net/simpsons/images/d/dd/Fabf01_20_goldener_trueffel.jpg/revision/latest?cb=20140407012625",
+    "theme": 1,
+    "payment_mp": null
+}
+	
+```
+
+</details>
+
+#### - `PUT /resto/:idResto/admin/account`
+
+
+<details>
+	
+<summary>Request: Body</summary>
+
+```
+
+{
+    "title" : "El Holandes frito"
+    "logo" : "https://vignette.wikia.nocookie.net/simpsons/images/d/dd/Fabf01_20_goldener_trueffel.jpg/revision/latest?cb=20140407012625"
+}
+	
+```
+
+</details>
+
+#### - `GET /resto/:idResto/admin/revenue`
 
 <details>
 	

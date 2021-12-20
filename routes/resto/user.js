@@ -13,8 +13,9 @@ router.get("/", async (req, res) => {
     } else {
       res.status(200).send(users);
     }
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+		console.error(err.stack);
+		res.status(400).json({ msg: 'There was an error', error: err.message});
   }
 });
 module.exports = router;

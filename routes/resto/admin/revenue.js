@@ -10,7 +10,8 @@ router.get('/',async (req,res) => {
 		if(revenue.length<1) return res.status(404).json({error: `There isn't movement history`});
 		res.status(200).json(revenue);
 	} catch (err){
-		res.status(404).send(err);
+		console.error(err.stack);
+		res.status(400).json({ msg: 'There was an error', error: err.message});
 	}
 });
 
