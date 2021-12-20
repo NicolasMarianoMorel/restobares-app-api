@@ -14,7 +14,8 @@ router.get("/", async (req, res) => {
       res.status(200).send(menu);
     }
   } catch (error) {
-    res.status(404).send(err);
+		console.error(err.stack);
+		res.status(400).json({ msg: 'There was an error', error: err.message});
   }
 });
 
@@ -43,7 +44,8 @@ router.put('/', async (req,res)=>{
 		}
 		else{return res.status(404).json({error:`Couldn't change product availability`})}
 	} catch (err){
-		res.status(404).send(err);
+		console.error(err.stack);
+		res.status(400).json({ msg: 'There was an error', error: err.message});
 	}
 
 });

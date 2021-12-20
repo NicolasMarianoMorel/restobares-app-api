@@ -7,7 +7,7 @@ var router = express.Router();
 //STAFF YA LA TIENE
 
 router.get('/',async (req,res) => {
-
+	res.send("Buscar mesas desde /resto/:idResto/staff/tables");
 });
 
 

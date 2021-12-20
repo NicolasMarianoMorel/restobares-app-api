@@ -17,7 +17,7 @@ const discounts = require("./discounts.js");
 // Configurar routers 
 // Dev routes
 router.use('/dev', dev);
-// Normal Rñoutes
+// Normal Routes
 router.use('/register', register);
 router.use('/confirmation', confirmation);
 router.use('/login', login);
@@ -29,11 +29,23 @@ router.use('/resto/:idResto', (req,res,next) => {
     req.idResto = idResto;
     next();
 } , resto);
+//
+// Error handling
+//router.use('*', (err, req, res) => {
+//	console.error(err.stack);
+//	res.status(500).send(
+//		"The only BOOM I'll ever know is the BOOM from this server."
+//	);
+//});
 
 // ...
 router.get("/", async (req,res) => {
 	//console.log(req.usersTables);
 	res.send("Dingbell API - It's alive!");
 });
+
+// Default route 
+router.get('*', (req,res) => { res.send("Non existent route.") });
+
 
 module.exports = router;
