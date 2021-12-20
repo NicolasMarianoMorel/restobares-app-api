@@ -11,7 +11,7 @@ module.exports = async(idResto, body)=>{
         DiscountId,
     } = body; 
     if(!name || !price){
-        return res.status(400).json({error:'Product not registed'});
+        return {error:'Product not registed'};
       }
     let new_product = await Product.create({
         name,
@@ -23,11 +23,12 @@ module.exports = async(idResto, body)=>{
         DiscountId,
         available:true,
     });
+    console.log(new_product);
     // Se encuentran las diferentes etiuetas que llegan por body con las existentes en 
     //la tabla label
     const db_labels= await Label.findAll({
         where: {id: id_label}
     });
     await new_product.addLabels(db_labels);
-    res.json({msg:`Product ${name} created successfully`});
+    return {msg:`Product ${name} created successfully`};
 }

@@ -37,7 +37,7 @@ router.post('/',async (req,res) => {
 		// });
 		// await new_product.addLabels(db_labels);
 		// res.send(`Product ${name} created successfully`)
-		await postMenu(idResto, body);
+		res.status(200).json(await postMenu(idResto, body));
 	} catch (err){
 		res.status(404).send(err);
 	}
