@@ -42,7 +42,7 @@ module.exports = function(idResto, idTable, body) {
 	
 	// table.currentOrder.products = body.products;
 	table.currentOrder.time = new Date().toLocaleString();
-	table.currentOrder.comments = body.comments;
+	table.currentOrder.comments += body.comments + '<br>';
 	return { status: 200, msg: 'Your order has been taken successfully.'};
 	//}
 	//else {

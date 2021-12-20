@@ -9,7 +9,7 @@ var debug = require("debug")("src:server");
 var http = require("http");
 const { User, Product, Label, conn } = require("../db.js");
 const { usersTables } = require("../cache.js");
-const { getCategories, getDiscounts, getLabels, getMenu } = require("../controllers");
+const { getCategories, getDiscounts, getLabels, getMenu, generateId } = require("../controllers");
 
 /**
  * Get port from environment and store in Express.
@@ -37,6 +37,7 @@ conn.sync({ force: true }).then( async () => {
 	// Creamos un usuario de prueba
 	await User.findOrCreate({
 		where: {
+			id: generateId('goldentruffle@gmail.com'),
 			email: 'goldentruffle@gmail.com',
 			passAdmin: 'abc123',
 			passStaff: '321cba',
@@ -48,6 +49,7 @@ conn.sync({ force: true }).then( async () => {
 	// Creamos otro usuario de prueba
 	await User.findOrCreate({
 		where: {
+			id: generateId('betos@gmail.com'),
 			email: 'betos@gmail.com',
 			passAdmin: 'abc123',
 			passStaff: '321cba',
@@ -96,8 +98,8 @@ conn.sync({ force: true }).then( async () => {
 			  price: 10.00,
 			  img: "https://milrecetas.net/wp-content/uploads/2018/01/Hamburguesa-casera-con-tocineta-2.jpg",
 			  discount_id: 1,
-			  category_id: 1,
-			  labels: [1, 2, 3]
+			  category_id: 2,
+			  labels: [2, 11, 9]
 			},
 			{
 			  product_id: 2,
@@ -107,7 +109,7 @@ conn.sync({ force: true }).then( async () => {
 			  img: "https://saboryestilo.com.mx/wp-content/uploads/2019/09/recetas-superama-milanesa-de-pollo-600x300.jpg",
 			  discount_id: 2,
 			  category_id: 2,
-			  labels: [1, 2, 3]
+			  labels: [10, 12, 2]
 			},
 			{
 			  product_id: 3,
@@ -115,9 +117,9 @@ conn.sync({ force: true }).then( async () => {
 			  details: "Hola soy la descripción de tu platillo.",
 			  price: 9.00,
 			  img: "https://i0.wp.com/www.cuboinformativo.top/wp-content/uploads/2020/10/comida-tipica-de-cancun.jpg?resize=600%2C300&ssl=1",
-			  discount_id: 3,
-			  category_id: 3,
-			  labels: [1, 2, 3],
+			  discount_id: 1,
+			  category_id: 1,
+			  labels: [11, 12],
 			},
 			{
 			  product_id: 4,
@@ -126,8 +128,8 @@ conn.sync({ force: true }).then( async () => {
 			  price: 14.00,
 			  img: "https://s3.amazonaws.com/cdn.conectate-new.com/wp-content/uploads/2021/03/02201833/Pizza-Hut-Republica-Dominicana.jpg",
 			  discount_id: 2,
-			  category_id: 1,
-			  labels: [1, 2, 3],
+			  category_id: 2,
+			  labels: [5, 6],
 			},
 		  {
 			  product_id: 5,
@@ -136,8 +138,8 @@ conn.sync({ force: true }).then( async () => {
 			  price: 20.00,
 			  img: "https://informaciongastronomica.com/wp-content/uploads/2019/01/empanada2.jpg",
 			  discount_id: 3,
-			  category_id: 3,
-			  labels: [1, 2, 3],
+			  category_id: 1,
+			  labels: [8, 11],
 			},
 			{
 			  product_id: 6,
@@ -146,19 +148,19 @@ conn.sync({ force: true }).then( async () => {
 			  price: 18.00,
 			  img: "https://img1.wsimg.com/isteam/ip/9d354e1d-14a1-4160-9592-069c2b7e3474/Bandeja-Paisa.jpg/:/cr=t:12.5%25,l:0%25,w:100%25,h:75%25/rs=w:600,h:300,cg:true",
 			  discount_id: 1,
-			  category_id: 1,
-			  labels: [1, 2, 3],
+			  category_id: 3,
+			  labels: [2, 10, 11],
 			},
 			{
-					product_id: 7,
-					product_name: "Fernet papá",
-					details: "Hola soy la descripción de tu platillo.",
-					price: 10.00,
-					img: "https://pbs.twimg.com/media/B4iFFySIEAA8sf5.jpg",
-					discount_id: 2,
-					category_id: 2,
-					labels: [1, 2, 3],
-				  }
+				product_id: 7,
+				product_name: "Fernet papá",
+				details: "Hola soy la descripción de tu platillo.",
+				price: 10.00,
+				img: "https://pbs.twimg.com/media/B4iFFySIEAA8sf5.jpg",
+				discount_id: 2,
+				category_id: 4,
+				labels: [3],
+			  }
 		  ];
  var LaTrufaDorada = await User.findOne({
 	 where: {
