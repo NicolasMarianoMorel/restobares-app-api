@@ -84,6 +84,7 @@ conn.sync({ force: false }).then( async () => {
 			}
 			usersTables[dataValues.id] = { tables };
 		}))
+
 		//agregamos categorias, descuentos y etiquetas
 		await getCategories();
 		await getDiscounts();
