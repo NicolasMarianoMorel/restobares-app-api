@@ -17,6 +17,7 @@ const getFeedbacks = require("./getFeedbacks");
 const getSoldOrder = require("./getSoldOrder");
 const sendPayment = require("./sendPayment.js");
 const generateId = require("./generateId.js");
+const mercadoPago = require("./mercadoPago");
 
 // ...
 
@@ -39,5 +40,6 @@ module.exports = {
   getSoldOrder,
   sendPayment,
   generateId,
+  mercadoPago,
   // ...
 };
