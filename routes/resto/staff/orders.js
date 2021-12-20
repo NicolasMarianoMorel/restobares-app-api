@@ -6,8 +6,13 @@ var router = express.Router();
 
 // ruta relativa!
 router.get('/', async (req,res) => {
-	const { idResto } = req;
-	res.status(200).json(await getOrdersStaff(idResto));
+	try {
+	 const { idResto } = req;
+	 res.status(200).json(await getOrdersStaff(idResto));
+	} catch (err) {
+		console.error(err.stack);
+		res.status(400).json({ msg: 'There was an error', error: err.message});
+	}
 });
 
 // tambien puede ir el post, delete, etc...

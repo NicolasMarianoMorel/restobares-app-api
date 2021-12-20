@@ -21,7 +21,6 @@ module.exports = function(idResto, idTable, body) {
 		}
 	*/
 	
-	console.log('RESTO:',idResto);
 	let table = usersTables[idResto].tables[idTable-1];
 	//if (table.state !== 'waiting' && !table.currentOrder.products.length) {
 	table.state = 'waiting';

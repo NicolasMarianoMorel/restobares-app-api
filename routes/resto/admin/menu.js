@@ -38,7 +38,8 @@ router.post('/',async (req,res) => {
 		await new_product.addLabels(db_labels);
 		res.send(`Product ${name} created successfully`)
 	} catch (err){
-		res.status(404).send(err);
+		console.error(err.stack);
+		res.status(400).json({ msg: 'There was an error', error: err.message});
 	}
 });
 
@@ -51,8 +52,9 @@ router.get("/", async (req, res) => {
     } else {
       res.status(200).send(menu);
     }
-  } catch (error) {
-    res.status(404).send(err);
+  } catch (err) {
+		console.error(err.stack);
+		res.status(400).json({ msg: 'There was an error', error: err.message});
   }
 });
 
@@ -69,7 +71,8 @@ router.delete("/:productId", async (req,res)=>{
 		});
 		res.status(200).json({msg: "Product Deleted"});	
 	} catch (err){
-		res.status(404).send(err);
+		console.error(err.stack);
+		res.status(400).json({ msg: 'There was an error', error: err.message});
 	}
 });
 
@@ -84,7 +87,8 @@ router.put("/:productId", async (req,res)=>{
 		await putProduct(idResto,productId,body);
 		res.status(200).json({msg:`Product edited successfully`});
 	} catch (err) {
-		res.status(404).send(err);
+		console.error(err.stack);
+		res.status(400).json({ msg: 'There was an error', error: err.message});
 	}
 });
 

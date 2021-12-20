@@ -17,7 +17,12 @@ const getFeedbacks = require("./getFeedbacks");
 const getSoldOrder = require("./getSoldOrder");
 const sendPayment = require("./sendPayment.js");
 const generateId = require("./generateId.js");
+<<<<<<< HEAD
 const mercadoPago = require("./mercadoPago");
+=======
+const getAccount = require("./getAccount.js");
+const putAccount = require("./putAccount.js");
+>>>>>>> 41f1285e2e3a1da0ca96fa2a0149a422c7b26d59
 
 // ...
 
@@ -40,6 +45,7 @@ module.exports = {
   getSoldOrder,
   sendPayment,
   generateId,
-  mercadoPago,
+  getAccount,
+  putAccount,
   // ...
 };
