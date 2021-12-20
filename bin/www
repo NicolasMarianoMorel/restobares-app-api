@@ -44,7 +44,7 @@ conn.sync({ force: false }).then( async () => {
 			email: 'goldentruffle@gmail.com',
 			passAdmin: 'abc123',
 			passStaff: '321cba',
-			tables: 5,
+			tables: 8,
 			title: 'La Trufa Dorada',
 			logo: 'https://i2.bssl.es/guiamaximin/2020/01/la-chistera-880x587.jpg',
 		}
