@@ -12,16 +12,17 @@ module.exports = async function (idTable, state, idResto, idStaff) {
 			table.state = "eating";
 			// adding the price of each product to the totalPrice
 			table.totalPrice += table.currentOrder.products.reduce((a, e) => {
-				return a + e.price
+				return (a + e.price).toFixed(2) * 1
 			}, 0)
+			table.totalPrice = table.totalPrice.toFixed(2) * 1;
 			// change the location of the products to ordered
 			// First we check if we find the productId already
 			// to prevent product repeating.
 			table.currentOrder.products.forEach( (e) => {
 				let prdct = table.ordered.find( (p) => p.productId === e.productId )
 				if (prdct) {
-					prdct.price += e.price;
-					prdct.quantity += e.quantity;
+					prdct.price = (prdct.price + e.price).toFixed(2) * 1 ;
+					prdct.quantity = (prdct.quantity + e.quantity).toFixed(2) * 1;
 				}
 				else {
 					table.ordered.push(e);
