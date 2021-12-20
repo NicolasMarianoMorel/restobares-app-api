@@ -29,7 +29,7 @@ var server = http.createServer(app);
  */
 
 // Syncing all the models at once.
-conn.sync({ force: false }).then( async () => {
+conn.sync({ force: true }).then( async () => {
 	server.listen(port);
 	server.on('error', onError);
 	server.on('listening', onListening);
