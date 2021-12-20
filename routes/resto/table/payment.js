@@ -12,7 +12,8 @@ router.post('/',async (req,res) => {
 		let result = await sendPayment(idResto,idTable,state,tip);
 		res.json(result);
 	} catch (error) {
-		res.status(400).send({ msg: error });
+		console.error(error.stack);
+		res.status(400).json({ msg: 'There was an error', error: error.message});
 	}
 });
 
