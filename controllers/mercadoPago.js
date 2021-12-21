@@ -9,6 +9,8 @@ mercadopago.configure({
 // Crea un objeto de preferencia
 const mercadoPago = async (idResto, idTable, state, tip) => {
   let table = usersTables[idResto].tables[idTable - 1];
+  let idStaff = table.idStaff;
+
   let ordered = table.ordered;
   let items = ordered.map((p) => {
     return {
@@ -21,12 +23,12 @@ const mercadoPago = async (idResto, idTable, state, tip) => {
 
   let preference = {
     items,
-    // back_urls: {
-    //   success: "http://localhost:8080/feedback",
-    //   failure: "http://localhost:8080/feedback",
-    //   pending: "http://localhost:8080/feedback",
-    // },
-    // auto_return: "approved",
+    back_urls: {
+      success: `http://localhost:3001/resto/${idResto}/table/${idTable}/mp/${idStaff}/${state}`,
+      // failure: "http://localhost:8080/feedback",
+      // pending: "http://localhost:8080/feedback",
+    },
+    auto_return: "approved",
   };
 
   const res = await mercadopago.preferences.create(preference);
