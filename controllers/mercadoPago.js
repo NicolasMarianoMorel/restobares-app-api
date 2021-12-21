@@ -10,16 +10,17 @@ mercadopago.configure({
 const mercadoPago = async (idResto, idTable, state, tip) => {
   let table = usersTables[idResto].tables[idTable - 1];
   let ordered = table.ordered;
-  console.log("ORdered", ordered.quantity);
+  let items = ordered.map((p) => {
+    return {
+      title: p.productName,
+      productId: p.productId,
+      unit_price: (p.price / p.quantity) * 1,
+      quantity: p.quantity * 1,
+    };
+  });
+
   let preference = {
-    items: [
-      {
-        title: ordered.productName,
-        productId: ordered.productId,
-        unit_price: 200,
-        quantity: ordered.quantity * 1,
-      },
-    ],
+    items,
     // back_urls: {
     //   success: "http://localhost:8080/feedback",
     //   failure: "http://localhost:8080/feedback",
