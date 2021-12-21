@@ -6,8 +6,11 @@ mercadopago.configure({
     "TEST-8597162101756929-120903-244e52b38faa5e385b1394e5fec0f351-186091864",
 });
 
-// Crea un objeto de preferencia
 const mercadoPago = async (idResto, idTable, state, tip) => {
+
+  if (!state || !tip) throw new Error('You must specify state and tip.');
+	usersTables[idResto].tables[idTable - 1].state = state;
+	usersTables[idResto].tables[idTable - 1].tip = tip;
   let table = usersTables[idResto].tables[idTable - 1];
   let idStaff = table.idStaff;
 
