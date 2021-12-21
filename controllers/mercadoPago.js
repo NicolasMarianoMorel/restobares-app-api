@@ -21,11 +21,18 @@ const mercadoPago = async (idResto, idTable, state, tip) => {
       productId: p.productId,
       unit_price: (p.price / p.quantity) * 1,
       quantity: p.quantity * 1,
+      categoty_id: 'services',
     };
   });
-
+console.log(tip)
   let preference = {
     items,
+    binary_mode: true,
+    statement_descriptor: "DingBell",
+    expires: true,
+    tip:tip,
+    // expiration_date_from: new Date().toISOString(),
+    // expiration_date_to: new Date().toISOString(),
     back_urls: {
       success: `http://localhost:3001/resto/${idResto}/table/${idTable}/mp/${idStaff}/${state}`,
       // failure: "http://localhost:8080/feedback",
