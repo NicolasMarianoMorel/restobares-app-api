@@ -1,4 +1,6 @@
 // registerUser controller
+const nodemailer = require("nodemailer");
+const { google } = require("googleapis");
 
 module.exports = async function(body) {
 	const {
