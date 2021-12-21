@@ -20,6 +20,7 @@ const sendPayment = require("./sendPayment.js");
 const generateId = require("./generateId.js");
 const getAccount = require("./getAccount.js");
 const putAccount = require("./putAccount.js");
+const getSoldOrderPrice = require("./getSoldOrderPrice.js");
 
 // ...
 
@@ -45,5 +46,6 @@ module.exports = {
   generateId,
   getAccount,
   putAccount,
+  getSoldOrderPrice,
   // ...
 };
