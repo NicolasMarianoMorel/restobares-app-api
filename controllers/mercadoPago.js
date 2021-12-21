@@ -7,10 +7,9 @@ mercadopago.configure({
 });
 
 const mercadoPago = async (idResto, idTable, state, tip) => {
-
-  if (!state || !tip) throw new Error('You must specify state and tip.');
-	usersTables[idResto].tables[idTable - 1].state = state;
-	usersTables[idResto].tables[idTable - 1].tip = tip;
+  if (!state || !tip) throw new Error("You must specify state and tip.");
+  usersTables[idResto].tables[idTable - 1].state = state;
+  usersTables[idResto].tables[idTable - 1].tip = tip;
   let table = usersTables[idResto].tables[idTable - 1];
   let idStaff = table.idStaff;
 
