@@ -7,21 +7,31 @@ mercadopago.configure({
 });
 
 // Crea un objeto de preferencia
-const mercadoPago = (idResto, idTable, state) => {
+const mercadoPago = async (idResto, idTable, state, tip) => {
   let table = usersTables[idResto].tables[idTable - 1];
+  let ordered = table.ordered;
+  console.log("ORdered", ordered.quantity);
+  let preference = {
+    items: [
+      {
+        title: ordered.productName,
+        productId: ordered.productId,
+        unit_price: 200,
+        quantity: ordered.quantity * 1,
+      },
+    ],
+    // back_urls: {
+    //   success: "http://localhost:8080/feedback",
+    //   failure: "http://localhost:8080/feedback",
+    //   pending: "http://localhost:8080/feedback",
+    // },
+    // auto_return: "approved",
+  };
 
-
+  const res = await mercadopago.preferences.create(preference);
+  console.log(res.body.init_point);
+  return res;
 };
-// let preference = {
-//   items: [
-//     {
-//       title: req.body.title,
-//       unit_price: parseInt(req.body.price),
-//       quantity: 1,
-//     },
-//   ],
-// };
-
 // mercadopago.preferences
 //   .create(preference)
 //   .then(function (response) {
@@ -30,3 +40,4 @@ const mercadoPago = (idResto, idTable, state) => {
 //   .catch(function (error) {
 //     console.log(error);
 //   });
+module.exports = mercadoPago;
