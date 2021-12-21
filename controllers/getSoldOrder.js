@@ -3,7 +3,6 @@ const { SoldOrder, SoldProduct } = require("../db.js");
 const {Op} = require('sequelize');
 
 module.exports = async(idResto, filterTime)=>{
-    console.log("FILTER", filterTime);
     if(filterTime==="Day"){
         let day= new Date().toLocaleDateString();
         let Orders = await SoldOrder.findAll({
@@ -18,9 +17,31 @@ module.exports = async(idResto, filterTime)=>{
                 attributes: ['productId', 'name', 'price', 'quantity']
             }
         });
-        return Orders;
+        return Orders.map(o=>o.dataValues);
     }
-    // if(filterTime==="Week"){
+    if(filterTime==="Week"){
+        let Ordering = [];
+        for(i=0; i<7; i++){
+            let numberDay = new Date();
+            numberDay.setDate(numberDay.getDate()-i)
+            let date=numberDay.toLocaleDateString();
+            let Orders = await SoldOrder.findAll({
+                where:{
+                    UserId: idResto,
+                    date:{
+                        [Op.iLike]: `${date}%`
+                    }
+                },
+                include: {
+                    model: SoldProduct,
+                    attributes: ['productId', 'name', 'price', 'quantity']
+                }
+            });
+            if(Orders.length!==0){
+            Ordering.push(Orders.map(o=>o.dataValues));}
+            }
+            return  Ordering.flat();
+        }
     //     function getWeekNumber(d) {
     //         // Copy date so don't modify original
     //         d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
@@ -68,6 +89,6 @@ module.exports = async(idResto, filterTime)=>{
                 attributes: ['productId', 'name', 'price', 'quantity']
             }
         });
-        return Orders;
+        return Orders.map(o=>o.dataValues);
     }
 }

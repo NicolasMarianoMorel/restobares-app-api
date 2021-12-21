@@ -7,6 +7,7 @@ const menu = require('./menu.js');
 const order = require('./order.js');
 const feedback = require('./feedback.js');
 const payment = require('./payment.js');
+const mp = require('./mp.js')
 // ...
 
 // Configurar routers 
@@ -35,6 +36,12 @@ router.use('/:idTable/payment',(req,res,next) => {
     req.idTable = idTable;
     next();
 }, payment);
+router.use('/:idTable/mp',(req,res,next) => {
+    const {idTable} = req.params;
+    req.idTable = idTable;
+    next();
+}, mp);
+
 // ...
 
 module.exports = router;
