@@ -994,10 +994,16 @@ Get in contact with any of the colaborators to get a valid value for **_:idResto
 <summary>Request: Body</summary>
 
 ```
-
+//example 1:
 {
     filterTime: 'Day'     // 'Day', 'Month'
 }
+//example 2:
+{
+    filterTime: 'Day',     // 'Day', 'Month'
+    filterPrice: 'Ascendent' // 'Ascendent', 'Descendent'
+}
+
 	
 ```
 
@@ -1163,7 +1169,7 @@ Get in contact with any of the colaborators to get a valid value for **_:idResto
 	
 </details>
 
-#### `PUT /resto/userid/admin/menu/idproduct`
+#### `PUT /resto/userid/admin/menu/idProduct`
 
 <details>
 	
