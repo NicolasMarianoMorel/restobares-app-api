@@ -9,7 +9,7 @@ module.exports = async function(body) {
 		passStaff,
 		title,
 		logo,
-		paymentInfo,
+		payment_mp,
 	} = body;
 	let result = { 
 		msg: 'Se ha enviado el email de confirmación.',
