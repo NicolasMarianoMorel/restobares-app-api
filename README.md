@@ -32,10 +32,13 @@ Get in contact with any of the colaborators to get a valid value for **_:idResto
 - GET /discounts
 - GET /labels
 - GET /categories
+- *POST /register
+- *GET /confirmation/:token
 
 #### Diner Routes (comensal)
 - GET  /resto/:idResto/table/:idTable/order
 - GET  /resto/:userid/table/:idtable/menu
+- *GET  /resto/:userid/table/:idtable/mp/:idStaff (Backend route only not Frontend)
 - POST /resto/:idResto/table/:idTable/order
 - PUT /resto/:idResto/table/:idTable/order
 - POST /resto/:idResto/table/:idTable/payment
@@ -50,8 +53,8 @@ Get in contact with any of the colaborators to get a valid value for **_:idResto
 - GET /resto/:idResto/staff/orders
 
 #### Admin Routes
-- *GET /resto/idResto/admin/account
-- *PUT /resto/idResto/admin/account
+- GET /resto/idResto/admin/account
+- PUT /resto/idResto/admin/account
 - GET /resto/idResto/admin/revenue
 - GET /resto/userid/admin/menu
 - POST /resto/userid/admin/menu
@@ -365,6 +368,44 @@ Get in contact with any of the colaborators to get a valid value for **_:idResto
 ```
 </details>
 
+#### - `POST /register`
+
+<details>
+	
+<summary>Request: Body</summary>
+
+```
+
+{
+	"email": "email@email.com",
+	"passAdmin": "abc123",
+	"passStaff": "xyz321",
+	"title": "Titulo de tu Restoran",
+   	"tables": 8,
+	"logo": "https//:fakeimage.url.com/asdasdasd",
+	"paymentInfo": "78fgd89f79345uyhew908r"
+}
+	
+```
+
+</details>
+
+#### - `GET /confirmation/:token`
+
+<details>
+	
+<summary>Response: JSON</summary>
+
+```
+
+{
+  "msg": "Your account has been confirmed successfully."
+}
+	
+```
+
+</details>
+
 ### --- Diner Routes (comensal)
 	
 #### - `GET /resto/:idResto/table/:idTable/order`
@@ -676,6 +717,25 @@ Get in contact with any of the colaborators to get a valid value for **_:idResto
     }
     
 ]
+
+```
+
+</details>
+
+#### `*GET  /resto/:userid/table/:idtable/mp/:idStaff`
+
+<details>
+
+<summary>Response: JSON</summary>
+
+```
+
+{ 
+
+    msg: "Payment Confirmed.", status: 200 
+    
+}
+
 
 ```
 
@@ -1000,7 +1060,7 @@ Get in contact with any of the colaborators to get a valid value for **_:idResto
 }
 //example 2:
 {
-    filterTime: 'Day',     // 'Day', 'Month'
+    filterTime: 'Day',     // 'Day', 'Month', 'Last7days'
     filterPrice: 'Ascendent' // 'Ascendent', 'Descendent'
 }
 

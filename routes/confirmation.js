@@ -1,15 +1,21 @@
 var express = require('express');
 var router = express.Router();
+const { confirmUser } = require('../controllers');
 
-// Obtenemos la lógica correspondiente desde controllers/index.js
-//const { registerUser } = require('../controllers');
-
-// - - GET /register
-// Ejecuta la ruta /register
+// - - GET /confirmation/:token
 // ruta relativa!
-router.get('/',async (req,res) => {
-	/* let result = await registerUser(req.body);
-	res.status(result.status).json(result); */
+router.get('/:token',async (req,res) => {
+	try {
+		const { token } = req.params;
+		let result = await confirmUser(token);
+		res.json(result);
+	} catch (err) {
+		console.error(err.stack);
+		res.status(400).json({
+			msg: 'There was an error...',
+			error: err.message
+		});
+	}
 });
 
 module.exports = router;

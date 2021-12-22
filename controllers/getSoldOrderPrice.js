@@ -1,5 +1,4 @@
 module.exports = async (Orders, filterPrice)=>{
-    console.log("PRECIOo",filterPrice);
     if(filterPrice==="Descendent"){
         let descendentTotalPrice = Orders.map(o=>o.totalPrice).sort((mn,mx)=>mn-mx);
         let descedentOrders = descendentTotalPrice.map(price=>{
