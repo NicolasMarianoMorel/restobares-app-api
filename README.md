@@ -36,6 +36,7 @@ Get in contact with any of the colaborators to get a valid value for **_:idResto
 #### Diner Routes (comensal)
 - GET  /resto/:idResto/table/:idTable/order
 - GET  /resto/:userid/table/:idtable/menu
+- *GET  /resto/:userid/table/:idtable/mp/:idStaff (Backend route only not Frontend)
 - POST /resto/:idResto/table/:idTable/order
 - PUT /resto/:idResto/table/:idTable/order
 - POST /resto/:idResto/table/:idTable/payment
@@ -50,8 +51,8 @@ Get in contact with any of the colaborators to get a valid value for **_:idResto
 - GET /resto/:idResto/staff/orders
 
 #### Admin Routes
-- *GET /resto/idResto/admin/account
-- *PUT /resto/idResto/admin/account
+- GET /resto/idResto/admin/account
+- PUT /resto/idResto/admin/account
 - GET /resto/idResto/admin/revenue
 - GET /resto/userid/admin/menu
 - POST /resto/userid/admin/menu
@@ -681,6 +682,25 @@ Get in contact with any of the colaborators to get a valid value for **_:idResto
 
 </details>
 
+#### `*GET  /resto/:userid/table/:idtable/mp/:idStaff`
+
+<details>
+
+<summary>Response: JSON</summary>
+
+```
+
+{ 
+
+    msg: "Payment Confirmed.", status: 200 
+    
+}
+
+
+```
+
+</details>
+
 ### --- Staff Routes
 
 #### `GET /resto/:idResto/staff/menu`
@@ -994,10 +1014,16 @@ Get in contact with any of the colaborators to get a valid value for **_:idResto
 <summary>Request: Body</summary>
 
 ```
-
+//example 1:
 {
     filterTime: 'Day'     // 'Day', 'Month'
 }
+//example 2:
+{
+    filterTime: 'Day',     // 'Day', 'Month', 'Last7days'
+    filterPrice: 'Ascendent' // 'Ascendent', 'Descendent'
+}
+
 	
 ```
 
@@ -1163,7 +1189,7 @@ Get in contact with any of the colaborators to get a valid value for **_:idResto
 	
 </details>
 
-#### `PUT /resto/userid/admin/menu/idproduct`
+#### `PUT /resto/userid/admin/menu/idProduct`
 
 <details>
 	
