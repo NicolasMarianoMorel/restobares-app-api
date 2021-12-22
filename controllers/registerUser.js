@@ -93,7 +93,7 @@ module.exports = async function(body) {
 		console.log(`TIMEOUT: The confirmation token for '${email}' has expired.`);
 	} , 3600000)
 	
-	return { msg: 'The confirmation mail has been sent. Please check your spam box too.' }
+	return { msg: 'The confirmation mail has been sent. Please check your spam box too. The confirmation expires in 1 hour.' }
 	//return {};
 };
 
