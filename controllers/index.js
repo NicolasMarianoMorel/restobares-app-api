@@ -22,6 +22,7 @@ const getAccount = require("./getAccount.js");
 const putAccount = require("./putAccount.js");
 const getSoldOrderPrice = require("./getSoldOrderPrice.js");
 const confirmUser = require("./confirmUser.js");
+const mercadoPago = require("./mercadoPago");
 
 // ...
 
@@ -49,5 +50,6 @@ module.exports = {
   putAccount,
   getSoldOrderPrice,
   confirmUser,
+  mercadoPago,
   // ...
 };
