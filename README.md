@@ -32,6 +32,8 @@ Get in contact with any of the colaborators to get a valid value for **_:idResto
 - GET /discounts
 - GET /labels
 - GET /categories
+- *POST /register
+- *GET /confirmation/:token
 
 #### Diner Routes (comensal)
 - GET  /resto/:idResto/table/:idTable/order
@@ -364,6 +366,44 @@ Get in contact with any of the colaborators to get a valid value for **_:idResto
     
 ]
 ```
+</details>
+
+#### - `POST /register`
+
+<details>
+	
+<summary>Request: Body</summary>
+
+```
+
+{
+	"email": "email@email.com",
+	"passAdmin": "abc123",
+	"passStaff": "xyz321",
+	"title": "Titulo de tu Restoran",
+   	"tables": 8,
+	"logo": "https//:fakeimage.url.com/asdasdasd",
+	"paymentInfo": "78fgd89f79345uyhew908r"
+}
+	
+```
+
+</details>
+
+#### - `GET /confirmation/:token`
+
+<details>
+	
+<summary>Response: JSON</summary>
+
+```
+
+{
+  "msg": "Your account has been confirmed successfully."
+}
+	
+```
+
 </details>
 
 ### --- Diner Routes (comensal)
