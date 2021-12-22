@@ -1,6 +1,9 @@
 module.exports = async (Orders, filterPrice)=>{
     if(filterPrice==="Descendent"){
-        let descendentTotalPrice = Orders.map(o=>o.totalPrice).sort((mn,mx)=>mn-mx);
+        let descendentTotalPriceR = Orders.map(o=>o.totalPrice).sort((mn,mx)=>mn-mx);
+        let descendentTotalPrice = descendentTotalPriceR.filter((item,index)=>{
+            return descendentTotalPriceR.indexOf(item)===index;
+        });
         let descedentOrders = descendentTotalPrice.map(price=>{
             let arr = [];
             Orders.find(order=>{if(order.totalPrice===price) arr.push(order)})

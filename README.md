@@ -1061,7 +1061,7 @@ Get in contact with any of the colaborators to get a valid value for **_:idResto
 //example 2:
 {
     filterTime: 'Day',     // 'Day', 'Month', 'Last7days'
-    filterPrice: 'Ascendent' // 'Ascendent', 'Descendent'
+    orderPrice: 'Ascendent' // 'Ascendent', 'Descendent'
 }
 
 	
