@@ -19,7 +19,7 @@ module.exports = async(idResto, filterTime)=>{
         });
         return Orders.map(o=>o.dataValues);
     }
-    if(filterTime==="Week"){
+    if(filterTime==="Last7days"){
         let Ordering = [];
         for(i=0; i<7; i++){
             let numberDay = new Date();
