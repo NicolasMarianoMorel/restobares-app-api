@@ -15,22 +15,22 @@ const mercadoPago = async (idResto, idTable, state, tip) => {
   let idStaff = table.idStaff;
 
   let ordered = table.ordered;
+  let tipItem = tip/ordered.length;
   let items = ordered.map((p) => {
     return {
       title: p.productName,
       productId: p.productId,
-      unit_price: (p.price / p.quantity) * 1,
+      unit_price: (p.price / p.quantity) * 1 + (tipItem/p.quantity),
       quantity: p.quantity * 1,
       categoty_id: 'services',
+      tip:tip,
     };
   });
-console.log(tip)
   let preference = {
     items,
     binary_mode: true,
     statement_descriptor: "DingBell",
     expires: true,
-    tip:tip,
     // expiration_date_from: new Date().toISOString(),
     // expiration_date_to: new Date().toISOString(),
     back_urls: {
