@@ -66,7 +66,33 @@ var usersTables = {};
 	}
 */
 
+// pendingUsers
+// each property is a dynamic token
+var pendingUsers = {}
+/*
+	pendingUsers = {
+		'ANnYxKHP0eGs4+o=': {
+			email,
+			passAdmin,
+			passStaff,
+			title,
+			logo,
+			paymentInfo,
+			expire,
+		},
+		'kjg87d9AJAS934i4': {
+			email,
+			passAdmin,
+			passStaff,
+			title,
+			logo,
+			paymentInfo,
+			expire,
+		},
+	}
+*/
 
 module.exports = {
 	usersTables,
+	pendingUsers,
 };
