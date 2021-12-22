@@ -21,6 +21,7 @@ const generateId = require("./generateId.js");
 const getAccount = require("./getAccount.js");
 const putAccount = require("./putAccount.js");
 const getSoldOrderPrice = require("./getSoldOrderPrice.js");
+const confirmUser = require("./confirmUser.js");
 
 // ...
 
@@ -47,5 +48,6 @@ module.exports = {
   getAccount,
   putAccount,
   getSoldOrderPrice,
+  confirmUser,
   // ...
 };

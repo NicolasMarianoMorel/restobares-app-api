@@ -1,6 +1,9 @@
 // registerUser controller
 const nodemailer = require('nodemailer');
 const { google } = require('googleapis');
+const { User } = require('../db.js');
+const generateId = require('./generateId.js');
+const { pendingUsers } = require('../cache.js');
 
 
 module.exports = async function(body) {
@@ -16,11 +19,22 @@ module.exports = async function(body) {
 		passStaff,
 		title,
 		logo,
-		paymentInfo,
+		payment_mp,
+		tables,
 	} = body;
 	
 	// First we need to check if the mail is already registered.
-	//
+	let foundUser = await User.findOne({
+		where: { email: email }
+	});
+	
+	if (foundUser) throw new Error('The email is already used.');
+	
+	// Then, we generate the token for the link.
+	let userToken = generateId(email);
+
+	// Check if the token is already stored in cache.
+	if (pendingUsers[userToken]) throw new Error('There is a pending confirmation for this user.');
 	
 	// Begin Nodemailer setup with gmail and google apis
 	const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
@@ -39,28 +53,47 @@ module.exports = async function(body) {
 				accessToken: accessToken
 			}
 		});
+		// Send the EMAIL
+		const mailOptions = {
+			from: '🛎️DingBell <restobaresapp@gmail.com>',
+			to: email,
+			subject: 'Confirmación de tu cuenta',
+			text: `Para finalizar la confirmación de tu cuenta, hacé click en este link: https://restobares-app-api.herokuapp.com/confirmation/${userToken}`,
+			html: `
+				<h1>Bienvenido a DingBell! 🛎️</h1>
+				<p>
+					Sólo queda un paso para aprovechar los beneficios de DingBell...<br>
+					hacé click en este 
+					<a href="https://restobares-app-api.herokuapp.com/confirmation/${userToken}">LINK</a> 
+					para continuar con tu registro.
+				</p>
+			`
+		};
+		const result = await transport.sendMail(mailOptions);
+		return result;
 	}
 	
-	// Send the EMAIL
-	const mailOptions = {
-		from: '🛎️DingBell <restobaresapp@gmail.com>',
-		to: email,
-		subject: 'Confirmación de tu cuenta',
-		text: 'Para finalizar la confirmación de tu cuenta, hacé click en este link...',
-		html: `
-			<h1>Bienvenido a DingBell! 🛎️</h1>
-			<p>
-				Sólo queda un paso para aprovechar los beneficios de DingBell...<br>
-				hacé click en este link [...] para continuar con tu registro.
-			</p>
-		`
-	};
-	
-	const result = await transport.sendMail(mailOptions);
+	sendMail()
+		.then((result) => result);
 	
 	// Once the mail is delivered, we can store the user data in the cache.
-	//
+	pendingUsers[userToken] = {
+		id: userToken,
+		email,
+		passAdmin,
+		passStaff,
+		title,
+		logo,
+		payment_mp,
+		tables: tables || 1,
+	}
+	// Not the fanciest solution...
+	setTimeout( () => {
+		pendingUsers[userToken] = null;
+		console.log(`TIMEOUT: The confirmation token for '${email}' has expired.`);
+	} , 3600000)
 	
-	return result;
+	return { msg: 'The confirmation mail has been sent. Please check your spam box too.' }
+	//return {};
 };
 
