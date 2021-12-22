@@ -682,7 +682,7 @@ Get in contact with any of the colaborators to get a valid value for **_:idResto
 
 </details>
 
-### `*GET  /resto/:userid/table/:idtable/mp/:idStaff`
+#### `*GET  /resto/:userid/table/:idtable/mp/:idStaff`
 
 <details>
 
