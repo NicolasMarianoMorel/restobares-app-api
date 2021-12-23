@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const {validateToken} = require("../../controllers")
 
 // Import routers
 const admin = require('./admin');
@@ -10,10 +11,10 @@ const user = require("./user.js")
 
 // Configurar routers 
 router.use('/admin',(req,res,next) => {
-     next();
+      validateToken(req,res,next, "admin")
 } , admin);
 router.use('/staff',(req,res,next) => {
-      next();
+      validateToken(req,res,next, "staff")
 }, staff);
 router.use('/table', (req,res,next) => {
       next();

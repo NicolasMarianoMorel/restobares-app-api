@@ -1,5 +1,6 @@
 const { User } = require('../db');
 const jwt = require('jsonwebtoken');
+const { loggedUsers } = require("../cache.js");
 
 //login controller
 
@@ -22,9 +23,10 @@ module.exports = async function login(email, password) {
 	const token = jwt.sign({email,password,role},'elñerroviveennuestroscorazones');
 	// We store that token in the cache
 	//
-	
+	loggedUsers[token] = role;
 	return {
 		msg: `Welcome back, ${user.title}! You logged in as ${role}.`, 
 		token,
+
 	};
 };

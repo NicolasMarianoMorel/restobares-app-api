@@ -91,8 +91,16 @@ var pendingUsers = {}
 		},
 	}
 */
+var loggedUsers = {};
 
+/* cada propiedad va a ser el token generado por JWT
+{
+	awfwefawefwef : "admin",
+	sdffkwmnofwe : "staff"
+}
+*/
 module.exports = {
 	usersTables,
 	pendingUsers,
+	loggedUsers,
 };
