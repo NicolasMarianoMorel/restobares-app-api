@@ -12,7 +12,10 @@ module.exports = async (Orders, filterPrice)=>{
         return descedentOrders.flat();
     }
     else if (filterPrice==="Ascendent"){
-        let ascendentTotalPrice = Orders.map(o=>o.totalPrice).sort((mn,mx)=>mx-mn);
+        let ascendentTotalPriceR = Orders.map(o=>o.totalPrice).sort((mn,mx)=>mx-mn);
+        let ascendentTotalPrice = ascendentTotalPriceR.filter((item,index)=>{
+            return ascendentTotalPriceR.indexOf(item)===index;
+        });
         let ascedentOrders = ascendentTotalPrice.map(price=>{
             let arr = [];
             Orders.find(order=>{if(order.totalPrice===price) arr.push(order)})
