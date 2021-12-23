@@ -18,7 +18,7 @@ module.exports = async function (idTable, state, idResto, idStaff) {
       // change the location of the products to ordered
       // First we check if we find the productId already
       // to prevent product repeating.
-      table.idStaff = idStaff;
+
       table.currentOrder.products.forEach((e) => {
         let prdct = table.ordered.find((p) => p.productId === e.productId);
         if (prdct) {
@@ -28,6 +28,7 @@ module.exports = async function (idTable, state, idResto, idStaff) {
           table.ordered.push(e);
         }
       });
+      table.idStaff = idStaff;
       // table.ordered = [...table.ordered, ...table.currentOrder.products];
       //deleting the current order product
       table.currentOrder = {
