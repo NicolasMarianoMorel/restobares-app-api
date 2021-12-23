@@ -8,7 +8,7 @@ module.exports = async function login(email, password) {
 	// First search if the user exists
 	const user = await User.findOne({
 		where: { email },
-		attributes: ['id', 'title', 'passAdmin', 'passStaff'],
+		attributes: ['id', 'title', 'passAdmin', 'passStaff' ],
 	});
 	if (!user) throw new Error('Unregistered Email.');
 	// If it exists, we check the password
@@ -23,7 +23,11 @@ module.exports = async function login(email, password) {
 	const token = jwt.sign({email,password,role},'elñerroviveennuestroscorazones');
 	// We store that token in the cache
 	//
-	loggedUsers[token] = role;
+	loggedUsers[`${email}-${role}`] = {
+		role,
+		token,
+	};
+	
 	return {
 		msg: `Welcome back, ${user.title}! You logged in as ${role}.`, 
 		token,
