@@ -11,7 +11,7 @@ const mercadoPago = async (idResto, idTable, state, tip) => {
   });
 
   let descriptor = users.dataValues;
-  console.log("XD", descriptor);
+
 
   mercadopago.configure({
     access_token:
@@ -29,7 +29,7 @@ const mercadoPago = async (idResto, idTable, state, tip) => {
     productId: 1000,
     quantity: 1,
   };
-  console.log("TIP", tip);
+
   let ordered = table.ordered;
   ordered.push(pointe);
   console.log("ORDENES", ordered);
@@ -40,7 +40,7 @@ const mercadoPago = async (idResto, idTable, state, tip) => {
       productId: p.productId,
       // unit_price: (p.price / p.quantity) * 1 + tipItem / p.quantity,
       // unit_price: ((p.price / p.quantity) * 1),
-      unit_price: p.price,
+      unit_price: p.price / p.quantity,
       quantity: p.quantity * 1,
       categoty_id: "services",
       tip: tip,
