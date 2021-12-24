@@ -574,74 +574,6 @@ Example: `Bearer AdminSupremeTest`.
 
 </details>
 
-
-#### `POST /resto/userid/admin/menu`
-
-<details>
-	
-<summary>Request: Body</summary> 
-	
-```
-  
-//ejemplo de platillo 1
- {
- 
-      "name":"Poke",
-      
-      "price":23,
-      
-      "detail":"Sushi rice, cherry tomato, avocado, edamame, red onion, mango, salmon and tataki sauce",
-      
-      "image":"",
-      
-      "id_label":[2,5],
-      
-      "CategoryId":2,
-
-      "DiscountId":""
-      
-}
-//ejemplo de platillo 2
-{
-
-       "name":"Cesar Salad",
-       
-       "price":10,
-       
-       "detail":"Parmesan cheese, lemon juice, coddled egg, olive oil, romaine and croutons",
-       
-       "image":"",
-       
-       "id_label":[2,5],
-       
-       "CategoryId":2,
-       
-       "DiscountId":1
-       
-}
-//ejemplo de platillo 3
-{
- 
-       "name":"Spaguetti with Meatballs",
-       
-       "price":13,
-       
-       "detail":"Spaguetty with large and spicy meatballs",
-       
-       "image":"",
-       
-       "id_label":[2,11],
-       
-       "CategoryId":1,
-       
-       "DiscountId":2
-       
- } 
-  
- ```
-	
-</details>
-
 #### `POST /resto/:idResto/table/:idTable/payment`
 
 <details>
@@ -1102,7 +1034,7 @@ Example: `Bearer AdminSupremeTest`.
 //example 2:
 {
     filterTime: 'Day',     // 'Day', 'Month', 'Last7days'
-    filterPrice: 'Ascendent' // 'Ascendent', 'Descendent'
+    orderPrice: 'Ascendent' // 'Ascendent', 'Descendent'
 }
 
 	
@@ -1144,6 +1076,7 @@ Example: `Bearer AdminSupremeTest`.
 ]
 	
 ```
+</details>
 
 #### `GET /resto/userid/admin/menu`
 
@@ -1204,6 +1137,7 @@ Example: `Bearer AdminSupremeTest`.
 ```
 
 </details>
+
 
 #### `POST /resto/userid/admin/menu`
 
@@ -1270,7 +1204,7 @@ Example: `Bearer AdminSupremeTest`.
 	
 </details>
 
-#### `PUT /resto/userid/admin/menu/idProduct`
+#### `PUT /resto/userid/admin/menu/:idProduct`
 
 <details>
 	
