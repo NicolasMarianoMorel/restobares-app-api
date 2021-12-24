@@ -78,7 +78,6 @@ var pendingUsers = {}
 			title,
 			logo,
 			paymentInfo,
-			expire,
 		},
 		'kjg87d9AJAS934i4': {
 			email,
@@ -87,12 +86,25 @@ var pendingUsers = {}
 			title,
 			logo,
 			paymentInfo,
-			expire,
 		},
 	}
 */
-
+//  each property will be the merge of the email and the role of the user.
+var loggedUsers = {};
+/* 
+{
+	elñeroñobarde@gmail.com-staff: {
+		role: "staff",
+		token: "frefwerg3qrgqwg3wqg"
+	},
+	elñeroñobarde@gmail.com-admin: {
+		role: "admin",
+		token "jnefiojnaeononjwer"
+	}
+}
+*/
 module.exports = {
 	usersTables,
 	pendingUsers,
+	loggedUsers,
 };

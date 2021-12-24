@@ -7,12 +7,6 @@ const { pendingUsers } = require('../cache.js');
 
 
 module.exports = async function(body) {
-	const CLIENT_ID = '746802922433-pamg2uksnqje0tm7p902d5oisa8210pl.apps.googleusercontent.com';
-	const CLIENT_SECRET = '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';
-	const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
-	const REFRESH_TOKEN = '1//04LAoVaDp7chgCgYIARAAGAQSNwF-L9IrG1xhIweOJY4LIdbcYJQt7g8QbnFEws08aYlM32vgaExVxJut-295eEb_hqJWgIywlWc';
-	
-	// Body data
 	const {
 		email,
 		passAdmin,
