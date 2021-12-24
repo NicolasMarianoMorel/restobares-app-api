@@ -21,6 +21,14 @@ Before you begin playing around with any table, check if someone is using it alr
 To check that, perform a GET to https://restobares-app-api.herokuapp.com/resto/:idResto/staff/tables.
 Get in contact with any of the colaborators to get a valid value for **_:idResto_**.
 
+#### ⚠️ Tip about routes that require authorization (Staff and Admin routes):
+Before doing the request to the routes listed below in Staff or Admin side, you have to set the header "authorization" with the proper json web token pass as response in the route /login. 
+So, you have to write in the authorization header "Bearer ${token}" its very important to let a space between Bearer and the token string.
+
+If u want to skip the login process, you can use in the header authorization, a special token called "AdminSupremeTest". 
+
+Example: `Bearer AdminSupremeTest`.
+
 ## ➡️ ENDPOINTS
 
 #### DEV Routes (only for development)
@@ -32,8 +40,9 @@ Get in contact with any of the colaborators to get a valid value for **_:idResto
 - GET /discounts
 - GET /labels
 - GET /categories
-- *POST /register
-- *GET /confirmation/:token
+- POST /register
+- GET /confirmation/:token
+- *POST /login
 
 #### Diner Routes (comensal)
 - GET  /resto/:idResto/table/:idTable/order
@@ -400,6 +409,38 @@ Get in contact with any of the colaborators to get a valid value for **_:idResto
 
 {
   "msg": "Your account has been confirmed successfully."
+}
+	
+```
+
+</details>
+
+#### - `POST /login`
+
+<details>
+	
+<summary>Request: Body</summary>
+
+```
+
+{
+  "email": "elñeroñobarde@gmail.com",
+  "password" : "abc123"
+}
+	
+```
+
+</details>
+
+<details>
+	
+<summary>Response: JSON</summary>
+
+```
+
+{
+  msg: `Welcome back, ${user.title}! You logged in as ${role}.`, 
+  token: "fweofoiwneoifwef"
 }
 	
 ```
