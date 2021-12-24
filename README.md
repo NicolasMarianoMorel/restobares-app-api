@@ -62,13 +62,13 @@ Example: `Bearer AdminSupremeTest`.
 - GET /resto/:idResto/staff/orders
 
 #### Admin Routes
-- GET /resto/idResto/admin/account
-- PUT /resto/idResto/admin/account
-- GET /resto/idResto/admin/revenue
-- GET /resto/userid/admin/menu
-- POST /resto/userid/admin/menu
-- PUT /resto/userid/admin/menu
-- DELETE /resto/userid/admin/menu
+- GET /resto/:idResto/admin/account
+- PUT /resto/:idResto/admin/account
+- GET /resto/:idResto/admin/revenue
+- GET /resto/:idResto/admin/menu
+- POST /resto/:idResto/admin/menu
+- PUT /resto/:idResto/admin/menu
+- DELETE /resto/:idResto/admin/menu
 - GET /resto/:idResto/admin/feedback
 
 ## ROUTES RESPONSES
@@ -1078,7 +1078,7 @@ Example: `Bearer AdminSupremeTest`.
 ```
 </details>
 
-#### `GET /resto/userid/admin/menu`
+#### `GET /resto/:idResto/admin/menu`
 
 <details>
 	
@@ -1139,7 +1139,7 @@ Example: `Bearer AdminSupremeTest`.
 </details>
 
 
-#### `POST /resto/userid/admin/menu`
+#### `POST /resto/:idResto/admin/menu`
 
 <details>
 	
@@ -1204,7 +1204,7 @@ Example: `Bearer AdminSupremeTest`.
 	
 </details>
 
-#### `PUT /resto/userid/admin/menu/:idProduct`
+#### `PUT /resto/:idResto/admin/menu/:idProduct`
 
 <details>
 	
