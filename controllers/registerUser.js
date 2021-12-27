@@ -6,6 +6,7 @@ const generateId = require('./generateId.js');
 const { pendingUsers } = require('../cache.js');
 
 
+
 module.exports = async function(body) {
 	const {
 		email,
