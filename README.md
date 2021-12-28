@@ -12,7 +12,7 @@
 3- Do ```npm start``` at the repository's root folder.
    It should be ready when it prints out `Listening to port 3001`.
 
-## ⭐ NEW! - Access the server remotely:
+## 🌐 - Access the server remotely:
 
 Use this host: https://restobares-app-api.herokuapp.com/ then append to it any of the routes listed below.
 
@@ -58,12 +58,14 @@ When doing anything that requires posting an Image (example: POST /resto/:idRest
 - GET /categories
 - POST /register
 - GET /confirmation/:token
-- *POST /login
+- POST /login
+- GET /recover
+- GET /logout
 
 #### Diner Routes (comensal)
 - GET  /resto/:idResto/table/:idTable/order
 - GET  /resto/:userid/table/:idtable/menu
-- *GET  /resto/:userid/table/:idtable/mp/:idStaff (Backend route only not Frontend)
+- GET  /resto/:userid/table/:idtable/mp/:idStaff (Backend route only not Frontend)
 - POST /resto/:idResto/table/:idTable/order
 - PUT /resto/:idResto/table/:idTable/order
 - POST /resto/:idResto/table/:idTable/payment
@@ -123,7 +125,7 @@ When doing anything that requires posting an Image (example: POST /resto/:idRest
 
 </details>
 
-### --- DEV Routes (only for development)
+### 🧑‍💻 DEV Routes (only for development)
 
 
 #### - `GET /dev/users`
@@ -166,7 +168,7 @@ When doing anything that requires posting an Image (example: POST /resto/:idRest
 
 </details>
 
-### --- General Routes
+### 💡 General Routes
 
 #### - `GET /resto/idResto/user`
 <details>
@@ -463,7 +465,40 @@ When doing anything that requires posting an Image (example: POST /resto/:idRest
 
 </details>
 
-### --- Diner Routes (comensal)
+
+#### - `GET /recover`
+
+<details>
+	
+<summary>Request: Body</summary>
+
+```
+
+{
+    "email": 'user@email.com'
+}
+	
+```
+
+</details>
+
+#### - `GET /logout`
+
+<details>
+	
+<summary>Request: Body</summary>
+
+```
+
+{
+    "logoutCode": 'user@email.com-admin'
+}
+	
+```
+
+</details>
+
+### 🙋 🍴 Diner Routes (comensal)
 	
 #### - `GET /resto/:idResto/table/:idTable/order`
 
@@ -730,7 +765,7 @@ When doing anything that requires posting an Image (example: POST /resto/:idRest
 
 </details>
 
-### --- Staff Routes
+### 🤵 🧑‍🍳 Staff Routes
 
 #### `GET /resto/:idResto/staff/menu`
 
@@ -944,27 +979,6 @@ When doing anything that requires posting an Image (example: POST /resto/:idRest
 
 [
     {
-        "idTable": 1,
-        "currentOrder": {
-            "time": "16/12/2021 21:17:36",
-            "products": [
-                {
-                    "productName": "Papas Fritas",
-                    "productId": 23,
-                    "quantity": 2,
-                    "price": 200
-                },
-                {
-                    "productName": "Henieken",
-                    "productId": 12,
-                    "quantity": 2,
-                    "price": 300
-                }
-            ],
-            "comments": "Sin sal por favor."
-        }
-    },
-    {
         "idTable": 2,
         "currentOrder": {
             "time": "16/12/2021 21:17:17",
@@ -973,13 +987,38 @@ When doing anything that requires posting an Image (example: POST /resto/:idRest
                     "productName": "Papas Fritas",
                     "productId": 23,
                     "quantity": 2,
-                    "price": 200
+                    "price": 200,
+		    "time": "16/12/2021 21:17:36",
                 },
                 {
                     "productName": "Henieken",
                     "productId": 12,
                     "quantity": 2,
-                    "price": 300
+                    "price": 300,
+		    "time": "16/12/2021 21:17:36",
+                }
+            ],
+            "comments": "Sin sal por favor."
+        }
+    },
+    {
+        "idTable": 1,
+        "currentOrder": {
+            "time": "16/12/2021 21:17:36",
+            "products": [
+                {
+                    "productName": "Papas Fritas",
+                    "productId": 23,
+                    "quantity": 2,
+                    "price": 200,
+		    "time": "16/12/2021 21:17:36",
+                },
+                {
+                    "productName": "Henieken",
+                    "productId": 12,
+                    "quantity": 2,
+                    "price": 300,
+		    "time": "16/12/2021 21:17:36",
                 }
             ],
             "comments": "Sin sal por favor."
@@ -991,7 +1030,7 @@ When doing anything that requires posting an Image (example: POST /resto/:idRest
 
 </details>
 
-### --- Admin Routes
+### 👤 🔐 Admin Routes
 
 #### - `GET /resto/:idResto/admin/account`
 
