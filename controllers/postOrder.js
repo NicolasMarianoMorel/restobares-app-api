@@ -29,7 +29,7 @@ module.exports = function(idResto, idTable, body) {
 	body.products.forEach( (e,i) => {
 		e.price *= 1;
 		e.quantity *= 1;
-		e.time = new Date().toLocaleString();
+		e.time = new Date().toLocaleString('es-AR');
 		let prdct = table.currentOrder.products.find( (p) => p.productId === e.productId )
 		if (prdct) {
 			table.currentOrder.products[i].price = (table.currentOrder.products[i].price + e.price).toFixed(2) * 1;
@@ -43,7 +43,7 @@ module.exports = function(idResto, idTable, body) {
 	
 	// table.currentOrder.products = body.products;
 	if (!table.currentOrder.time) {
-		table.currentOrder.time = new Date().toLocaleString();
+		table.currentOrder.time = new Date().toLocaleString('es-AR');
 	}
 	table.currentOrder.comments += body.comments + '<br>';
 	return { status: 200, msg: 'Your order has been taken successfully.'};

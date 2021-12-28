@@ -4,7 +4,7 @@ const {Op} = require('sequelize');
 
 module.exports = async(idResto, filterTime)=>{
     if(filterTime==="Day"){
-        let day= new Date().toLocaleDateString();
+        let day= new Date().toLocaleDateString('es-AR');
         let Orders = await SoldOrder.findAll({
             where:{
                 UserId: idResto,
@@ -24,7 +24,7 @@ module.exports = async(idResto, filterTime)=>{
         for(i=0; i<7; i++){
             let numberDay = new Date();
             numberDay.setDate(numberDay.getDate()-i)
-            let date=numberDay.toLocaleDateString();
+            let date=numberDay.toLocaleDateString('es-AR');
             let Orders = await SoldOrder.findAll({
                 where:{
                     UserId: idResto,
@@ -76,7 +76,7 @@ module.exports = async(idResto, filterTime)=>{
     // }
 
     if(filterTime==="Month"){
-        let month= new Date().toLocaleDateString().slice(3);
+        let month= new Date().toLocaleDateString('es-AR').slice(3);
         let Orders = await SoldOrder.findAll({
             where:{
                 UserId: idResto,
