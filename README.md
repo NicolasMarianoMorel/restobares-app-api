@@ -29,6 +29,22 @@ If u want to skip the login process, you can use in the header authorization, a 
 
 Example: `Bearer AdminSupremeTest`.
 
+#### ⚠️ Tip about Posting Images:
+When doing anything that requires posting an Image (example: POST /resto/:idResto/admin/menu), the Image now requires to be uploaded in the _base64_ format.
+<details>
+
+<summary>For example:</summary>
+
+```
+{
+	...
+	"image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+K...",
+	...
+}
+```
+	
+</details>
+
 ## ➡️ ENDPOINTS
 
 #### DEV Routes (only for development)
@@ -993,7 +1009,7 @@ Example: `Bearer AdminSupremeTest`.
     "passStaff": "321cba",
     "tables": 5,
     "title": "La Trufa Dorada",
-    "logo": "https://vignette.wikia.nocookie.net/simpsons/images/d/dd/Fabf01_20_goldener_trueffel.jpg/revision/latest?cb=20140407012625",
+    "logo": "https://fake.image.url/123455",
     "theme": 1,
     "payment_mp": null
 }
@@ -1013,7 +1029,7 @@ Example: `Bearer AdminSupremeTest`.
 
 {
     "title" : "El Holandes frito"
-    "logo" : "https://vignette.wikia.nocookie.net/simpsons/images/d/dd/Fabf01_20_goldener_trueffel.jpg/revision/latest?cb=20140407012625"
+    "logo" : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+K",	// Image in base64 format
 }
 	
 ```
@@ -1156,7 +1172,7 @@ Example: `Bearer AdminSupremeTest`.
       
       "detail":"Sushi rice, cherry tomato, avocado, edamame, red onion, mango, salmon and tataki sauce",
       
-      "image":"",
+       "image":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+K",	// Image in base64 format
       
       "id_label":[2,5],
       
@@ -1172,7 +1188,7 @@ Example: `Bearer AdminSupremeTest`.
        
        "detail":"Parmesan cheese, lemon juice, coddled egg, olive oil, romaine and croutons",
        
-       "image":"",
+       "image":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+K",	// Image in base64 format
        
        "id_label":[2,5],
        
@@ -1190,7 +1206,7 @@ Example: `Bearer AdminSupremeTest`.
        
        "detail":"Spaguetty with large and spicy meatballs",
        
-       "image":"",
+       "image":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+K",	// Image in base64 format
        
        "id_label":[2,11],
        
@@ -1223,7 +1239,7 @@ Example: `Bearer AdminSupremeTest`.
        "name":"",
        "price":18,
        "detail":"",
-       "image":"",
+       "image":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+K",	// Image in base64 format
        "id_label":"",
        "CategoryId":"",
        "DiscountId":"",
@@ -1235,7 +1251,7 @@ Example: `Bearer AdminSupremeTest`.
        "name":"Spaguetti",
        "price":15,
        "detail":"Spaguetty with large and spicy meatballs and house sauce",
-       "image":"imagen",
+       "image":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+K",	// Image in base64 format
        "id_label":[2,11],
        "CategoryId":"",
        "DiscountId":"",
