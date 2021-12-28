@@ -8,6 +8,7 @@ const dev = require('./dev');
 const register = require('./register.js');
 const confirmation = require('./confirmation.js');
 const login = require('./login.js');
+const recover = require('./recover.js');
 const resto = require('./resto');
 const categories = require("./categories.js");
 const labels = require("./labels.js");
@@ -21,6 +22,7 @@ router.use('/dev', dev);
 router.use('/register', register);
 router.use('/confirmation', confirmation);
 router.use('/login', login);
+router.use('/recover', recover);
 router.use("/categories", categories)
 router.use("/labels", labels)
 router.use("/discounts", discounts)
