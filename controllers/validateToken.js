@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const { loggedUsers } = require("../cache.js")
-
+const {JWT_SECRET} = process.env;
 // validateToken controller
 
 
@@ -14,7 +14,7 @@ try {
 			next()
 		}
 	else {
-			const user = jwt.verify(token, "elñerroviveennuestroscorazones", (err, data) => {
+			const user = jwt.verify(token, JWT_SECRET, (err, data) => {
 			if (err) throw new Error ("Invalid Token")
 			return data
 			})

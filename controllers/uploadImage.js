@@ -1,8 +1,9 @@
 const cloudinary = require("cloudinary");
+const { CD_NAME, CD_KEY, CD_SCT } = process.env;
 cloudinary.config({
-  cloud_name: "dingbell",
-  api_key: "277275252495195",
-  api_secret: "Tia_j6BlCEOfr6LLmJT8XAoUp4I",
+  cloud_name: CD_NAME,
+  api_key: CD_KEY,
+  api_secret: CD_SCT,
 });
 
 const uploadImage = async (image) => {
