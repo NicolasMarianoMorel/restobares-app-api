@@ -15,14 +15,14 @@ module.exports = (sequelize) => {
         type: DataTypes.DECIMAL(10, 2),
         allowNull: false,
         get() {
-          return this.getDataValue("price") * 1
-        }
+          return this.getDataValue("price") * 1;
+        },
       },
       detail: {
         type: DataTypes.STRING(1024),
       },
       image: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(1024),
         //allowNull: false,
         //allowEmpty: false,
       },

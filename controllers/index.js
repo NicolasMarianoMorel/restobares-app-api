@@ -24,6 +24,9 @@ const getSoldOrderPrice = require("./getSoldOrderPrice.js");
 const confirmUser = require("./confirmUser.js");
 const mercadoPago = require("./mercadoPago");
 const login = require("./login.js");
+const uploadImage = require("./uploadImage");
+const recoverPassword = require("./recoverPassword.js");
+const logout = require("./logout.js");
 
 // ...
 
@@ -53,5 +56,8 @@ module.exports = {
   confirmUser,
   mercadoPago,
   login,
+  uploadImage,
+  recoverPassword,
+  logout,
   // ...
 };
