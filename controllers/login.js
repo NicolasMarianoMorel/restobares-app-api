@@ -31,6 +31,7 @@ module.exports = async function login(email, password) {
 	return {
 		msg: `Welcome back, ${user.title}! You logged in as ${role}.`, 
 		token,
-
+		id: user.id,
+		logoutCode: `${email}-${role}`,
 	};
 };

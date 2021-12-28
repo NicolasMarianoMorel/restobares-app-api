@@ -14,6 +14,7 @@ module.exports = function(idResto, idTable, body) {
 					productName: 'string', 
 					quantity: number,
 					price: number,
+					time: string,
 				},
 				... más platillos
 			],
@@ -28,11 +29,11 @@ module.exports = function(idResto, idTable, body) {
 	body.products.forEach( (e,i) => {
 		e.price *= 1;
 		e.quantity *= 1;
+		e.time = new Date().toLocaleString();
 		let prdct = table.currentOrder.products.find( (p) => p.productId === e.productId )
 		if (prdct) {
 			table.currentOrder.products[i].price = (table.currentOrder.products[i].price + e.price).toFixed(2) * 1;
 			table.currentOrder.products[i].quantity = (table.currentOrder.products[i].quantity + e.quantity).toFixed(2) * 1;
-
 		}
 		else {
 			table.currentOrder.products.push(e);
@@ -41,7 +42,9 @@ module.exports = function(idResto, idTable, body) {
 	});
 	
 	// table.currentOrder.products = body.products;
-	table.currentOrder.time = new Date().toLocaleString();
+	if (!table.currentOrder.time) {
+		table.currentOrder.time = new Date().toLocaleString();
+	}
 	table.currentOrder.comments += body.comments + '<br>';
 	return { status: 200, msg: 'Your order has been taken successfully.'};
 	//}
