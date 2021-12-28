@@ -3,6 +3,7 @@ const nodemailer = require('nodemailer');
 const { google } = require('googleapis');
 const { User } = require('../db.js');
 const bcrypt = require('bcrypt');
+const generateId = require('./generateId.js');
 
 // de-hash the password
 
