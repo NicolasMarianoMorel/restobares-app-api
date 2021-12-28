@@ -1,28 +1,36 @@
 const { User } = require('../db');
 const jwt = require('jsonwebtoken');
 const { loggedUsers } = require("../cache.js");
+const bcrypt = require('bcrypt');
 
 //login controller
 
 module.exports = async function login(email, password) {
+	// Salt for hashing the password
+	// const saltRounds = 10;
 	// First search if the user exists
 	const user = await User.findOne({
 		where: { email },
 		attributes: ['id', 'title', 'passAdmin', 'passStaff' ],
 	});
 	if (!user) throw new Error('Unregistered Email.');
-	// If it exists, we check the password
+	
+	// If it exists, we check the hashed password
+	let isAdmin = bcrypt.compareSync(password,user.passAdmin);
+	let isStaff = bcrypt.compareSync(password,user.passStaff);
 	let role = '';
-	switch (password) {
-		case user.passAdmin: role = 'admin'; break;
-		case user.passStaff: role = 'staff'; break;
-		default: role = '';
-	}
+	
+	// We check the role
+	if (isAdmin) role = 'admin';
+	else if (isStaff) role = 'staff';
+	else role = '';
+	
 	if (!role) throw new Error('Invalid Password.');
+	
 	// If is a valid password, we sign the token.
 	const token = jwt.sign({email,password,role},'elñerroviveennuestroscorazones');
+	
 	// We store that token in the cache
-	//
 	loggedUsers[`${email}-${role}`] = {
 		role,
 		token,

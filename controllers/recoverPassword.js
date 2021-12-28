@@ -2,8 +2,14 @@
 const nodemailer = require('nodemailer');
 const { google } = require('googleapis');
 const { User } = require('../db.js');
+const bcrypt = require('bcrypt');
+
+// de-hash the password
 
 module.exports = async function(body) {
+	// Salt for hashing the password
+	const saltRounds = 10;
+	
 	const CLIENT_ID = '746802922433-pamg2uksnqje0tm7p902d5oisa8210pl.apps.googleusercontent.com';
 	const CLIENT_SECRET = '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';
 	const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
@@ -19,9 +25,16 @@ module.exports = async function(body) {
 	
 	if (!foundUser) throw new Error('The email does not exist.');
 	
-	// We get the passwords for the User
-	let passAdmin = foundUser.passAdmin;
-	let passStaff = foundUser.passStaff;
+	// We set a new Admin Password for the User
+	let newPassAdmin = generateId(foundUser.passAdmin);
+	await User.update(
+		{ passAdmin: bcrypt.hashSync(newPassAdmin,saltRounds) },
+		{
+			where: {
+				email: email,
+			},
+		}
+	);
 	
 	// Begin Nodemailer setup with gmail and google apis
 	const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
@@ -47,14 +60,16 @@ module.exports = async function(body) {
 			subject: 'Recuperación de Contraseñas',
 			text: `
 				Recibiste este correo porque has olvidado tu contraseña.
-				Contraseña de Administrador: ${passAdmin} | 
-				Contraseña de Personal: ${passStaff}
+				Hemos generado una nueva contraseña la cual es recomendable que cambies 
+				luego de conectarte.
+				Nueva Contraseña de Administrador: [ ${newPassAdmin} ]
 			`,
 			html: `
 				<h1>Recibiste este correo porque has olvidado tu contraseña.</h1>
 				<p>
-					Contraseña de Administrador: ${passAdmin} <br>
-					Contraseña de Personal: ${passStaff} <br>
+					Hemos generado una nueva contraseña la cual es recomendable que cambies 
+					luego de conectarte. <br>
+					Nueva Contraseña de Administrador: <h5>${newPassAdmin}</h5> <br>
 				</p>
 			`
 		};

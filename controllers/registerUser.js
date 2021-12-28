@@ -4,7 +4,7 @@ const { google } = require('googleapis');
 const { User } = require('../db.js');
 const generateId = require('./generateId.js');
 const { pendingUsers } = require('../cache.js');
-
+const bcrypt = require('bcrypt');
 
 module.exports = async function(body) {
 	const CLIENT_ID = '746802922433-pamg2uksnqje0tm7p902d5oisa8210pl.apps.googleusercontent.com';
@@ -20,6 +20,9 @@ module.exports = async function(body) {
 		payment_mp,
 		tables,
 	} = body;
+	
+	// Salt for hashing the password
+	const saltRounds = 10;
 	
 	// First we need to check if the mail is already registered.
 	let foundUser = await User.findOne({
@@ -75,11 +78,15 @@ module.exports = async function(body) {
 		.then((result) => result);
 	
 	// Once the mail is delivered, we can store the user data in the cache.
+	// But first, we hash the password
+	let newPassAdmin = bcrypt.hashSync(passAdmin,saltRounds);
+	let newPassStaff = bcrypt.hashSync(passStaff,saltRounds);
+	
 	pendingUsers[userToken] = {
 		id: userToken,
 		email,
-		passAdmin,
-		passStaff,
+		passAdmin: newPassAdmin,
+		passStaff: newPassStaff,
 		title,
 		logo,
 		payment_mp,
