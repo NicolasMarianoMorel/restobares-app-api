@@ -25,6 +25,7 @@ const confirmUser = require("./confirmUser.js");
 const mercadoPago = require("./mercadoPago");
 const login = require("./login.js");
 const uploadImage = require("./uploadImage");
+const recoverPassword = require("./recoverPassword.js");
 
 // ...
 
@@ -55,5 +56,6 @@ module.exports = {
   mercadoPago,
   login,
   uploadImage,
+  recoverPassword,
   // ...
 };
