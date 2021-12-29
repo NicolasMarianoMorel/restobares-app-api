@@ -7,13 +7,11 @@ const { DB_USER, DB_PASS, DB_HOST, DB_NAME } = process.env;
 pg.defaults.ssl = true;
 
 const sequelize = new Sequelize(
-  // `postgres://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}`,
-  // `postgres://imdqolekmddkhq:23f54f45a9172223fe2f116e5da494e1397543481d730e72a1d6adc97dbfe9e8@ec2-44-198-15-192.compute-1.amazonaws.com:5432/d1ap0v3iuasvv2`,
-  {
-    database: "d1ap0v3iuasvv2",
-  username: "imdqolekmddkhq",
-  password: "23f54f45a9172223fe2f116e5da494e1397543481d730e72a1d6adc97dbfe9e8",
-  host: "ec2-44-198-15-192.compute-1.amazonaws.com",
+   {
+    database: DB_NAME,
+  username: DB_USER,
+  password: DB_PASS,
+  host: DB_HOST,
   port: 5432,
   dialect: "postgres",
   dialectOptions: {
