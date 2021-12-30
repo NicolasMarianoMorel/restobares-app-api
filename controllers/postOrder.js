@@ -30,10 +30,10 @@ module.exports = function(idResto, idTable, body) {
 		e.price *= 1;
 		e.quantity *= 1;
 		e.time = new Date().toLocaleString('es-AR');
-		let prdct = table.currentOrder.products.find( (p) => p.productId === e.productId )
-		if (prdct) {
-			table.currentOrder.products[i + 1].price = (table.currentOrder.products[i + 1].price + e.price).toFixed(2) * 1;
-			table.currentOrder.products[i + 1].quantity = (table.currentOrder.products[i + 1].quantity + e.quantity).toFixed(2) * 1;
+		let productIndex = table.currentOrder.products.findIndex( (p) => p.productId === e.productId )
+		if (productIndex >= 0) {
+			table.currentOrder.products[productIndex].price = (table.currentOrder.products[productIndex].price + e.price).toFixed(2) * 1;
+			table.currentOrder.products[productIndex].quantity = (table.currentOrder.products[productIndex].quantity + e.quantity).toFixed(2) * 1;
 		}
 		else {
 			table.currentOrder.products.push(e);
