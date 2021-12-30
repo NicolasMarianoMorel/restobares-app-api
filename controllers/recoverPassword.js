@@ -4,17 +4,13 @@ const { google } = require('googleapis');
 const { User } = require('../db.js');
 const bcrypt = require('bcrypt');
 const generateId = require('./generateId.js');
+const { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, REFRESH_TOKEN } = process.env;
 
 // de-hash the password
 
 module.exports = async function(body) {
 	// Salt for hashing the password
 	const saltRounds = 10;
-	
-	const CLIENT_ID = '746802922433-pamg2uksnqje0tm7p902d5oisa8210pl.apps.googleusercontent.com';
-	const CLIENT_SECRET = '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';
-	const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
-	const REFRESH_TOKEN = '1//04LAoVaDp7chgCgYIARAAGAQSNwF-L9IrG1xhIweOJY4LIdbcYJQt7g8QbnFEws08aYlM32vgaExVxJut-295eEb_hqJWgIywlWc';
 	const {
 		email,
 	} = body;
@@ -78,8 +74,7 @@ module.exports = async function(body) {
 		return result;
 	}
 	
-	sendMail()
-		.then((result) => result);
+	await sendMail();
 	
 	return { msg: 'The password has been sent to your email account. Please check your spam box.' }
 };

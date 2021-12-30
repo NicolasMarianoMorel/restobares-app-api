@@ -71,8 +71,7 @@ module.exports = async function(body) {
 		return result;
 	}
 	
-	sendMail()
-		.then((result) => result);
+	await sendMail();
 	
 	// Once the mail is delivered, we can store the user data in the cache.
 	// But first, we hash the password
