@@ -32,7 +32,7 @@ router.delete("/", async (req, res) => {
   try {
     const { idResto, body } = req;
     const productDeleted = deleteOrdered(idResto, body);
-    res.json({ msg: `Product ${productDeleted.productName} was removed` });
+    res.json({ msg: `Product ${productDeleted.productName} was removed/modified` });
   } catch (err) {
 		console.error(err.stack);
 		res.status(400).json({ msg: 'There was an error', error: err.message});
