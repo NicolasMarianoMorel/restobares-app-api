@@ -1,9 +1,12 @@
 const { User } = require("../db");
 const uploadImage = require("./uploadImage.js");
+const bcrypt = require('bcrypt');
 
 //putAccount controller
 
 module.exports = async function (idResto, body) {
+	// Salt for hashing the password
+	const saltRounds = 10;
   const {
     email,
     passAdmin,
@@ -25,8 +28,9 @@ module.exports = async function (idResto, body) {
     );
   }
   if (passAdmin) {
+    let hashedPassAdmin = bcrypt.hashSync(passAdmin,saltRounds);
     await User.update(
-      { passAdmin: passAdmin },
+      { passAdmin: hashedPassAdmin },
       {
         where: {
           id: idResto,
@@ -35,8 +39,9 @@ module.exports = async function (idResto, body) {
     );
   }
   if (passStaff) {
+    let hashedPassStaff = bcrypt.hashSync(passStaff,saltRounds);
     await User.update(
-      { passStaff: passStaff },
+      { passStaff: hashedPassStaff },
       {
         where: {
           id: idResto,
