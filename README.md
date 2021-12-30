@@ -962,6 +962,7 @@ When doing anything that requires posting an Image (example: POST /resto/:idRest
 {
     tableId:2,
     productId:12
+	quantity:3
 }
   
 ```
