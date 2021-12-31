@@ -4,21 +4,35 @@ const { Label } = require("../db");
 
 module.exports = async function () {
   try {
-    const labels = await Label.findAll();
+    const labels = await Label.findAll({
+      order: [["name", "ASC" ]]
+    });
     if (labels.length === 0) {
       const labels = Label.bulkCreate([
-        { name: "ice cream" },
-        { name: "dinner" },
-        { name: "drink with alcohol" },
-        { name: "soft drink" },
-        { name: "pasta" },
-        { name: "fish and shellfish" },
-        { name: "woks" },
-        { name: "empanadas" },
-        { name: "lomitos" },
-        { name: "chicken" },
-        { name: "meat" },
-        { name: "fried" },
+        { name: "Light" },
+        { name: "Bakery" },
+        { name: "Cafeteria" },
+        { name: "Lomo" },
+        { name: "Hamburger" },
+        { name: "Spicy" },
+        { name: "No Alcohol" },
+        { name: "Beers" },
+        { name: "Cocktails" },
+        { name: "Wines & Sparkling wines" },
+        { name: "Champagnes" },
+        { name: "Smoothies" },
+        { name: "Sodas" },
+        { name: "Ice Creams" },
+        { name: "Chicken" },
+        { name: "Fish" },
+        { name: "Bovine" },
+        { name: "Pork" },
+        { name: "Seafood" },
+        { name: "Vegetarian" },
+        { name: "Vegan" },
+        { name: "Gluten Free" },
+        { name: "Sodium Low" },
+        { name: "Crafted" },
       ]);
       return labels;
     } else {

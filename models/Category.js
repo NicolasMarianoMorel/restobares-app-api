@@ -11,6 +11,9 @@ module.exports = (sequelize) => {
 				allowNull: false,
 				allowEmpty: false,
 			},
+			labels: {
+				type : DataTypes.ARRAY(DataTypes.STRING),
+			}
 		},
 		{
 			timestamps: false,
