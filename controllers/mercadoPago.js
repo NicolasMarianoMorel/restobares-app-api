@@ -17,17 +17,17 @@ const mercadoPago = async (idResto, idTable, state, tip) => {
     access_token:descriptor.payment_mp,
   });
 
-  if (!state || !tip) throw new Error("You must specify state and tip.");
+  if (!state) throw new Error("You must specify state and tip.");
   usersTables[idResto].tables[idTable - 1].state = state;
-  usersTables[idResto].tables[idTable - 1].tip = tip;
+  usersTables[idResto].tables[idTable - 1].tip = tip?tip:0;
   let table = usersTables[idResto].tables[idTable - 1];
   let idStaff = table.idStaff;
   let pointe = {
-    productName: "tip",
-    price: tip,
-    productId: 1000,
-    quantity: 1,
-  };
+      productName: "tip",
+      price: tip?tip:0,
+      productId: 1000,
+      quantity: 1,
+    }
 
   let ordered = table.ordered;
   ordered.push(pointe);
@@ -42,7 +42,6 @@ const mercadoPago = async (idResto, idTable, state, tip) => {
       unit_price: p.price / p.quantity,
       quantity: p.quantity * 1,
       categoty_id: "services",
-      tip: tip,
     };
   });
   let preference = {
