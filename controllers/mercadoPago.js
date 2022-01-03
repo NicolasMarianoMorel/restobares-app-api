@@ -25,11 +25,11 @@ const mercadoPago = async (idResto, idTable, state, tip) => {
   let pointe = {
       productName: "tip",
       price: tip?tip:0,
-      productId: 1000,
+      productId: 0,
       quantity: 1,
     }
 
-  let ordered = table.ordered;
+  let ordered = [...table.ordered];
   ordered.push(pointe);
   console.log("ORDENES", ordered);
   // let tipItem = tip / ordered.length;
@@ -53,7 +53,7 @@ const mercadoPago = async (idResto, idTable, state, tip) => {
     // expiration_date_to: new Date().toISOString(),
     back_urls: {
       success: `https://restobares-app-api.herokuapp.com/resto/${idResto}/table/${idTable}/mp/${idStaff}/${state}`,
-      // failure: "http://localhost:8080/feedback",
+      failure: `https://restobares-app.web.app/resto/${idResto}/table/${idTable}/bill`,
       // pending: "http://localhost:8080/feedback",
     },
     auto_return: "approved",
