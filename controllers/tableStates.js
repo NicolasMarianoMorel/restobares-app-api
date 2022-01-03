@@ -12,7 +12,7 @@ module.exports = async function (idTable, state, idResto, idStaff) {
       table.state = "eating";
       // adding the price of each product to the totalPrice
       table.totalPrice += table.currentOrder.products.reduce((a, e) => {
-        return (a + e.price).toFixed(2) * 1;
+        return (a + e.price * e.quantity).toFixed(2) * 1;
       }, 0);
       table.totalPrice = table.totalPrice.toFixed(2) * 1;
       // change the location of the products to ordered
