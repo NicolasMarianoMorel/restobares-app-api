@@ -458,7 +458,8 @@ When doing anything that requires posting an Image (example: POST /resto/:idRest
 
 {
   msg: `Welcome back, ${user.title}! You logged in as ${role}.`, 
-  token: "fweofoiwneoifwef"
+  token: "fweofoiwneoifwef",
+  logoutCode: "goldentruffle@gmail.com-admin"
 }
 	
 ```
@@ -1320,7 +1321,7 @@ When doing anything that requires posting an Image (example: POST /resto/:idRest
 
 <details>
 	
-<summary>Request: Body</summary>
+<summary>Response: JSON</summary>
 
 ```
 [
