@@ -70,12 +70,12 @@ module.exports = async function (idResto, body) {
     );
   }
   if (logo) {
-    const responseUpload = await uploadImage(logo);
-  	const image_url = image.slice(0,5) === 'data:' 
-  		? responseUpload.secure_url
-  		: image;
+		if (logo.slice(0,5) === 'data:') {
+			const responseUpload = await uploadImage(logo);
+			logo = responseUpload.secure_url;
+		}
     await User.update(
-      { logo: image_url },
+      { logo: logo },
       {
         where: {
           id: idResto,
