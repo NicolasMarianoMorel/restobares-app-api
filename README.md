@@ -944,7 +944,7 @@ When doing anything that requires posting an Image (example: POST /resto/:idRest
 
 {
     idTable: 1,
-    state: 'eating',
+    state: 'filled' / 'eating' / 'pay_cash',
     idStaff: '39672174'
 }
 	
