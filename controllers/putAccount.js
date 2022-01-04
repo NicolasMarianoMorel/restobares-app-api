@@ -71,8 +71,11 @@ module.exports = async function (idResto, body) {
   }
   if (logo) {
     const responseUpload = await uploadImage(logo);
+  	const image_url = image.slice(0,5) === 'data:' 
+  		? responseUpload.secure_url
+  		: image;
     await User.update(
-      { logo: responseUpload.secure_url },
+      { logo: image_url },
       {
         where: {
           id: idResto,
