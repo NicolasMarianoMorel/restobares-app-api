@@ -6,7 +6,8 @@ const { SoldOrder, SoldProduct } = require("../db.js");
 module.exports = async function (idTable, state, idResto, idStaff) {
   // Abreviate the table direction
   let table = usersTables[idResto].tables[idTable - 1];
-  //changing the state of the table to eating
+  //changing the states of the tables:
+  //if body state is "eating"
   if (state === "eating") {
     if (table.state === "waiting") {
       table.state = "eating";
@@ -44,6 +45,7 @@ module.exports = async function (idTable, state, idResto, idStaff) {
       };
     }
   }
+  //if body state includes "pay"
   if (state.includes("pay")) {
     if (table.state.includes("pay")) {
       // Get the current date

@@ -70,6 +70,7 @@ When doing anything that requires posting an Image (example: POST /resto/:idRest
 - PUT /resto/:idResto/table/:idTable/order
 - POST /resto/:idResto/table/:idTable/payment
 - POST /resto/:idResto/table/:idTable/feedback
+- *POST /resto/:idResto/table/:idTable/filledTable
 
 #### Staff Routes
 - GET /resto/:idResto/staff/menu
@@ -761,6 +762,21 @@ When doing anything that requires posting an Image (example: POST /resto/:idRest
     
 }
 
+
+```
+
+</details>
+
+#### `POST /resto/:idResto/table/:idTable/filledTable`
+
+<details>
+	
+<summary>Request: Body</summary> 
+
+```
+{
+  "state" : "filled",
+}
 
 ```
 
