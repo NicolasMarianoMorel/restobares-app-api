@@ -39,8 +39,11 @@ module.exports = async (idResto, productId, body) => {
   }
   if (image) {
     const responseUpload = await uploadImage(image);
+  	const image_url = image.slice(0,5) === 'data:' 
+  		? responseUpload.secure_url
+  		: image;
     await Product.update(
-      { image: responseUpload.secure_url },
+      { image: image_url },
       {
         where: {
           id: productId,
