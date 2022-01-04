@@ -70,6 +70,7 @@ When doing anything that requires posting an Image (example: POST /resto/:idRest
 - PUT /resto/:idResto/table/:idTable/order
 - POST /resto/:idResto/table/:idTable/payment
 - POST /resto/:idResto/table/:idTable/feedback
+- *POST /resto/:idResto/table/:idTable/filledTable
 
 #### Staff Routes
 - GET /resto/:idResto/staff/menu
@@ -458,7 +459,8 @@ When doing anything that requires posting an Image (example: POST /resto/:idRest
 
 {
   msg: `Welcome back, ${user.title}! You logged in as ${role}.`, 
-  token: "fweofoiwneoifwef"
+  token: "fweofoiwneoifwef",
+  logoutCode: "goldentruffle@gmail.com-admin"
 }
 	
 ```
@@ -760,6 +762,21 @@ When doing anything that requires posting an Image (example: POST /resto/:idRest
     
 }
 
+
+```
+
+</details>
+
+#### `POST /resto/:idResto/table/:idTable/filledTable`
+
+<details>
+	
+<summary>Request: Body</summary> 
+
+```
+{
+  "state" : "filled",
+}
 
 ```
 
@@ -1320,7 +1337,7 @@ When doing anything that requires posting an Image (example: POST /resto/:idRest
 
 <details>
 	
-<summary>Request: Body</summary>
+<summary>Response: JSON</summary>
 
 ```
 [
