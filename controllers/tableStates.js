@@ -7,13 +7,6 @@ module.exports = async function (idTable, state, idResto, idStaff) {
   // Abreviate the table direction
   let table = usersTables[idResto].tables[idTable - 1];
   //changing the states of the tables:
-  //if body state is "filled"
-  if(state === "filled"){
-    if(table.state === "free"){
-     table.state = "filled";
-     return { msg: "Table Filled", status: 200 }
-    }
-  }
   //if body state is "eating"
   if (state === "eating") {
     if (table.state === "waiting") {
