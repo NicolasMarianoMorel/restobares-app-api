@@ -5,6 +5,9 @@ const fs = require("fs-extra");
 module.exports = async (idResto, body) => {
   const { name, price, detail, image, id_label, CategoryId, DiscountId } = body;
   const responseUpload = await uploadImage(image);
+  const image_url = image.slice(0,5) === 'data:' 
+  	? responseUpload.secure_url
+  	: image;
   if (!name || !price) {
     return { error: "Product not registed" };
   }
@@ -12,7 +15,7 @@ module.exports = async (idResto, body) => {
     name,
     price,
     detail,
-    image:responseUpload.secure_url,
+    image: image_url,
     UserId: idResto,
     CategoryId,
     DiscountId,
