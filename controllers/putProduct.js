@@ -1,7 +1,7 @@
 const { Product } = require("../db");
 const uploadImage = require("./uploadImage.js");
 module.exports = async (idResto, productId, body) => {
-  const { name, price, detail, image, available, DiscountId, CategoryId } =
+  let { name, price, detail, image, available, DiscountId, CategoryId } =
     body;
   
   if (name) {
@@ -38,9 +38,12 @@ module.exports = async (idResto, productId, body) => {
     );
   }
   if (image) {
-    const responseUpload = await uploadImage(image);
+		if (image.slice(0,5) === 'data:') {
+			const responseUpload = await uploadImage(image);
+			image = responseUpload.secure_url;
+		}
     await Product.update(
-      { image: responseUpload.secure_url },
+      { image: image },
       {
         where: {
           id: productId,
