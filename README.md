@@ -30,15 +30,25 @@ If u want to skip the login process, you can use in the header authorization, a 
 Example: `Bearer AdminSupremeTest`.
 
 #### ⚠️ Tip about Posting Images:
-When doing anything that requires posting an Image (example: POST /resto/:idResto/admin/menu), the Image now requires to be uploaded in the _base64_ format.
+When doing anything that requires posting or putting an Image/Logo (example: POST /resto/:idResto/admin/menu), the Image now requires to be uploaded in the _base64_ format.
+
+❗❗❗ **Update**: You can also pass the URL of an Image from the Internet.
+
 <details>
 
 <summary>For example:</summary>
 
 ```
+// Example 1 (base64)
 {
 	...
 	"image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+K...",
+	...
+}
+// Example 2 (URL)
+{
+	...
+	"image": "https://fake.image.url/123456.jpeg",
 	...
 }
 ```
