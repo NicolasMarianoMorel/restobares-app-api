@@ -27,6 +27,7 @@ const login = require("./login.js");
 const uploadImage = require("./uploadImage");
 const recoverPassword = require("./recoverPassword.js");
 const logout = require("./logout.js");
+const filledTable = require("./filledTable.js")
 
 // ...
 
@@ -59,5 +60,6 @@ module.exports = {
   uploadImage,
   recoverPassword,
   logout,
+  filledTable
   // ...
 };

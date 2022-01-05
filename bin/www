@@ -47,6 +47,7 @@ conn.sync({ force: false }).then( async () => {
 			tables: 8,
 			title: 'La Trufa Dorada',
 			logo: 'https://i2.bssl.es/guiamaximin/2020/01/la-chistera-880x587.jpg',
+			payment_mp: 'TEST-8597162101756929-120903-244e52b38faa5e385b1394e5fec0f351-186091864',
 		}
 	});
 	// Creamos otro usuario de prueba

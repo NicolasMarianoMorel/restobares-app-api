@@ -6,13 +6,14 @@ const { SoldOrder, SoldProduct } = require("../db.js");
 module.exports = async function (idTable, state, idResto, idStaff) {
   // Abreviate the table direction
   let table = usersTables[idResto].tables[idTable - 1];
-  //changing the state of the table to eating
+  //changing the states of the tables:
+  //if body state is "eating"
   if (state === "eating") {
     if (table.state === "waiting") {
       table.state = "eating";
       // adding the price of each product to the totalPrice
       table.totalPrice += table.currentOrder.products.reduce((a, e) => {
-        return (a + e.price).toFixed(2) * 1;
+        return (a + e.price * e.quantity).toFixed(2) * 1;
       }, 0);
       table.totalPrice = table.totalPrice.toFixed(2) * 1;
       // change the location of the products to ordered
@@ -44,6 +45,7 @@ module.exports = async function (idTable, state, idResto, idStaff) {
       };
     }
   }
+  //if body state includes "pay"
   if (state.includes("pay")) {
     if (table.state.includes("pay")) {
       // Get the current date
