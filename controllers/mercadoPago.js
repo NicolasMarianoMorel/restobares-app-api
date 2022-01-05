@@ -12,10 +12,10 @@ const mercadoPago = async (idResto, idTable, state, tip) => {
 
   let descriptor = users.dataValues;
 
-
   mercadopago.configure({
-    access_token:descriptor.payment_mp,
-  });
+    access_token:
+      "TEST-8597162101756929-120903-244e52b38faa5e385b1394e5fec0f351-186091864",
+  }); 
 
   if (!state || !tip) throw new Error("You must specify state and tip.");
   usersTables[idResto].tables[idTable - 1].state = state;
