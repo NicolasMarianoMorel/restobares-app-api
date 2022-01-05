@@ -1,7 +1,7 @@
 const { Product } = require("../db");
 const uploadImage = require("./uploadImage.js");
 module.exports = async (idResto, productId, body) => {
-  const { name, price, detail, image, available, DiscountId, CategoryId } =
+  const { name, price, detail, image, available, DiscountId, CategoryId, id_label } =
     body;
   
   if (name) {
@@ -72,6 +72,17 @@ module.exports = async (idResto, productId, body) => {
     );
   }
   if (CategoryId) {
+    await Product.update(
+      { CategoryId: CategoryId },
+      {
+        where: {
+          id: productId,
+          UserId: idResto,
+        },
+      }
+    );
+  }
+  if (id_label && id_label.length > 0) {
     await Product.update(
       { CategoryId: CategoryId },
       {
