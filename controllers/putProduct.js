@@ -1,7 +1,8 @@
-const { Product } = require("../db");
+const { Product, Label } = require("../db");
 const uploadImage = require("./uploadImage.js");
+
 module.exports = async (idResto, productId, body) => {
-  let { name, price, detail, image, available, DiscountId, CategoryId } =
+  const { name, price, detail, image, available, DiscountId, CategoryId, id_label } =
     body;
   
   if (name) {
@@ -84,5 +85,19 @@ module.exports = async (idResto, productId, body) => {
         },
       }
     );
+  }
+  if (id_label && id_label.length > 0) {
+    let productLabel = await Product.findOne(
+      {
+        where: {
+          id: productId,
+          UserId: idResto,
+        },
+      }
+    );
+    const db_labels = await Label.findAll({
+      where: { id: id_label },
+    });
+    await productLabel.setLabels(db_labels);
   }
 };
