@@ -7,9 +7,13 @@
 var app = require("../app");
 var debug = require("debug")("src:server");
 var http = require("http");
+// Import Socket.Io
+const { Server } = require("socket.io");
+
 const { User, Product, Label, conn } = require("../db.js");
 const { usersTables } = require("../cache.js");
 const { getCategories, getDiscounts, getLabels, getMenu, generateId } = require("../controllers");
+
 
 /**
  * Get port from environment and store in Express.
@@ -23,6 +27,19 @@ app.set("port", port);
  */
 
 var server = http.createServer(app);
+// Create the socket.io server.
+const io = new Server(server);
+
+// Now we setup all the socket events.
+io.on(
+	// Someone connects to this server.
+	'connection',
+	socket => {
+		
+		console.log('Someone has connected.');
+		
+	}
+);
 
 /**
  * Listen on provided port, on all network interfaces.
