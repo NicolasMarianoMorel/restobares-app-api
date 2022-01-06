@@ -51,17 +51,13 @@ io.on(
 			console.log(`User ${socket.id} is in resto ${idResto}`);
 		});
 		
-		// A diner just scanned a QR Code.
-		socket.on('tableState', ({idTable,state}) => {
+		// A diner just did something.
+		socket.on('tableSend', () => {
 			// We get the resto that its connected to
 			let idResto = Array.from(socket.rooms)[1];
-			switch (state) {
-				case 'filled':
-					console.log(`The table ${idTable} from ${idResto} is now filled.`);
-					// We change the table state
-					//filledTable(idResto,idTable,'filled');
-				default:
-			}
+			socket.to(idResto).emit('staffListen');
+			// Log in Console
+			console.log(`Diner in ${idResto} did something.`);
 		});
 		// Someone disconnects
 		socket.on(
