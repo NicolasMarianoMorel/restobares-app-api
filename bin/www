@@ -12,7 +12,15 @@ const { Server } = require("socket.io");
 
 const { User, Product, Label, conn } = require("../db.js");
 const { usersTables } = require("../cache.js");
-const { getCategories, getDiscounts, getLabels, getMenu, generateId } = require("../controllers");
+const { 
+	getCategories, 
+	getDiscounts, 
+	getLabels, 
+	getMenu, 
+	generateId,
+	// Socket-related controllers
+	filledTable,
+} = require("../controllers");
 
 
 /**
@@ -35,9 +43,33 @@ io.on(
 	// Someone connects to this server.
 	'connection',
 	socket => {
+		console.log(`User ${socket.id} connected.`,);
 		
-		console.log('Someone has connected.');
+		// The socket joins a room (resto)
+		socket.on('joinResto', (idResto) => {
+			socket.join(idResto);
+			console.log(`User ${socket.id} is in resto ${idResto}`);
+		});
 		
+		// A diner just scanned a QR Code.
+		socket.on('tableState', ({idTable,state}) => {
+			// We get the resto that its connected to
+			let idResto = Array.from(socket.rooms)[1];
+			switch (state) {
+				case 'filled':
+					console.log(`The table ${idTable} from ${idResto} is now filled.`);
+					// We change the table state
+					//filledTable(idResto,idTable,'filled');
+				default:
+			}
+		});
+		// Someone disconnects
+		socket.on(
+			'disconnect',
+			() => {
+				console.log(`User ${socket.id} disconnected.`)
+			}
+		);
 	}
 );
 
