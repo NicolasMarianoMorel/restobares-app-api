@@ -8,7 +8,7 @@ cloudinary.config({
 
 const uploadImage = async (image) => {
   const uploadResponse = await cloudinary.v2.uploader.upload(image); 
-  console.log("resonse", uploadResponse);
+  console.log("response", uploadResponse);
   return uploadResponse;
 };
 
