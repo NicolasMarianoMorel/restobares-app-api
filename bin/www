@@ -18,8 +18,6 @@ const {
 	getLabels, 
 	getMenu, 
 	generateId,
-	// Socket-related controllers
-	filledTable,
 } = require("../controllers");
 
 
@@ -58,6 +56,14 @@ io.on(
 			socket.to(idResto).emit('staffListen');
 			// Log in Console
 			console.log(`Diner in ${idResto} did something.`);
+		});
+		// A staff member just did something.
+		socket.on('staffSend', () => {
+			// We get the resto that its connected to
+			let idResto = Array.from(socket.rooms)[1];
+			socket.to(idResto).emit('tableListen');
+			// Log in Console
+			console.log(`Staff in ${idResto} did something.`);
 		});
 		// Someone disconnects
 		socket.on(
