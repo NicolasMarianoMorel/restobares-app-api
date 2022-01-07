@@ -7,9 +7,19 @@
 var app = require("../app");
 var debug = require("debug")("src:server");
 var http = require("http");
+// Import Socket.Io
+const { Server } = require("socket.io");
+
 const { User, Product, Label, conn } = require("../db.js");
 const { usersTables } = require("../cache.js");
-const { getCategories, getDiscounts, getLabels, getMenu, generateId } = require("../controllers");
+const { 
+	getCategories, 
+	getDiscounts, 
+	getLabels, 
+	getMenu, 
+	generateId,
+} = require("../controllers");
+
 
 /**
  * Get port from environment and store in Express.
@@ -23,6 +33,52 @@ app.set("port", port);
  */
 
 var server = http.createServer(app);
+// Create the socket.io server.
+const io = new Server(server, {
+	cors: {
+		origin: '*',
+		methods: ['GET','POST','PUT','DELETE','OPTIONS']
+	}
+});
+
+// Now we setup all the socket events.
+io.on(
+	// Someone connects to this server.
+	'connection',
+	socket => {
+		console.log(`User ${socket.id} connected.`,);
+		
+		// The socket joins a room (resto)
+		socket.on('joinResto', (idResto) => {
+			socket.join(idResto);
+			console.log(`User ${socket.id} is in resto ${idResto}`);
+		});
+		
+		// A diner just did something.
+		socket.on('tableSend', () => {
+			// We get the resto that its connected to
+			let idResto = Array.from(socket.rooms)[1];
+			socket.to(idResto).emit('staffListen');
+			// Log in Console
+			console.log(`Diner in ${idResto} did something.`);
+		});
+		// A staff member just did something.
+		socket.on('staffSend', () => {
+			// We get the resto that its connected to
+			let idResto = Array.from(socket.rooms)[1];
+			socket.to(idResto).emit('tableListen');
+			// Log in Console
+			console.log(`Staff in ${idResto} did something.`);
+		});
+		// Someone disconnects
+		socket.on(
+			'disconnect',
+			() => {
+				console.log(`User ${socket.id} disconnected.`)
+			}
+		);
+	}
+);
 
 /**
  * Listen on provided port, on all network interfaces.
