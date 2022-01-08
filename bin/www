@@ -51,7 +51,7 @@ io.on(
 		// The socket joins a room (resto)
 		socket.on('joinResto', (idResto) => {
 			socket.join(idResto);
-			console.log(`User ${socket.id} is in resto ${idResto}`);
+			// console.log(`User ${socket.id} is in resto ${idResto}`);
 		});
 		
 		// A diner just did something.
@@ -60,7 +60,7 @@ io.on(
 			let idResto = Array.from(socket.rooms)[1];
 			socket.to(idResto).emit('staffListen');
 			// Log in Console
-			console.log(`Diner in ${idResto} did something.`);
+			// console.log(`Diner in ${idResto} did something.`);
 		});
 		// A staff member just did something.
 		socket.on('staffSend', () => {
@@ -68,13 +68,13 @@ io.on(
 			let idResto = Array.from(socket.rooms)[1];
 			socket.to(idResto).emit('tableListen');
 			// Log in Console
-			console.log(`Staff in ${idResto} did something.`);
+			// console.log(`Staff in ${idResto} did something.`);
 		});
 		// Someone disconnects
 		socket.on(
 			'disconnect',
 			() => {
-				console.log(`User ${socket.id} disconnected.`)
+				// console.log(`User ${socket.id} disconnected.`)
 			}
 		);
 	}
