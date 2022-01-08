@@ -69,8 +69,8 @@ When doing anything that requires posting or putting an Image/Logo (example: POS
 - POST /register
 - GET /confirmation/:token
 - POST /login
-- GET /recover
-- GET /logout
+- POST /recover
+- POST /logout
 
 #### Diner Routes (comensal)
 - GET  /resto/:idResto/table/:idTable/order
