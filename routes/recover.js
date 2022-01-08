@@ -6,7 +6,7 @@ const { recoverPassword } = require('../controllers');
 
 // - - GET /recover
 // ruta relativa!
-router.get('/',async (req,res) => {
+router.post('/',async (req,res) => {
 	try {
 		let result = await recoverPassword(req.body);
 		res.json(result);
