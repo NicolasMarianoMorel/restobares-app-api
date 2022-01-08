@@ -5,7 +5,7 @@ const {getSoldOrder, getSoldOrderPrice} = require('../../../controllers');
 router.get('/',async (req,res) => {
 	try{
 		const {idResto} = req;
-		const {filterTime, orderPrice} = req.body;
+		const {filterTime, orderPrice} = req.query;
 		let timeOrder = await getSoldOrder(idResto, filterTime);
 		if(timeOrder.length<1) return res.status(404).json({error: `There isn't movement history`});
 		if(!orderPrice) return res.status(200).json(timeOrder);
