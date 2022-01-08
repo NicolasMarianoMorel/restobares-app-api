@@ -4,7 +4,6 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var cors = require("cors");
-const multer = require("multer");
 
 require("./db.js");
 
@@ -23,16 +22,6 @@ app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, "public")));
 
-
-
-const storage = multer.diskStorage({
-  destination: path.join(__dirname, "public/img/uploads"),
-  filename: (req, file, cb, filename) => {
-    console.log(file);
-    cb(null, new Date().toLocaleString() + path.extname(file.originalname));
-  },
-});
-app.use(multer({ storage }).single("image"));
 
 app.use((req, res, next) => {
 	res.header('Access-Control-Allow-Origin', '*'); // update to match the domain you will make the request from
