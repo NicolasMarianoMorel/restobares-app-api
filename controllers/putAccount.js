@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt');
 module.exports = async function (idResto, body) {
 	// Salt for hashing the password
 	const saltRounds = 10;
-  const {
+  let {
     email,
     passAdmin,
     passStaff,
