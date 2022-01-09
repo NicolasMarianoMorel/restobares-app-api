@@ -2,7 +2,7 @@ const { Product, Label } = require("../db");
 const uploadImage = require("./uploadImage.js");
 
 module.exports = async (idResto, productId, body) => {
-  const { name, price, detail, image, available, DiscountId, CategoryId, id_label } =
+  let { name, price, detail, image, available, DiscountId, CategoryId, id_label } =
     body;
   
   if (name) {
