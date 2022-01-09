@@ -69,8 +69,8 @@ When doing anything that requires posting or putting an Image/Logo (example: POS
 - POST /register
 - GET /confirmation/:token
 - POST /login
-- GET /recover
-- GET /logout
+- POST /recover
+- POST /logout
 
 #### Diner Routes (comensal)
 - GET  /resto/:idResto/table/:idTable/order
@@ -1107,19 +1107,13 @@ When doing anything that requires posting or putting an Image/Logo (example: POS
 
 <details>
 	
-<summary>Request: Body</summary>
+<summary>Request: Query Params</summary>
 
 ```
 //example 1:
-{
-    filterTime: 'Day'     // 'Day', 'Month'
-}
+localhost:3000/resto/saddferferv/admin/revenue?filterTime=Day     // 'Day', 'Month', 'Last7days'
 //example 2:
-{
-    filterTime: 'Day',     // 'Day', 'Month', 'Last7days'
-    orderPrice: 'Ascendent' // 'Ascendent', 'Descendent'
-}
-
+localhost:3000/resto/saddferferv/admin/revenue?filterTime=Day&orderPrice=Ascendent 	//orderPrice --> 'Ascendent', 'Descendent'
 	
 ```
 
