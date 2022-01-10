@@ -52,18 +52,19 @@ module.exports = async function(body) {
 			}
 		});
 		// Send the EMAIL
-		let encodedToken = encodeURIComponent(userToken);
+		// let encodedToken = encodeURIComponent(userToken);
+		let encodedToken= userToken;
 		const mailOptions = {
 			from: '🛎️DingBell <restobaresapp@gmail.com>',
 			to: email,
 			subject: 'Confirmación de tu cuenta',
-			text: `Para finalizar la confirmación de tu cuenta, hacé click en este link: https://restobares-app-api.herokuapp.com/confirmation/${encodedToken}`,
+			text: `Para finalizar la confirmación de tu cuenta, hacé click en este link: http://localhost:3000/resto/mail-confirmation/${encodedToken}`,
 			html: `
 				<h1>Bienvenido a DingBell! 🛎️</h1>
 				<p>
 					Sólo queda un paso para aprovechar los beneficios de DingBell...<br>
 					hacé click en este 
-					<a href="https://restobares-app-api.herokuapp.com/confirmation/${encodedToken}">LINK</a> 
+					<a href="http://localhost:3000/resto/mail-confirmation/${encodedToken}">LINK</a> 
 					para continuar con tu registro.
 				</p>
 			`
