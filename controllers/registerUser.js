@@ -52,8 +52,7 @@ module.exports = async function(body) {
 			}
 		});
 		// Send the EMAIL
-		// let encodedToken = encodeURIComponent(userToken);
-		let encodedToken= userToken;
+		let encodedToken = encodeURIComponent(userToken);
 		const mailOptions = {
 			from: '🛎️DingBell <restobaresapp@gmail.com>',
 			to: email,
