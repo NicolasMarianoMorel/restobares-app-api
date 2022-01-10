@@ -8,7 +8,7 @@ router.get("/:idStaff/:state", async (req, res) => {
       const {idStaff, state} = req.params;
       let response = await tableStates(idTable, state, idResto, idStaff);
       if(response.status===200){
-        res.redirect(`https://restobares-app.web.app/resto/${idResto}/table/${idTable}`)
+        res.redirect(`https://restobares-app.web.app/resto/${idResto}/table/${idTable}/feedback`)
       }
     } catch (err) {
           console.error(err.stack);

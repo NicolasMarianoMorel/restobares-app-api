@@ -6,6 +6,7 @@ const uploadImage = require("./uploadImage.js");
 
 module.exports = async function confirmUser(token) {
 	token = decodeURIComponent(token);
+	console.log(token);
 	let user = pendingUsers[token];
 	// If the front gave us a base64 image, we upload it to cloudinary
 	// and turn it into an URL.
