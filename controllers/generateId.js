@@ -11,5 +11,6 @@ module.exports = function generateId(email) {
 		j--; 
 	}
 	// return btoa(mixed);
-	return Buffer.from(mixed, 'binary').toString('base64');
+	let newId = Buffer.from(mixed, 'binary').toString('base64');
+	return newId.replace('/', '-');
 } 

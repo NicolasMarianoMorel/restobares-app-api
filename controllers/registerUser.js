@@ -57,13 +57,13 @@ module.exports = async function(body) {
 			from: '🛎️DingBell <restobaresapp@gmail.com>',
 			to: email,
 			subject: 'Confirmación de tu cuenta',
-			text: `Para finalizar la confirmación de tu cuenta, hacé click en este link: https://restobares-app-api.herokuapp.com/confirmation/${encodedToken}`,
+			text: `Para finalizar la confirmación de tu cuenta, hacé click en este link: https://restobares-app.web.app/resto/mail-confirmation/${encodedToken}`,
 			html: `
 				<h1>Bienvenido a DingBell! 🛎️</h1>
 				<p>
 					Sólo queda un paso para aprovechar los beneficios de DingBell...<br>
 					hacé click en este 
-					<a href="https://restobares-app-api.herokuapp.com/confirmation/${encodedToken}">LINK</a> 
+					<a href="https://restobares-app.web.app/resto/mail-confirmation/${encodedToken}">LINK</a> 
 					para continuar con tu registro.
 				</p>
 			`
