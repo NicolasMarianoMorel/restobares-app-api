@@ -60,7 +60,7 @@ const mercadoPago = async (idResto, idTable, state, tip) => {
   };
 
   const res = await mercadopago.preferences.create(preference);
-  console.log(res.body.init_point);
+  // console.log(res.body.init_point);
   return res;
 };
 
