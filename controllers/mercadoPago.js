@@ -12,10 +12,10 @@ const mercadoPago = async (idResto, idTable, state, tip) => {
 
   let descriptor = users.dataValues;
 
-
   mercadopago.configure({
-    access_token:descriptor.payment_mp,
-  });
+    access_token:
+      "TEST-8597162101756929-120903-244e52b38faa5e385b1394e5fec0f351-186091864",
+  }); 
 
   if (!state) throw new Error("You must specify state and tip.");
   usersTables[idResto].tables[idTable - 1].state = state;
@@ -54,13 +54,13 @@ const mercadoPago = async (idResto, idTable, state, tip) => {
     back_urls: {
       success: `https://restobares-app-api.herokuapp.com/resto/${idResto}/table/${idTable}/mp/${idStaff}/${state}`,
       failure: `https://restobares-app.web.app/resto/${idResto}/table/${idTable}/bill`,
-      // pending: "http://localhost:8080/feedback",
+      pending: `https://restobares-app.web.app/resto/${idResto}/table/${idTable}/bill`,
     },
     auto_return: "approved",
   };
 
   const res = await mercadopago.preferences.create(preference);
-  console.log(res.body.init_point);
+  // console.log(res.body.init_point);
   return res;
 };
 
