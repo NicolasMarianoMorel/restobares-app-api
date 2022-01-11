@@ -54,7 +54,7 @@ const mercadoPago = async (idResto, idTable, state, tip) => {
     back_urls: {
       success: `https://restobares-app-api.herokuapp.com/resto/${idResto}/table/${idTable}/mp/${idStaff}/${state}`,
       failure: `https://restobares-app.web.app/resto/${idResto}/table/${idTable}/bill`,
-      // pending: "http://localhost:8080/feedback",
+      pending: `https://restobares-app.web.app/resto/${idResto}/table/${idTable}/bill`,
     },
     auto_return: "approved",
   };
