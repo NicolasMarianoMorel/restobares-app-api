@@ -228,7 +228,7 @@ conn.sync({ force: false }).then( async () => {
 		  ];
  var LaTrufaDorada = await User.findOne({
 	 where: {
-		 title: "La Trufa Dorada"
+		 email: "goldentruffle@gmail.com"
 	 }
  })
 let menu = await getMenu(LaTrufaDorada.id)

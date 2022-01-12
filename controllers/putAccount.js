@@ -1,6 +1,7 @@
 const { User } = require("../db");
 const uploadImage = require("./uploadImage.js");
 const bcrypt = require('bcrypt');
+const { usersTables } = require("../cache.js");
 
 //putAccount controller
 
@@ -58,6 +59,37 @@ module.exports = async function (idResto, body) {
         },
       }
     );
+    // Update the caché too
+    let currentTablesAmount = usersTables[idResto].tables.length;
+		if (currentTablesAmount <= tables) {
+			let newTables = [];
+			for (let i=currentTablesAmount+1; i <= tables; i++) {
+				newTables.push(
+					{
+						tableId: i,
+						state: 'free', // free, eating, waiting, pay_cash, pay_online
+						calling: false,
+						ordered: [], // already ordered products
+						totalPrice: 0,
+						tip: 0,
+						currentOrder: { // order waiting to be served
+							time: '',
+							products: [],
+							comments: '',
+						}
+					}
+				);
+			}
+			usersTables[idResto].tables = [...usersTables[idResto].tables, ...newTables];
+			console.log("Amount of Tables: ",usersTables[idResto].tables.length);
+		} else {
+			usersTables[idResto].tables = usersTables[idResto].tables.filter(
+				(table, i) => {
+					return table.tableId <= tables;
+				}
+			);
+			console.log("Amount of Tables: ",usersTables[idResto].tables.length);
+		}
   }
   if (title) {
     await User.update(
