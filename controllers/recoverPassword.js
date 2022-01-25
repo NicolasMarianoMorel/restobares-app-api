@@ -4,7 +4,7 @@ const { google } = require('googleapis');
 const { User } = require('../db.js');
 const bcrypt = require('bcrypt');
 const generateId = require('./generateId.js');
-const { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, REFRESH_TOKEN } = process.env;
+const { PASS_USER } = process.env;
 
 // de-hash the password
 
@@ -34,20 +34,24 @@ module.exports = async function(body) {
 	);
 	
 	// Begin Nodemailer setup with gmail and google apis
-	const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
-	oAuth2Client.setCredentials({refresh_token: REFRESH_TOKEN});
+	// const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+	// oAuth2Client.setCredentials({refresh_token: REFRESH_TOKEN});
 	
 	async function sendMail() {
 		const accessToken = await oAuth2Client.getAccessToken();
 		const transport = nodemailer.createTransport({
-			service: 'gmail',
+			// service: 'gmail',
+			host: "smtp.gmail.com",
+            port: 465,
+            secure:true,
 			auth: {
-				type: 'OAuth2',
+				// type: 'OAuth2',
 				user: 'restobaresapp@gmail.com',
-				clientId: CLIENT_ID,
-				clientSecret: CLIENT_SECRET,
-				refreshToken: REFRESH_TOKEN,
-				accessToken: accessToken
+				pass: PASS_USER,
+				// clientId: CLIENT_ID,
+				// clientSecret: CLIENT_SECRET,
+				// refreshToken: REFRESH_TOKEN,
+				// accessToken: accessToken
 			}
 		});
 		// Send the EMAIL

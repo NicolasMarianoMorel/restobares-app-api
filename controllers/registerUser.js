@@ -5,7 +5,7 @@ const { User } = require('../db.js');
 const generateId = require('./generateId.js');
 const { pendingUsers } = require('../cache.js');
 const bcrypt = require('bcrypt');
-// const { /*CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, REFRESH_TOKEN*/ } = process.env;
+const { PASS_USER } = process.env;
 
 module.exports = async function(body) {
 	const {
@@ -48,7 +48,7 @@ module.exports = async function(body) {
 			auth: {
 				// type: 'OAuth2',
 				user: 'restobaresapp@gmail.com',
-				pass: 'qfqqbfoarsdfkctq',
+				pass: PASS_USER,
 				// clientId: CLIENT_ID,
 				// clientSecret: CLIENT_SECRET,
 				// refreshToken: REFRESH_TOKEN,
