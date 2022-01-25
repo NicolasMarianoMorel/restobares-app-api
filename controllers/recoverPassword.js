@@ -38,7 +38,7 @@ module.exports = async function(body) {
 	// oAuth2Client.setCredentials({refresh_token: REFRESH_TOKEN});
 	
 	async function sendMail() {
-		const accessToken = await oAuth2Client.getAccessToken();
+		// const accessToken = await oAuth2Client.getAccessToken();
 		const transport = nodemailer.createTransport({
 			// service: 'gmail',
 			host: "smtp.gmail.com",
