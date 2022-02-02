@@ -1363,9 +1363,8 @@ localhost:3000/resto/saddferferv/admin/revenue?filterTime=Day&orderPrice=Ascende
 </details>
 
 ## Contributors
-The following contributors have either helped to start this project, have contributed
-code, are actively maintaining it (including documentation), or in other ways
-being awesome contributors to this project. **We'd like to take a moment to recognize them.**
+The following developers  have either helped to start this project, have contributed
+code, are actively maintaining it (including documentation). **We'd like to take a moment to recognize them.**
 
 |                                                             | Name           | GitHub                                               |
 | :---------------------------------------------------------: | -------------- | ---------------------------------------------------- |
