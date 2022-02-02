@@ -1370,7 +1370,7 @@ being awesome contributors to this project. **We'd like to take a moment to reco
 |                                                             | Name           | GitHub                                               |
 | :---------------------------------------------------------: | -------------- | ---------------------------------------------------- |
 | <img src="https://github.com/Eliasdbr.png?size=72" />       | Elias Borda    | [@Eliasdbr](https://github.com/Eliasdbr)             |
-|<img src="https://github.com/NicolasMarianoMorel.png?size=72"/>| Nicolas Morel  | [@kirkbross](https://github.com/kirkbross)      |
+|<img src="https://github.com/NicolasMarianoMorel.png?size=72"/>| Nicolas Morel  | [@NicolasMarianoMorel](https://github.com/NicolasMarianoMorel)      |
 | <img src="https://github.com/Smesaz.png?size=72"/>      | Sebastian Mesa | [@Smesaz](https://github.com/Smesaz)       |
 |<img src="https://github.com/brianbacca.png?size=72" />      | Brian Bacarezza| [@brianbacca](https://github.com/brianbacca)             |
 
