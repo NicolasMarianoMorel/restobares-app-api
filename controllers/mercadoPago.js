@@ -52,9 +52,9 @@ const mercadoPago = async (idResto, idTable, state, tip) => {
     // expiration_date_from: new Date().toISOString(),
     // expiration_date_to: new Date().toISOString(),
     back_urls: {
-      success: `https://restobares-app-api.herokuapp.com/resto/${idResto}/table/${idTable}/mp/${idStaff}/${state}`,
-      failure: `https://restobares-app.web.app/resto/${idResto}/table/${idTable}/bill`,
-      pending: `https://restobares-app.web.app/resto/${idResto}/table/${idTable}/bill`,
+      success: `https://dingbell.onrender.com/resto/${idResto}/table/${idTable}/mp/${idStaff}/${state}`,
+      failure: `https://dingbellapp.onrender.com/resto/${idResto}/table/${idTable}/bill`,
+      pending: `https://dingbellapp.onrender.com/resto/${idResto}/table/${idTable}/bill`,
     },
     auto_return: "approved",
   };

@@ -36,7 +36,7 @@ var server = http.createServer(app);
 // Create the socket.io server.
 const io = new Server(server, {
 	cors: {
-		origin: ['https://restobares-app.web.app','http://localhost:3000'],
+		origin: ['https://restobares-app.web.app','http://localhost:3000', 'https://dingbellapp.onrender.com'],
 		methods: ['GET','POST','PUT','DELETE','OPTIONS'],
 		credentials: true
 	}
